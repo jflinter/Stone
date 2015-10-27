@@ -40,7 +40,7 @@ products.each do |product|
       version: 1,
       author: "xcode"
     }
-  })
+  }).gsub(/":/, '" :')
   File.open("#{dirname}/contents.json", 'w') do |file|
     file.write(json_string)
   end
