@@ -1,0 +1,8 @@
+[
+  "list",
+  [
+    {"id":"prod_7EUveLOJpbZMk6","object":"product","active":false,"attributes":[],"caption":"A beautiful rock.","created":1445831163,"description":"Quartz is good.","images":["http://satyamani.org/image/data/blog/product/rose_quartz.png"],"livemode":false,"metadata":{},"name":"Quartz","package_dimensions":null,"shippable":false,"skus":{"object":"list","data":[],"has_more":false,"total_count":0,"url":"/v1/skus?product=prod_7EUveLOJpbZMk6&active=true"},"updated":1445832910,"url":null}
+  ],
+  false,
+  "/v1/products"
+]

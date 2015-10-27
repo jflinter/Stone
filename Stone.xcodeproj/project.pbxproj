@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2E991BDDDB39004286A9 /* AppDelegate.swift */; };
+		A01D2EA11BDDDB39004286A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01D2EA01BDDDB39004286A9 /* Assets.xcassets */; };
+		A01D2EA41BDDDB39004286A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */; };
+		A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAB1BDDDBDE004286A9 /* CrystalCollectionViewController.swift */; };
+		A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAD1BDDDC47004286A9 /* Crystal.swift */; };
+		A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */; };
+		A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */; };
+		A0B7A0CA1BDDFD5B001E867A /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = A0B7A0C91BDDFD5B001E867A /* products.json */; };
+		A0D408551BDF25A700CEEBDB /* Crystals.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0D408541BDF25A700CEEBDB /* Crystals.xcassets */; };
+		A0FB7E231BDDF5DC00113C46 /* CrystalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A01D2E961BDDDB39004286A9 /* Stone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01D2E991BDDDB39004286A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A01D2EA01BDDDB39004286A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A01D2EA31BDDDB39004286A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A01D2EA51BDDDB39004286A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A01D2EAB1BDDDBDE004286A9 /* CrystalCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCollectionViewController.swift; sourceTree = "<group>"; };
+		A01D2EAD1BDDDC47004286A9 /* Crystal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crystal.swift; sourceTree = "<group>"; };
+		A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCellViewModel.swift; sourceTree = "<group>"; };
+		A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCollectionViewCell.swift; sourceTree = "<group>"; };
+		A0B7A0C91BDDFD5B001E867A /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
+		A0D408541BDF25A700CEEBDB /* Crystals.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Crystals.xcassets; sourceTree = "<group>"; };
+		A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalStore.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A01D2E931BDDDB39004286A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A01D2E8D1BDDDB39004286A9 = {
+			isa = PBXGroup;
+			children = (
+				A01D2E981BDDDB39004286A9 /* Stone */,
+				A01D2E971BDDDB39004286A9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A01D2E971BDDDB39004286A9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A01D2E961BDDDB39004286A9 /* Stone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A01D2E981BDDDB39004286A9 /* Stone */ = {
+			isa = PBXGroup;
+			children = (
+				A01D2E991BDDDB39004286A9 /* AppDelegate.swift */,
+				A01D2EAD1BDDDC47004286A9 /* Crystal.swift */,
+				A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */,
+				A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */,
+				A01D2EAB1BDDDBDE004286A9 /* CrystalCollectionViewController.swift */,
+				A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */,
+				A01D2EA01BDDDB39004286A9 /* Assets.xcassets */,
+				A0D408541BDF25A700CEEBDB /* Crystals.xcassets */,
+				A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */,
+				A01D2EA51BDDDB39004286A9 /* Info.plist */,
+				A0B7A0C91BDDFD5B001E867A /* products.json */,
+			);
+			path = Stone;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A01D2E951BDDDB39004286A9 /* Stone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A01D2EA81BDDDB39004286A9 /* Build configuration list for PBXNativeTarget "Stone" */;
+			buildPhases = (
+				A01D2E921BDDDB39004286A9 /* Sources */,
+				A01D2E931BDDDB39004286A9 /* Frameworks */,
+				A01D2E941BDDDB39004286A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Stone;
+			productName = Stone;
+			productReference = A01D2E961BDDDB39004286A9 /* Stone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A01D2E8E1BDDDB39004286A9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Stone;
+				TargetAttributes = {
+					A01D2E951BDDDB39004286A9 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = A01D2E911BDDDB39004286A9 /* Build configuration list for PBXProject "Stone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A01D2E8D1BDDDB39004286A9;
+			productRefGroup = A01D2E971BDDDB39004286A9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A01D2E951BDDDB39004286A9 /* Stone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A01D2E941BDDDB39004286A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0B7A0CA1BDDFD5B001E867A /* products.json in Resources */,
+				A01D2EA41BDDDB39004286A9 /* LaunchScreen.storyboard in Resources */,
+				A0D408551BDF25A700CEEBDB /* Crystals.xcassets in Resources */,
+				A01D2EA11BDDDB39004286A9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A01D2E921BDDDB39004286A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */,
+				A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */,
+				A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */,
+				A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */,
+				A0FB7E231BDDF5DC00113C46 /* CrystalStore.swift in Sources */,
+				A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A01D2EA31BDDDB39004286A9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A01D2EA61BDDDB39004286A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A01D2EA71BDDDB39004286A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A01D2EA91BDDDB39004286A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Stone/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jflinter.Stone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A01D2EAA1BDDDB39004286A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Stone/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jflinter.Stone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A01D2E911BDDDB39004286A9 /* Build configuration list for PBXProject "Stone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A01D2EA61BDDDB39004286A9 /* Debug */,
+				A01D2EA71BDDDB39004286A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A01D2EA81BDDDB39004286A9 /* Build configuration list for PBXNativeTarget "Stone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A01D2EA91BDDDB39004286A9 /* Debug */,
+				A01D2EAA1BDDDB39004286A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A01D2E8E1BDDDB39004286A9 /* Project object */;
+}
