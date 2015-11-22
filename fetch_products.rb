@@ -46,5 +46,5 @@ products.each do |product|
   end
 end
 
-json = JSON.pretty_generate(products.values)
+json = JSON.pretty_generate(products.values[1])
 File.open('Stone/products.json', 'w') { |file| file.write(json) }

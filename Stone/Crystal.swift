@@ -14,10 +14,10 @@ struct Crystal {
     let productID: String
     let imageName: String?
     
-    init(name: String, description: String, productID: String, imageName: String?) {
+    init(name: String, description: String, productID: String) {
         self.name = name
         self.description = description
         self.productID = productID
-        self.imageName = imageName
+        self.imageName = productID
     }
 }

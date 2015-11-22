@@ -10,21 +10,34 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class CrystalCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class CrystalCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
     var crystals = CrystalStore.allCrystals
     
     init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = CrystalFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        layout.sectionInset = UIEdgeInsetsZero
+        super.init(collectionViewLayout: layout)
+        self.edgesForExtendedLayout = .None
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.extendedLayoutIncludesOpaqueBars = false
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("not implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let collectionView = collectionView else { return }
+        let imageView = UIImageView(image: UIImage(named: "noun_315_cc"))
+        imageView.frame = CGRectMake(0, 0, 30, 30)
+        imageView.contentMode = .ScaleAspectFit
+        self.navigationItem.titleView = imageView
+        guard let collectionView = collectionView, flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        
+        flowLayout.itemSize = CGSizeMake(self.view.frame.size.width / 2, self.view.frame.size.width / 2)
         collectionView.backgroundColor = UIColor.whiteColor()
         collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
@@ -32,13 +45,8 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.crystals.count
+        return CrystalStore.allCrystals.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -48,23 +56,13 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
         cell.viewModel = viewModel
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = collectionView.frame.size.width / 2;
-        return CGSizeMake(width, width)
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let crystal = self.crystals[indexPath.row]
+        let detail = CrystalDetailViewController()
+        detail.title = crystal.name
+        let nav = UINavigationController(rootViewController: detail)
+        self.presentViewController(nav, animated: true, completion: nil)
     }
 
 }

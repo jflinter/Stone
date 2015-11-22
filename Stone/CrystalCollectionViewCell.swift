@@ -11,16 +11,25 @@ import UIKit
 class CrystalCollectionViewCell: UICollectionViewCell {
     
     let imageView = UIImageView()
+    let scrollView = UIScrollView()
+    let textView = UITextView()
     
     var viewModel: CrystalCellViewModel? {
-        didSet(newValue) {
+        didSet {
             self.imageView.image = viewModel?.image
+            self.textView.text = viewModel?.descriptionText
+            self.textView.hidden = !(viewModel?.detailShown ?? false)
+            self.scrollView.userInteractionEnabled = viewModel?.detailShown ?? false
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(self.imageView)
+        self.scrollView.userInteractionEnabled = false
+        self.addSubview(self.scrollView)
+        self.textView.font = UIFont.systemFontOfSize(24)
+        self.scrollView.addSubview(self.imageView)
+        self.scrollView.addSubview(self.textView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +38,19 @@ class CrystalCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.imageView.frame = self.bounds
+        self.scrollView.frame = self.bounds
+        let edgeSize = min(self.bounds.size.width, self.bounds.size.height)
+        self.imageView.frame = CGRectMake(0, 0, edgeSize, edgeSize)
+        let maxSize = CGSizeMake(self.bounds.size.width, CGFloat.max)
+        let boundingSize = self.textView.sizeThatFits(maxSize)
+        textView.frame = CGRectMake(0, edgeSize, self.bounds.width, boundingSize.height)
+        self.scrollView.contentSize = CGSizeMake(self.bounds.size.width, edgeSize + boundingSize.height)
+
+    }
+    
+    override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.applyLayoutAttributes(layoutAttributes)
+        self.layoutIfNeeded()
     }
     
 }
