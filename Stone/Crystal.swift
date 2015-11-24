@@ -12,12 +12,12 @@ struct Crystal {
     let name: String
     let description: String?
     let productID: String
-    let imageName: String?
+    let imageURLs: [NSURL]
     
-    init(name: String, description: String, productID: String) {
+    init(name: String, description: String, productID: String, imageURLs: [NSURL]) {
         self.name = name
         self.description = description
         self.productID = productID
-        self.imageName = productID
+        self.imageURLs = imageURLs
     }
 }

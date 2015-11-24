@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class CrystalCollectionViewCell: UICollectionViewCell {
     
@@ -16,7 +17,10 @@ class CrystalCollectionViewCell: UICollectionViewCell {
     
     var viewModel: CrystalCellViewModel? {
         didSet {
-            self.imageView.image = viewModel?.image
+            self.imageView.image = nil
+            if let imageURL = viewModel?.imageURLs.first {
+                self.imageView.af_setImageWithURL(imageURL, imageTransition: .CrossDissolve(0.4))
+            }
             self.textView.text = viewModel?.descriptionText
             self.textView.hidden = !(viewModel?.detailShown ?? false)
             self.scrollView.userInteractionEnabled = viewModel?.detailShown ?? false

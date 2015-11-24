@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class CrystalCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
-    var crystals = CrystalStore.allCrystals
+    var crystals: [Crystal] = []
     
     init() {
         let layout = CrystalFlowLayout()
@@ -31,13 +31,19 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        CrystalStore.fetchCrystals().onSuccess { crystals in
+            self.crystals = crystals + crystals + crystals
+            self.collectionView?.reloadData()
+        }.onFailure { error in
+            print(error)
+        }
         let imageView = UIImageView(image: UIImage(named: "noun_315_cc"))
         imageView.frame = CGRectMake(0, 0, 30, 30)
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
         guard let collectionView = collectionView, flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         
-        flowLayout.itemSize = CGSizeMake(self.view.frame.size.width / 2, self.view.frame.size.width / 2)
+        flowLayout.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3)
         collectionView.backgroundColor = UIColor.whiteColor()
         collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
@@ -46,7 +52,7 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CrystalStore.allCrystals.count
+        return self.crystals.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -59,8 +65,7 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let crystal = self.crystals[indexPath.row]
-        let detail = CrystalDetailViewController()
-        detail.title = crystal.name
+        let detail = CrystalDetailViewController(crystal: crystal)
         let nav = UINavigationController(rootViewController: detail)
         self.presentViewController(nav, animated: true, completion: nil)
     }

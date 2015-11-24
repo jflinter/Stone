@@ -7,20 +7,23 @@
 //
 
 import Foundation
+import BrightFutures
+import Alamofire
 
 struct CrystalStore {
-    static var allCrystals: [Crystal] = {
-        guard let path = NSBundle.mainBundle().pathForResource("products", ofType: "json"),
-            data = NSData(contentsOfFile: path) else { return [] }
-        
-        do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [AnyObject] ?? []
-            return json.flatMap { object in
-                guard let name = object["name"] as? String, description = object["description"] as? String, productId = object["id"] as? String else { return nil }
-                return Crystal(name: name, description: description, productID: productId)
+    
+    static let baseURL = "https://powerful-dusk-1713.herokuapp.com/products"
+    
+    static func fetchCrystals() -> Future<[Crystal], NSError> {
+        let promise = Promise<[Crystal], NSError>()
+        Alamofire.request(.GET, CrystalStore.baseURL).responseCollection { (response: Response<[Crystal], NSError>) in
+            if let value = response.result.value {
+                promise.success(value)
+            } else if let error = response.result.error {
+                promise.failure(error)
             }
-        } catch {
-            return []
         }
-    }()
+        return promise.future
+    }
+    
 }

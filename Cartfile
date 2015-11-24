@@ -1,0 +1,4 @@
+github "Thomvis/BrightFutures" ~> 3.1
+github "Alamofire/Alamofire" ~> 3.0
+github "Alamofire/AlamofireImage" ~> 2.1
+github "bitstadium/HockeySDK-iOS" ~> 3.8
