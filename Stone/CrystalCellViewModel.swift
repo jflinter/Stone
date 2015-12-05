@@ -17,6 +17,6 @@ struct CrystalCellViewModel {
     init(crystal: Crystal) {
         self.crystal = crystal
         self.descriptionText = crystal.description
-        self.imageURLs = crystal.imageURLs.flatMap { $0.imgixURL() }
+        self.imageURLs = crystal.imageURLs
     }
 }

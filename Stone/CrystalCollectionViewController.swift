@@ -32,7 +32,7 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         CrystalStore.fetchCrystals().onSuccess { crystals in
-            self.crystals = crystals + crystals + crystals
+            self.crystals = crystals
             self.collectionView?.reloadData()
         }.onFailure { error in
             print(error)

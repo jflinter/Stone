@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,10 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("6e9f05f2cfa44a098bfbba010a692853")
+        // Do some additional configuration if needed here
+        BITHockeyManager.sharedHockeyManager().startManager()
+        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
         let rootViewController = CrystalCollectionViewController()
-        rootViewController.useLayoutToLayoutNavigationTransitions = false
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.navigationBar.translucent = false
         nav.delegate = rootViewController

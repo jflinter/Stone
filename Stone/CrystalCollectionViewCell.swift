@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import Iris
 
 class CrystalCollectionViewCell: UICollectionViewCell {
     
@@ -19,7 +20,10 @@ class CrystalCollectionViewCell: UICollectionViewCell {
         didSet {
             self.imageView.image = nil
             if let imageURL = viewModel?.imageURLs.first {
-                self.imageView.af_setImageWithURL(imageURL, imageTransition: .CrossDissolve(0.4))
+                let options = ImageOptions(format: .JPEG, width: self.imageView.frame.size.width, height: self.imageView.frame.size.height, scale: UIScreen.mainScreen().scale, fit: .Clip, crop: nil)
+                if let url = imageURL.imgixURL(imageOptions: options) {
+                    self.imageView.af_setImageWithURL(url, imageTransition: .CrossDissolve(0.4))
+                }
             }
             self.textView.text = viewModel?.descriptionText
             self.textView.hidden = !(viewModel?.detailShown ?? false)
@@ -29,6 +33,7 @@ class CrystalCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.imageView.contentMode = .Center
         self.scrollView.userInteractionEnabled = false
         self.addSubview(self.scrollView)
         self.textView.font = UIFont.systemFontOfSize(24)

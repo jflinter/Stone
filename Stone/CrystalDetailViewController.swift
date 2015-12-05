@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import Iris
 
 class CrystalDetailViewController: UIViewController {
     
@@ -32,6 +33,7 @@ class CrystalDetailViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
         self.scrollView.alwaysBounceVertical = true
         self.view.addSubview(self.scrollView)
+        self.imageView.contentMode = .Center
         self.scrollView.addSubview(imageView)
         self.textView.scrollEnabled = false
         self.textView.editable = false
@@ -40,17 +42,20 @@ class CrystalDetailViewController: UIViewController {
         self.scrollView.addSubview(textView)
 
         self.textView.text = self.crystal.description
-        if let imageURL = self.crystal.imageURLs.first?.imgixURL() {
-            self.imageView.af_setImageWithURL(imageURL)
-        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.scrollView.frame = self.view.bounds
         self.imageView.frame = CGRectMake(0, 10, self.view.bounds.width, 300)
+        if let imageURL = self.crystal.imageURLs.first {
+            let options = ImageOptions(format: .JPEG, width: self.imageView.frame.size.width, height: self.imageView.frame.size.height, scale: UIScreen.mainScreen().scale, fit: .Clip, crop: nil)
+            if let url = imageURL.imgixURL(imageOptions: options) {
+                self.imageView.af_setImageWithURL(url, imageTransition: .CrossDissolve(0.4))
+            }
+        }
         let textSize = self.textView.sizeThatFits(CGSizeMake(self.view.bounds.size.width - 40, CGFloat.max))
-        self.textView.frame = CGRectMake(20, 300, textSize.width - 20, textSize.height)
+        self.textView.frame = CGRectMake(20, 300, textSize.width, textSize.height)
         self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(self.textView.frame) + 30)
     }
     
