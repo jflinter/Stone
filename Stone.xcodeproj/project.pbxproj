@@ -38,6 +38,7 @@
 		A0F1AB791C12969B005AAAEC /* Stone-Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB711C12969B005AAAEC /* Stone-Shared.xcconfig */; };
 		A0F1AB7A1C129FF0005AAAEC /* Iris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F1AB671C12955B005AAAEC /* Iris.framework */; };
 		A0F1AB7B1C129FF0005AAAEC /* Iris.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0F1AB671C12955B005AAAEC /* Iris.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F1AB7C1C12A8E6005AAAEC /* CrystalDetailViewModel.swift */; };
 		A0FB7E231BDDF5DC00113C46 /* CrystalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		A0F1AB6F1C12969B005AAAEC /* Stone-Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Stone-Debug.xcconfig"; sourceTree = "<group>"; };
 		A0F1AB701C12969B005AAAEC /* Stone-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Stone-Release.xcconfig"; sourceTree = "<group>"; };
 		A0F1AB711C12969B005AAAEC /* Stone-Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Stone-Shared.xcconfig"; sourceTree = "<group>"; };
+		A0F1AB7C1C12A8E6005AAAEC /* CrystalDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailViewModel.swift; sourceTree = "<group>"; };
 		A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,14 +132,15 @@
 				A0D408601C02B1A700CEEBDB /* Frameworks */,
 				A01D2E991BDDDB39004286A9 /* AppDelegate.swift */,
 				A01D2EAD1BDDDC47004286A9 /* Crystal.swift */,
+				A0D408701C02ECA900CEEBDB /* ResponseCollectionSerializable.swift */,
 				A0D4086E1C02EBA200CEEBDB /* Crystal+Deserialization.swift */,
 				A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */,
+				A0F1AB7C1C12A8E6005AAAEC /* CrystalDetailViewModel.swift */,
 				A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */,
 				A01D2EAB1BDDDBDE004286A9 /* CrystalCollectionViewController.swift */,
 				A0D4085A1BDF3A4500CEEBDB /* CrystalFlowLayout.swift */,
 				A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */,
 				A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */,
-				A0D408701C02ECA900CEEBDB /* ResponseCollectionSerializable.swift */,
 				A01D2EA01BDDDB39004286A9 /* Assets.xcassets */,
 				A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */,
 				A01D2EA51BDDDB39004286A9 /* Info.plist */,
@@ -261,6 +264,7 @@
 				A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */,
 				A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */,
 				A0D408711C02ECA900CEEBDB /* ResponseCollectionSerializable.swift in Sources */,
+				A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */,
 				A0FB7E231BDDF5DC00113C46 /* CrystalStore.swift in Sources */,
 				A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */,
 			);

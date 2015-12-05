@@ -8,19 +8,18 @@
 
 import UIKit
 import AlamofireImage
-import Iris
 
 class CrystalDetailViewController: UIViewController {
     
-    let crystal: Crystal
+    let viewModel: CrystalDetailViewModel
     let scrollView = UIScrollView()
     let imageView = UIImageView()
     let textView = UITextView()
     
-    init(crystal: Crystal) {
-        self.crystal = crystal
+    init(viewModel: CrystalDetailViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        self.title = crystal.name
+        self.title = viewModel.name
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,26 +32,23 @@ class CrystalDetailViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
         self.scrollView.alwaysBounceVertical = true
         self.view.addSubview(self.scrollView)
-        self.imageView.contentMode = .Center
+        self.imageView.contentMode = .ScaleAspectFit
+        self.imageView.image = self.viewModel.bootstrapImage
         self.scrollView.addSubview(imageView)
         self.textView.scrollEnabled = false
         self.textView.editable = false
         self.textView.font = UIFont.systemFontOfSize(18)
         self.textView.showsVerticalScrollIndicator = false
         self.scrollView.addSubview(textView)
-
-        self.textView.text = self.crystal.description
+        self.textView.text = self.viewModel.descriptionText
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.scrollView.frame = self.view.bounds
         self.imageView.frame = CGRectMake(0, 10, self.view.bounds.width, 300)
-        if let imageURL = self.crystal.imageURLs.first {
-            let options = ImageOptions(format: .JPEG, width: self.imageView.frame.size.width, height: self.imageView.frame.size.height, scale: UIScreen.mainScreen().scale, fit: .Clip, crop: nil)
-            if let url = imageURL.imgixURL(imageOptions: options) {
-                self.imageView.af_setImageWithURL(url, imageTransition: .CrossDissolve(0.4))
-            }
+        if let url = self.viewModel.imageURLForSize(self.imageView.frame.size) {
+            self.imageView.af_setImageWithURL(url, imageTransition: .CrossDissolve(0.4))
         }
         let textSize = self.textView.sizeThatFits(CGSizeMake(self.view.bounds.size.width - 40, CGFloat.max))
         self.textView.frame = CGRectMake(20, 300, textSize.width, textSize.height)

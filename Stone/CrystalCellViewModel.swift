@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import Iris
 
 struct CrystalCellViewModel {
     let crystal: Crystal
-    let imageURLs: [NSURL]
-    let descriptionText: String?
-    var detailShown: Bool = false
+    let imageURL: NSURL?
     
     init(crystal: Crystal) {
         self.crystal = crystal
-        self.descriptionText = crystal.description
-        self.imageURLs = crystal.imageURLs
+        self.imageURL = crystal.imageURLs.first
+    }
+    
+    func imageURLForSize(size: CGSize) -> NSURL? {
+        let options = ImageOptions(format: .JPEG, width: size.width, height: size.height, scale: UIScreen.mainScreen().scale, fit: .Clip, crop: nil)
+        return self.imageURL?.imgixURL(imageOptions: options)
     }
 }

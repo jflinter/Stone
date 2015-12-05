@@ -64,8 +64,12 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard let collectionView = self.collectionView,
+            cell = self.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? CrystalCollectionViewCell,
+            image = cell.imageView.image else { return }
         let crystal = self.crystals[indexPath.row]
-        let detail = CrystalDetailViewController(crystal: crystal)
+        let viewModel = CrystalDetailViewModel(crystal: crystal, bootstrapImage: image)
+        let detail = CrystalDetailViewController(viewModel: viewModel)
         let nav = UINavigationController(rootViewController: detail)
         self.presentViewController(nav, animated: true, completion: nil)
     }

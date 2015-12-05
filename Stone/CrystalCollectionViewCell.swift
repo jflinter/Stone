@@ -8,37 +8,24 @@
 
 import UIKit
 import AlamofireImage
-import Iris
 
 class CrystalCollectionViewCell: UICollectionViewCell {
     
     let imageView = UIImageView()
-    let scrollView = UIScrollView()
-    let textView = UITextView()
     
     var viewModel: CrystalCellViewModel? {
         didSet {
             self.imageView.image = nil
-            if let imageURL = viewModel?.imageURLs.first {
-                let options = ImageOptions(format: .JPEG, width: self.imageView.frame.size.width, height: self.imageView.frame.size.height, scale: UIScreen.mainScreen().scale, fit: .Clip, crop: nil)
-                if let url = imageURL.imgixURL(imageOptions: options) {
-                    self.imageView.af_setImageWithURL(url, imageTransition: .CrossDissolve(0.4))
-                }
+            if let url = viewModel?.imageURLForSize(self.frame.size) {
+                self.imageView.af_setImageWithURL(url, imageTransition: .CrossDissolve(0.4))
             }
-            self.textView.text = viewModel?.descriptionText
-            self.textView.hidden = !(viewModel?.detailShown ?? false)
-            self.scrollView.userInteractionEnabled = viewModel?.detailShown ?? false
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.imageView.contentMode = .Center
-        self.scrollView.userInteractionEnabled = false
-        self.addSubview(self.scrollView)
-        self.textView.font = UIFont.systemFontOfSize(24)
-        self.scrollView.addSubview(self.imageView)
-        self.scrollView.addSubview(self.textView)
+        self.imageView.contentMode = .ScaleAspectFit
+        self.addSubview(self.imageView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,19 +34,7 @@ class CrystalCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.scrollView.frame = self.bounds
-        let edgeSize = min(self.bounds.size.width, self.bounds.size.height)
-        self.imageView.frame = CGRectMake(0, 0, edgeSize, edgeSize)
-        let maxSize = CGSizeMake(self.bounds.size.width, CGFloat.max)
-        let boundingSize = self.textView.sizeThatFits(maxSize)
-        textView.frame = CGRectMake(0, edgeSize, self.bounds.width, boundingSize.height)
-        self.scrollView.contentSize = CGSizeMake(self.bounds.size.width, edgeSize + boundingSize.height)
-
-    }
-    
-    override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.applyLayoutAttributes(layoutAttributes)
-        self.layoutIfNeeded()
+        self.imageView.frame = self.bounds
     }
     
 }
