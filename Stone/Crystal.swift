@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Crystal {
+struct Crystal: Equatable {
     let name: String
     let description: String?
     let productID: String
@@ -20,4 +20,8 @@ struct Crystal {
         self.productID = productID
         self.imageURLs = imageURLs
     }
+}
+
+func ==(lhs: Crystal, rhs: Crystal) -> Bool {
+    return lhs.productID == rhs.productID
 }

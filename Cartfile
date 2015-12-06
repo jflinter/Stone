@@ -3,3 +3,5 @@ github "Alamofire/Alamofire" ~> 3.0
 github "Alamofire/AlamofireImage" ~> 2.1
 github "bitstadium/HockeySDK-iOS" ~> 3.8
 github "hodinkee/iris" ~> 1.0
+github "jflinter/Dwifft" ~> 0.3
+github "SwiftBond/Bond" ~> 4.0

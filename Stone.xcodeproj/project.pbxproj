@@ -14,6 +14,10 @@
 		A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAD1BDDDC47004286A9 /* Crystal.swift */; };
 		A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */; };
 		A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */; };
+		A03757C01C14A946002E3620 /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757BF1C14A946002E3620 /* Dwifft.framework */; };
+		A03757C11C14A946002E3620 /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757BF1C14A946002E3620 /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; };
+		A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0D4085B1BDF3A4500CEEBDB /* CrystalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085A1BDF3A4500CEEBDB /* CrystalFlowLayout.swift */; };
 		A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */; };
 		A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408611C02B1C100CEEBDB /* BrightFutures.framework */; };
@@ -44,7 +48,9 @@
 				A0D408661C02B1CC00CEEBDB /* BrightFutures.framework in Embed Frameworks */,
 				A0F1AB7B1C129FF0005AAAEC /* Iris.framework in Embed Frameworks */,
 				A0D4086D1C02B32C00CEEBDB /* Alamofire.framework in Embed Frameworks */,
+				A03757C11C14A946002E3620 /* Dwifft.framework in Embed Frameworks */,
 				A0D408681C02B1CC00CEEBDB /* Result.framework in Embed Frameworks */,
+				A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */,
 				A0D4087B1C042FE800CEEBDB /* HockeySDK.framework in Embed Frameworks */,
 				A0D408751C02F6DD00CEEBDB /* AlamofireImage.framework in Embed Frameworks */,
 			);
@@ -63,6 +69,8 @@
 		A01D2EAD1BDDDC47004286A9 /* Crystal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crystal.swift; sourceTree = "<group>"; };
 		A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCellViewModel.swift; sourceTree = "<group>"; };
 		A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCollectionViewCell.swift; sourceTree = "<group>"; };
+		A03757BF1C14A946002E3620 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
+		A03757C21C14B60C002E3620 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
 		A0D4085A1BDF3A4500CEEBDB /* CrystalFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalFlowLayout.swift; sourceTree = "<group>"; };
 		A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailViewController.swift; sourceTree = "<group>"; };
 		A0D408611C02B1C100CEEBDB /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
@@ -93,7 +101,9 @@
 				A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */,
 				A0F1AB7A1C129FF0005AAAEC /* Iris.framework in Frameworks */,
 				A0D4086C1C02B32C00CEEBDB /* Alamofire.framework in Frameworks */,
+				A03757C01C14A946002E3620 /* Dwifft.framework in Frameworks */,
 				A0D408671C02B1CC00CEEBDB /* Result.framework in Frameworks */,
+				A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */,
 				A0D4087A1C042FE800CEEBDB /* HockeySDK.framework in Frameworks */,
 				A0D408741C02F6DD00CEEBDB /* AlamofireImage.framework in Frameworks */,
 			);
@@ -146,7 +156,9 @@
 			children = (
 				A0D4086A1C02B32400CEEBDB /* Alamofire.framework */,
 				A0D408721C02F6D500CEEBDB /* AlamofireImage.framework */,
+				A03757C21C14B60C002E3620 /* Bond.framework */,
 				A0D408611C02B1C100CEEBDB /* BrightFutures.framework */,
+				A03757BF1C14A946002E3620 /* Dwifft.framework */,
 				A0D408781C042E5D00CEEBDB /* HockeySDK.framework */,
 				A0F1AB671C12955B005AAAEC /* Iris.framework */,
 				A0D408621C02B1C100CEEBDB /* Result.framework */,

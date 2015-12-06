@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Dwifft
+import Bond
 
 private let reuseIdentifier = "Cell"
 
 class CrystalCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
-    var crystals: [Crystal] = []
+    var diffCalculator: CollectionViewDiffCalculator<Crystal>?
     
     init() {
         let layout = CrystalFlowLayout()
@@ -31,17 +33,15 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CrystalStore.fetchCrystals().onSuccess { crystals in
-            self.crystals = crystals
-            self.collectionView?.reloadData()
-        }.onFailure { error in
-            print(error)
-        }
+        
         let imageView = UIImageView(image: UIImage(named: "noun_315_cc"))
         imageView.frame = CGRectMake(0, 0, 30, 30)
         imageView.contentMode = .ScaleAspectFit
         self.navigationItem.titleView = imageView
         guard let collectionView = collectionView, flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        self.diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
+        CrystalStore.sharedInstance.visibleCrystals.observe { self.diffCalculator?.rows = $0 }
+        CrystalStore.sharedInstance.fetchCrystals()
         
         flowLayout.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3)
         collectionView.backgroundColor = UIColor.whiteColor()
@@ -49,15 +49,19 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
         collectionView.alwaysBounceVertical = true
     }
     
+    func crystalAtIndex(indexPath: NSIndexPath) -> Crystal {
+        return CrystalStore.sharedInstance.visibleCrystals.value[indexPath.row]
+    }
+    
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.crystals.count
+        return CrystalStore.sharedInstance.visibleCrystals.value.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CrystalCollectionViewCell
-        let crystal = self.crystals[indexPath.row]
+        let crystal = crystalAtIndex(indexPath)
         let viewModel = CrystalCellViewModel(crystal: crystal)
         cell.viewModel = viewModel
         return cell
@@ -67,7 +71,7 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
         guard let collectionView = self.collectionView,
             cell = self.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? CrystalCollectionViewCell,
             image = cell.imageView.image else { return }
-        let crystal = self.crystals[indexPath.row]
+        let crystal = crystalAtIndex(indexPath)
         let viewModel = CrystalDetailViewModel(crystal: crystal, bootstrapImage: image)
         let detail = CrystalDetailViewController(viewModel: viewModel)
         let nav = UINavigationController(rootViewController: detail)
