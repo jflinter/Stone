@@ -28,14 +28,6 @@
 		A0D408751C02F6DD00CEEBDB /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408721C02F6D500CEEBDB /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0D4087A1C042FE800CEEBDB /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408781C042E5D00CEEBDB /* HockeySDK.framework */; };
 		A0D4087B1C042FE800CEEBDB /* HockeySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408781C042E5D00CEEBDB /* HockeySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A0F1AB721C12969B005AAAEC /* Project-Beta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB6A1C12969B005AAAEC /* Project-Beta.xcconfig */; };
-		A0F1AB731C12969B005AAAEC /* Project-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB6B1C12969B005AAAEC /* Project-Debug.xcconfig */; };
-		A0F1AB741C12969B005AAAEC /* Project-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB6C1C12969B005AAAEC /* Project-Release.xcconfig */; };
-		A0F1AB751C12969B005AAAEC /* Project-Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB6D1C12969B005AAAEC /* Project-Shared.xcconfig */; };
-		A0F1AB761C12969B005AAAEC /* Stone-Beta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB6E1C12969B005AAAEC /* Stone-Beta.xcconfig */; };
-		A0F1AB771C12969B005AAAEC /* Stone-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB6F1C12969B005AAAEC /* Stone-Debug.xcconfig */; };
-		A0F1AB781C12969B005AAAEC /* Stone-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB701C12969B005AAAEC /* Stone-Release.xcconfig */; };
-		A0F1AB791C12969B005AAAEC /* Stone-Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A0F1AB711C12969B005AAAEC /* Stone-Shared.xcconfig */; };
 		A0F1AB7A1C129FF0005AAAEC /* Iris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F1AB671C12955B005AAAEC /* Iris.framework */; };
 		A0F1AB7B1C129FF0005AAAEC /* Iris.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0F1AB671C12955B005AAAEC /* Iris.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F1AB7C1C12A8E6005AAAEC /* CrystalDetailViewModel.swift */; };
@@ -205,7 +197,7 @@
 		A01D2E8E1BDDDB39004286A9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Stone;
 				TargetAttributes = {
 					A01D2E951BDDDB39004286A9 = {
@@ -236,16 +228,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0F1AB771C12969B005AAAEC /* Stone-Debug.xcconfig in Resources */,
-				A0F1AB741C12969B005AAAEC /* Project-Release.xcconfig in Resources */,
-				A0F1AB751C12969B005AAAEC /* Project-Shared.xcconfig in Resources */,
-				A0F1AB781C12969B005AAAEC /* Stone-Release.xcconfig in Resources */,
-				A0F1AB731C12969B005AAAEC /* Project-Debug.xcconfig in Resources */,
 				A01D2EA41BDDDB39004286A9 /* LaunchScreen.storyboard in Resources */,
 				A01D2EA11BDDDB39004286A9 /* Assets.xcassets in Resources */,
-				A0F1AB791C12969B005AAAEC /* Stone-Shared.xcconfig in Resources */,
-				A0F1AB721C12969B005AAAEC /* Project-Beta.xcconfig in Resources */,
-				A0F1AB761C12969B005AAAEC /* Stone-Beta.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
