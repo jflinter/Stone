@@ -11,3 +11,5 @@ INFOPLIST_FILE = Stone/Info.plist
 LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks
 PRODUCT_BUNDLE_IDENTIFIER = com.jflinter.stone$(BUNDLE_ID_SUFFIX)
 PRODUCT_NAME = $(TARGET_NAME)
+
+CODE_SIGN_ENTITLEMENTS = Stone/Stone.entitlements
