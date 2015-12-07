@@ -17,12 +17,13 @@ extension Crystal: ResponseCollectionSerializable {
             guard let name = object["name"] as? String,
                 description = object["description"] as? String,
                 productId = object["id"] as? String,
-                imageURLStrings = object["images"] as? [String]
+                imageURLStrings = object["images"] as? [String],
+                caption = object["caption"] as? String
             else {
                     return nil
             }
             let imageURLs = imageURLStrings.flatMap(NSURL.init)
-            return Crystal(name: name, description: description, productID: productId, imageURLs: imageURLs)
+            return Crystal(name: name, description: description, productID: productId, imageURLs: imageURLs, caption: caption)
         }
     }
 }

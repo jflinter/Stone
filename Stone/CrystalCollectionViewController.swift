@@ -15,6 +15,7 @@ private let reuseIdentifier = "Cell"
 class CrystalCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
     var diffCalculator: CollectionViewDiffCalculator<Crystal>?
+    let crystalStore = CrystalStore()
     
     init() {
         let layout = CrystalFlowLayout()
@@ -34,14 +35,16 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let imageView = UIImageView(image: UIImage(named: "noun_315_cc"))
-        imageView.frame = CGRectMake(0, 0, 30, 30)
-        imageView.contentMode = .ScaleAspectFit
-        self.navigationItem.titleView = imageView
+        crystalStore.selectedCategory.observe { self.navigationItem.leftBarButtonItem = ($0 == nil) ? nil : UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "clearFilter") }
+        
+        crystalStore.selectedCategory.observe { self.navigationItem.title = $0 ?? "All Crystals" }
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "showCategories")
+        
         guard let collectionView = collectionView, flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         self.diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
-        CrystalStore.sharedInstance.visibleCrystals.observe { self.diffCalculator?.rows = $0 }
-        CrystalStore.sharedInstance.fetchCrystals()
+        crystalStore.visibleCrystals.observe { self.diffCalculator?.rows = $0 }
+        crystalStore.fetchCrystals()
         
         flowLayout.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3)
         collectionView.backgroundColor = UIColor.whiteColor()
@@ -49,21 +52,32 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
         collectionView.alwaysBounceVertical = true
     }
     
-    func crystalAtIndex(indexPath: NSIndexPath) -> Crystal {
-        return CrystalStore.sharedInstance.visibleCrystals.value[indexPath.row]
+    func crystalAt(indexPath: NSIndexPath) -> Crystal? {
+        return self.diffCalculator?.rows[indexPath.row]
+    }
+    
+    func clearFilter() {
+        self.crystalStore.selectedCategory.value = nil
+    }
+    
+    func showCategories() {
+        let categoryController = CategoryTableViewController(crystalStore: self.crystalStore)
+        let nav = UINavigationController(rootViewController: categoryController)
+        presentViewController(nav, animated: true, completion: nil)
     }
     
     // MARK: UICollectionViewDataSource
-
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CrystalStore.sharedInstance.visibleCrystals.value.count
+        return self.diffCalculator?.rows.count ?? 0
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CrystalCollectionViewCell
-        let crystal = crystalAtIndex(indexPath)
-        let viewModel = CrystalCellViewModel(crystal: crystal)
-        cell.viewModel = viewModel
+        if let crystal = crystalAt(indexPath) {
+            let viewModel = CrystalCellViewModel(crystal: crystal)
+            cell.viewModel = viewModel
+        }
         return cell
     }
     
@@ -71,7 +85,7 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
         guard let collectionView = self.collectionView,
             cell = self.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? CrystalCollectionViewCell,
             image = cell.imageView.image else { return }
-        let crystal = crystalAtIndex(indexPath)
+        guard let crystal = crystalAt(indexPath) else { return }
         let viewModel = CrystalDetailViewModel(crystal: crystal, bootstrapImage: image)
         let detail = CrystalDetailViewController(viewModel: viewModel)
         let nav = UINavigationController(rootViewController: detail)

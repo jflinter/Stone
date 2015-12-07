@@ -18,6 +18,7 @@
 		A03757C11C14A946002E3620 /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757BF1C14A946002E3620 /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; };
 		A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A03757CA1C151D68002E3620 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03757C91C151D68002E3620 /* CategoryTableViewController.swift */; };
 		A0D4085B1BDF3A4500CEEBDB /* CrystalFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085A1BDF3A4500CEEBDB /* CrystalFlowLayout.swift */; };
 		A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */; };
 		A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408611C02B1C100CEEBDB /* BrightFutures.framework */; };
@@ -71,6 +72,7 @@
 		A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCollectionViewCell.swift; sourceTree = "<group>"; };
 		A03757BF1C14A946002E3620 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		A03757C21C14B60C002E3620 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
+		A03757C91C151D68002E3620 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		A0D4085A1BDF3A4500CEEBDB /* CrystalFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalFlowLayout.swift; sourceTree = "<group>"; };
 		A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailViewController.swift; sourceTree = "<group>"; };
 		A0D408611C02B1C100CEEBDB /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				A0D4085A1BDF3A4500CEEBDB /* CrystalFlowLayout.swift */,
 				A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */,
 				A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */,
+				A03757C91C151D68002E3620 /* CategoryTableViewController.swift */,
 				A01D2EA01BDDDB39004286A9 /* Assets.xcassets */,
 				A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */,
 				A01D2EA51BDDDB39004286A9 /* Info.plist */,
@@ -263,6 +266,7 @@
 				A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */,
 				A0FB7E231BDDF5DC00113C46 /* CrystalStore.swift in Sources */,
 				A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */,
+				A03757CA1C151D68002E3620 /* CategoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
