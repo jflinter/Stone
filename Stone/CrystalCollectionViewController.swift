@@ -15,9 +15,10 @@ private let reuseIdentifier = "Cell"
 class CrystalCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
     var diffCalculator: CollectionViewDiffCalculator<Crystal>?
-    let crystalStore = CrystalStore()
+    let crystalStore: CrystalStore
     
-    init() {
+    init(crystalStore: CrystalStore) {
+        self.crystalStore = crystalStore
         let layout = CrystalFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
