@@ -35,7 +35,7 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        crystalStore.selectedCategory.observe { self.navigationItem.leftBarButtonItem = ($0 == nil) ? nil : UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "clearFilter") }
+        crystalStore.selectedCategory.observe { self.navigationItem.leftBarButtonItem = ($0 == nil) ? nil : UIBarButtonItem(title: "Clear Vibe", style: UIBarButtonItemStyle.Plain, target: self, action: "clearFilter") }
         
         crystalStore.selectedCategory.observe { self.navigationItem.title = $0 ?? "All Crystals" }
         
