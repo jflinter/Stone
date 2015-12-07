@@ -74,6 +74,7 @@
 		A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCellViewModel.swift; sourceTree = "<group>"; };
 		A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCollectionViewCell.swift; sourceTree = "<group>"; };
 		A02D79561C155CA1007F6A17 /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stripe.framework; path = Carthage/Build/iOS/Stripe.framework; sourceTree = "<group>"; };
+		A02D79591C155E9B007F6A17 /* Stone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Stone.entitlements; sourceTree = "<group>"; };
 		A03757BF1C14A946002E3620 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		A03757C21C14B60C002E3620 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
 		A03757C91C151D68002E3620 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +139,7 @@
 		A01D2E981BDDDB39004286A9 /* Stone */ = {
 			isa = PBXGroup;
 			children = (
+				A02D79591C155E9B007F6A17 /* Stone.entitlements */,
 				A0D408601C02B1A700CEEBDB /* Frameworks */,
 				A01D2E991BDDDB39004286A9 /* AppDelegate.swift */,
 				A01D2EAD1BDDDC47004286A9 /* Crystal.swift */,
@@ -223,6 +225,12 @@
 				TargetAttributes = {
 					A01D2E951BDDDB39004286A9 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 4QS5C2WVW4;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -378,6 +386,9 @@
 			baseConfigurationReference = A0F1AB6F1C12969B005AAAEC /* Stone-Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Stone/Stone.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -385,6 +396,7 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -393,6 +405,9 @@
 			baseConfigurationReference = A0F1AB701C12969B005AAAEC /* Stone-Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Stone/Stone.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -400,6 +415,7 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -454,7 +470,9 @@
 			baseConfigurationReference = A0F1AB6E1C12969B005AAAEC /* Stone-Beta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = Stone/Stone.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -462,6 +480,7 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Beta;
 		};
