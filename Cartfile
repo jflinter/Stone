@@ -5,3 +5,4 @@ github "bitstadium/HockeySDK-iOS" ~> 3.8
 github "hodinkee/iris" ~> 1.0
 github "jflinter/Dwifft" ~> 0.3
 github "SwiftBond/Bond" ~> 4.0
+github "stripe/stripe-ios" ~> 6.0

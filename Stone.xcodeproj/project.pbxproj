@@ -14,6 +14,8 @@
 		A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAD1BDDDC47004286A9 /* Crystal.swift */; };
 		A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */; };
 		A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */; };
+		A02D79571C155CA1007F6A17 /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A02D79561C155CA1007F6A17 /* Stripe.framework */; };
+		A02D79581C155CA1007F6A17 /* Stripe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A02D79561C155CA1007F6A17 /* Stripe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A03757C01C14A946002E3620 /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757BF1C14A946002E3620 /* Dwifft.framework */; };
 		A03757C11C14A946002E3620 /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757BF1C14A946002E3620 /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; };
@@ -54,6 +56,7 @@
 				A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */,
 				A0D4087B1C042FE800CEEBDB /* HockeySDK.framework in Embed Frameworks */,
 				A0D408751C02F6DD00CEEBDB /* AlamofireImage.framework in Embed Frameworks */,
+				A02D79581C155CA1007F6A17 /* Stripe.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,6 +73,7 @@
 		A01D2EAD1BDDDC47004286A9 /* Crystal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crystal.swift; sourceTree = "<group>"; };
 		A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCellViewModel.swift; sourceTree = "<group>"; };
 		A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCollectionViewCell.swift; sourceTree = "<group>"; };
+		A02D79561C155CA1007F6A17 /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stripe.framework; path = Carthage/Build/iOS/Stripe.framework; sourceTree = "<group>"; };
 		A03757BF1C14A946002E3620 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		A03757C21C14B60C002E3620 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
 		A03757C91C151D68002E3620 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 				A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */,
 				A0D4087A1C042FE800CEEBDB /* HockeySDK.framework in Frameworks */,
 				A0D408741C02F6DD00CEEBDB /* AlamofireImage.framework in Frameworks */,
+				A02D79571C155CA1007F6A17 /* Stripe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +170,7 @@
 				A0D408781C042E5D00CEEBDB /* HockeySDK.framework */,
 				A0F1AB671C12955B005AAAEC /* Iris.framework */,
 				A0D408621C02B1C100CEEBDB /* Result.framework */,
+				A02D79561C155CA1007F6A17 /* Stripe.framework */,
 			);
 			name = Frameworks;
 			path = ..;
