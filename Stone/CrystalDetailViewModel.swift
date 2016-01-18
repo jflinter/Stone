@@ -8,6 +8,8 @@
 
 import UIKit
 import Iris
+import PassKit
+import Stripe
 
 struct CrystalDetailViewModel {
     private let crystal: Crystal
@@ -15,6 +17,7 @@ struct CrystalDetailViewModel {
     let imageURLs: [NSURL]
     let descriptionText: String?
     let bootstrapImage: UIImage
+    let skus: [SKU]
     
     init(crystal: Crystal, bootstrapImage: UIImage) {
         self.crystal = crystal
@@ -22,6 +25,7 @@ struct CrystalDetailViewModel {
         self.descriptionText = crystal.description
         self.imageURLs = crystal.imageURLs
         self.bootstrapImage = bootstrapImage
+        self.skus = crystal.skus
     }
     
     func imageURLForSize(size: CGSize) -> NSURL? {

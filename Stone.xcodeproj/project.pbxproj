@@ -29,7 +29,7 @@
 		A0D408681C02B1CC00CEEBDB /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408621C02B1C100CEEBDB /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0D4086C1C02B32C00CEEBDB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D4086A1C02B32400CEEBDB /* Alamofire.framework */; };
 		A0D4086D1C02B32C00CEEBDB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0D4086A1C02B32400CEEBDB /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A0D4086F1C02EBA200CEEBDB /* Crystal+Deserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4086E1C02EBA200CEEBDB /* Crystal+Deserialization.swift */; };
+		A0D4086F1C02EBA200CEEBDB /* Product+Deserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4086E1C02EBA200CEEBDB /* Product+Deserialization.swift */; };
 		A0D408711C02ECA900CEEBDB /* ResponseCollectionSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D408701C02ECA900CEEBDB /* ResponseCollectionSerializable.swift */; };
 		A0D408741C02F6DD00CEEBDB /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408721C02F6D500CEEBDB /* AlamofireImage.framework */; };
 		A0D408751C02F6DD00CEEBDB /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408721C02F6D500CEEBDB /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -83,7 +83,7 @@
 		A0D408611C02B1C100CEEBDB /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		A0D408621C02B1C100CEEBDB /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		A0D4086A1C02B32400CEEBDB /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		A0D4086E1C02EBA200CEEBDB /* Crystal+Deserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Crystal+Deserialization.swift"; sourceTree = "<group>"; };
+		A0D4086E1C02EBA200CEEBDB /* Product+Deserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Product+Deserialization.swift"; sourceTree = "<group>"; };
 		A0D408701C02ECA900CEEBDB /* ResponseCollectionSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseCollectionSerializable.swift; sourceTree = "<group>"; };
 		A0D408721C02F6D500CEEBDB /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		A0D408781C042E5D00CEEBDB /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
@@ -153,6 +153,15 @@
 				A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */,
 				A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */,
 				A03757C91C151D68002E3620 /* CategoryTableViewController.swift */,
+				A0D408701C02ECA900CEEBDB /* ResponseCollectionSerializable.swift */,
+				A04FACF71C27D7AD00086759 /* ResponseObjectSerializable.swift */,
+				A0D4086E1C02EBA200CEEBDB /* Product+Deserialization.swift */,
+				A04FACF31C27D6E600086759 /* Checkout.swift */,
+				A04FACF51C27D74500086759 /* Order.swift */,
+				A04FACFB1C27DADD00086759 /* Order+Deserialization.swift */,
+				A04FACFD1C27DBE700086759 /* Order+ApplePay.swift */,
+				A04FACF91C27D9B500086759 /* API.swift */,
+				A04FAD031C27E3A000086759 /* Product.swift */,
 				A01D2EA01BDDDB39004286A9 /* Assets.xcassets */,
 				A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */,
 				A01D2EA51BDDDB39004286A9 /* Info.plist */,
@@ -269,16 +278,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A04FAD041C27E3A000086759 /* Product.swift in Sources */,
 				A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */,
 				A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */,
 				A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */,
-				A0D4086F1C02EBA200CEEBDB /* Crystal+Deserialization.swift in Sources */,
+				A0D4086F1C02EBA200CEEBDB /* Product+Deserialization.swift in Sources */,
 				A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */,
+				A04FACF61C27D74500086759 /* Order.swift in Sources */,
+				A04FACF41C27D6E600086759 /* Checkout.swift in Sources */,
 				A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */,
 				A0D408711C02ECA900CEEBDB /* ResponseCollectionSerializable.swift in Sources */,
 				A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */,
+				A04FACFC1C27DADD00086759 /* Order+Deserialization.swift in Sources */,
+				A04FACF81C27D7AD00086759 /* ResponseObjectSerializable.swift in Sources */,
 				A0FB7E231BDDF5DC00113C46 /* CrystalStore.swift in Sources */,
+				A04FACFE1C27DBE700086759 /* Order+ApplePay.swift in Sources */,
 				A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */,
+				A04FACFA1C27D9B500086759 /* API.swift in Sources */,
 				A03757CA1C151D68002E3620 /* CategoryTableViewController.swift in Sources */,
 				A0154B8C1C758AD400A29763 /* Product.swift in Sources */,
 			);

@@ -8,13 +8,19 @@
 
 import Foundation
 
+struct SKU {
+    let amount: Int
+    let currency: String
+    let id: String
+}
+
 struct Product: Equatable {
     let name: String
     let description: String?
     let productID: String
     let imageURLs: [NSURL]
     let caption: String
-    
+    let skus: [SKU]
     init(name: String, description: String, productID: String, imageURLs: [NSURL], caption: String) {
         self.name = name
         self.description = description

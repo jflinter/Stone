@@ -8,13 +8,16 @@
 
 import UIKit
 import AlamofireImage
+import PassKit
+import Stripe
 
-class CrystalDetailViewController: UIViewController {
+class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewControllerDelegate {
     
     let viewModel: CrystalDetailViewModel
     let scrollView = UIScrollView()
     let imageView = UIImageView()
     let textView = UITextView()
+    let paymentButton = UIButton(type: UIButtonType.System)
     
     init(viewModel: CrystalDetailViewModel) {
         self.viewModel = viewModel
@@ -41,6 +44,10 @@ class CrystalDetailViewController: UIViewController {
         self.textView.showsVerticalScrollIndicator = false
         self.scrollView.addSubview(textView)
         self.textView.text = self.viewModel.descriptionText
+        self.paymentButton.setTitle("Buy", forState: .Normal)
+        self.paymentButton.sizeToFit()
+        self.scrollView.addSubview(self.paymentButton)
+        self.paymentButton.addTarget(self, action: "buyCrystal", forControlEvents: .TouchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -52,10 +59,39 @@ class CrystalDetailViewController: UIViewController {
         }
         let textSize = self.textView.sizeThatFits(CGSizeMake(self.view.bounds.size.width - 40, CGFloat.max))
         self.textView.frame = CGRectMake(20, 300, textSize.width, textSize.height)
-        self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(self.textView.frame) + 30)
+        self.paymentButton.frame = CGRectMake(0, CGRectGetMaxY(self.textView.frame), self.view.bounds.size.width, 44)
+        self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(self.paymentButton.frame) + 30)
     }
     
     func dismiss() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func buyCrystal() {
+        Checkout.createOrder(self.viewModel.skus).onSuccess { order in
+            guard let paymentRequest = order.paymentRequest else { return }
+            let paymentVC = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
+            paymentVC.delegate = self
+            self.presentViewController(paymentVC, animated: true, completion: nil)
+        }.onFailure { error in
+            print(error.description)
+        }
+    }
+    
+    // MARK: PKPaymentAuthorizationViewControllerDelegate
+    func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: (PKPaymentAuthorizationStatus) -> Void) {
+        let client = STPAPIClient(publishableKey: "pk_test_iweIKQXjUpKF9Pp7LCJMO4hF")
+        client.createTokenWithPayment(payment) { token, error in
+            if let token = token {
+                print(token.tokenId)
+                completion(.Success)
+            } else {
+                completion(.Failure)
+            }
+        }
+    }
+    
+    func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
