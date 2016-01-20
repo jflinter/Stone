@@ -8,4 +8,4 @@
 #include "Stone-Shared.xcconfig"
 
 BUNDLE_ID_SUFFIX = .beta
-PROVISIONING_PROFILE = c2c45395-3de4-4ac5-852e-5f847fbb61bd
+PROVISIONING_PROFILE = fa9bf66e-53ab-43d8-9ed6-d96028a811dd
