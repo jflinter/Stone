@@ -19,7 +19,7 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     
     init(crystalStore: CrystalStore) {
         self.crystalStore = crystalStore
-        let layout = CrystalFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         layout.sectionInset = UIEdgeInsetsZero

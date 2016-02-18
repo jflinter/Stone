@@ -1,0 +1,29 @@
+//
+//  Product.swift
+//  Stone
+//
+//  Created by Jack Flintermann on 2/18/16.
+//  Copyright © 2016 Stone. All rights reserved.
+//
+
+import Foundation
+
+struct Product: Equatable {
+    let name: String
+    let description: String?
+    let productID: String
+    let imageURLs: [NSURL]
+    let caption: String
+    
+    init(name: String, description: String, productID: String, imageURLs: [NSURL], caption: String) {
+        self.name = name
+        self.description = description
+        self.productID = productID
+        self.imageURLs = imageURLs
+        self.caption = caption
+    }
+}
+
+func ==(lhs: Product, rhs: Product) -> Bool {
+    return lhs.productID == rhs.productID
+}
