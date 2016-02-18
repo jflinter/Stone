@@ -21,12 +21,13 @@ struct Product: Equatable {
     let imageURLs: [NSURL]
     let caption: String
     let skus: [SKU]
-    init(name: String, description: String, productID: String, imageURLs: [NSURL], caption: String) {
+    init(name: String, description: String, productID: String, imageURLs: [NSURL], caption: String, skus: [SKU]) {
         self.name = name
         self.description = description
         self.productID = productID
         self.imageURLs = imageURLs
         self.caption = caption
+        self.skus = skus
     }
 }
 
