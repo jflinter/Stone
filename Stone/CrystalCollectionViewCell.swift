@@ -8,6 +8,16 @@
 
 import UIKit
 import AlamofireImage
+import PaintBucket
+
+struct BackgroundRemovingImageFilter: ImageFilter {
+    var filter: Image -> Image {
+        return { image in
+            let transformed = image.pbk_imageByReplacingColorAt(CGPointMake(1, image.size.height - 1), withColor: UIColor.clearColor(), tolerance: 50, contiguous: false)
+            return transformed
+        }
+    }
+}
 
 class CrystalCollectionViewCell: UICollectionViewCell {
     
@@ -17,7 +27,7 @@ class CrystalCollectionViewCell: UICollectionViewCell {
         didSet {
             self.imageView.image = nil
             if let url = viewModel?.imageURLForSize(self.frame.size) {
-                self.imageView.af_setImageWithURL(url, imageTransition: .CrossDissolve(0.4))
+                self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: BackgroundRemovingImageFilter(), imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
             }
         }
     }

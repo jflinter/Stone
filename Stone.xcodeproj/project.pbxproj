@@ -28,6 +28,8 @@
 		A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; };
 		A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A03757CA1C151D68002E3620 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03757C91C151D68002E3620 /* CategoryTableViewController.swift */; };
+		A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; };
+		A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */; };
 		A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408611C02B1C100CEEBDB /* BrightFutures.framework */; };
 		A0D408661C02B1CC00CEEBDB /* BrightFutures.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408611C02B1C100CEEBDB /* BrightFutures.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -63,6 +65,7 @@
 				A0D4087B1C042FE800CEEBDB /* HockeySDK.framework in Embed Frameworks */,
 				A0D408751C02F6DD00CEEBDB /* AlamofireImage.framework in Embed Frameworks */,
 				A02D79581C155CA1007F6A17 /* Stripe.framework in Embed Frameworks */,
+				A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +94,7 @@
 		A03757BF1C14A946002E3620 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		A03757C21C14B60C002E3620 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
 		A03757C91C151D68002E3620 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaintBucket.framework; path = Carthage/Build/iOS/PaintBucket.framework; sourceTree = "<group>"; };
 		A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailViewController.swift; sourceTree = "<group>"; };
 		A0D408611C02B1C100CEEBDB /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		A0D408621C02B1C100CEEBDB /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				A0D4087A1C042FE800CEEBDB /* HockeySDK.framework in Frameworks */,
 				A0D408741C02F6DD00CEEBDB /* AlamofireImage.framework in Frameworks */,
 				A02D79571C155CA1007F6A17 /* Stripe.framework in Frameworks */,
+				A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +194,7 @@
 				A03757BF1C14A946002E3620 /* Dwifft.framework */,
 				A0D408781C042E5D00CEEBDB /* HockeySDK.framework */,
 				A0F1AB671C12955B005AAAEC /* Iris.framework */,
+				A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */,
 				A0D408621C02B1C100CEEBDB /* Result.framework */,
 				A02D79561C155CA1007F6A17 /* Stripe.framework */,
 			);
@@ -359,7 +365,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -398,7 +404,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -472,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "c2c45395-3de4-4ac5-852e-5f847fbb61bd";

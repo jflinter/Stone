@@ -31,13 +31,14 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
         self.scrollView.alwaysBounceVertical = true
         self.view.addSubview(self.scrollView)
         self.imageView.contentMode = .ScaleAspectFit
         self.imageView.image = self.viewModel.bootstrapImage
         self.scrollView.addSubview(imageView)
+        self.textView.backgroundColor = UIColor.clearColor()
         self.textView.scrollEnabled = false
         self.textView.editable = false
         self.textView.font = UIFont.systemFontOfSize(18)
@@ -55,7 +56,7 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
         self.scrollView.frame = self.view.bounds
         self.imageView.frame = CGRectMake(0, 10, self.view.bounds.width, 300)
         if let url = self.viewModel.imageURLForSize(self.imageView.frame.size) {
-            self.imageView.af_setImageWithURL(url, imageTransition: .CrossDissolve(0.4))
+            self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: BackgroundRemovingImageFilter(), imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
         }
         let textSize = self.textView.sizeThatFits(CGSizeMake(self.view.bounds.size.width - 40, CGFloat.max))
         self.textView.frame = CGRectMake(20, 300, textSize.width, textSize.height)
