@@ -55,7 +55,7 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
         super.viewDidLayoutSubviews()
         self.scrollView.frame = self.view.bounds
         self.imageView.frame = CGRectMake(0, 10, self.view.bounds.width, 300)
-        if let url = self.viewModel.imageURLForSize(self.imageView.frame.size) {
+        if let url = self.viewModel.imageURLForSize(CGRectIntegral(self.imageView.frame).size) {
             self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: BackgroundRemovingImageFilter(), imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
         }
         let textSize = self.textView.sizeThatFits(CGSizeMake(self.view.bounds.size.width - 40, CGFloat.max))
