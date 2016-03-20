@@ -48,7 +48,8 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
         crystalStore.fetchCrystals()
         
         flowLayout.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3)
-        collectionView.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
+//        collectionView.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
+        collectionView.backgroundColor = UIColor(red: 255.0/255.0, green: 211.0/255.0, blue: 224.0/255.0, alpha: 0.8)
         collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
     }

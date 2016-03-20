@@ -6,4 +6,4 @@ github "hodinkee/iris" ~> 1.0
 github "jflinter/Dwifft" ~> 0.3
 github "SwiftBond/Bond" ~> 4.0
 github "stripe/stripe-ios" ~> 6.0
-github "jflinter/PaintBucket" ~> 0.1
+github "jflinter/PaintBucket" "1904b73005cdc8677bb060ab7538177caad437dd"

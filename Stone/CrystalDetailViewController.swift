@@ -31,7 +31,8 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
+        self.view.backgroundColor = UIColor(red: 255.0/255.0, green: 211.0/255.0, blue: 224.0/255.0, alpha: 0.8)
+//        self.view.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
         self.scrollView.alwaysBounceVertical = true
         self.view.addSubview(self.scrollView)
