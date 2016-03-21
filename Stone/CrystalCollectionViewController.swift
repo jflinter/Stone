@@ -12,18 +12,39 @@ import Bond
 
 private let reuseIdentifier = "Cell"
 
-class CrystalCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
+class CrystalCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
-    var diffCalculator: CollectionViewDiffCalculator<Crystal>?
-    let crystalStore: CrystalStore
-    
-    init(crystalStore: CrystalStore) {
-        self.crystalStore = crystalStore
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         layout.sectionInset = UIEdgeInsetsZero
-        super.init(collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        return collectionView
+    }()
+    var diffCalculator: CollectionViewDiffCalculator<Crystal>?
+    let crystalStore: CrystalStore
+    let searchBar = UISearchBar()
+    var searchVisible: Bool = false {
+        didSet {
+            UIView.animateWithDuration(0.3, animations: {
+                self.view.setNeedsLayout()
+                self.view.layoutIfNeeded()
+            }) { completed in
+                guard completed else { return }
+                if self.searchVisible {
+                    self.searchBar.becomeFirstResponder()
+                }
+            }
+        }
+    }
+    
+    init(crystalStore: CrystalStore) {
+        self.crystalStore = crystalStore
+        super.init(nibName: nil, bundle: nil)
+        self.searchBar.delegate = self
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
         self.edgesForExtendedLayout = .None
         self.automaticallyAdjustsScrollViewInsets = false
         self.extendedLayoutIncludesOpaqueBars = false
@@ -36,22 +57,36 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.addSubview(self.collectionView)
+        self.view.addSubview(self.searchBar)
+        
         crystalStore.selectedCategory.observe { self.navigationItem.leftBarButtonItem = ($0 == nil) ? nil : UIBarButtonItem(title: "Clear Vibe", style: UIBarButtonItemStyle.Plain, target: self, action: "clearFilter") }
         
         crystalStore.selectedCategory.observe { self.navigationItem.title = $0 ?? "All Crystals" }
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "showCategories")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Organize, target: self, action: "showCategories")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "toggleSearch")
         
-        guard let collectionView = collectionView, flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         self.diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
         crystalStore.visibleCrystals.observe { self.diffCalculator?.rows = $0 }
         crystalStore.fetchCrystals()
         
-        flowLayout.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3)
 //        collectionView.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
-        collectionView.backgroundColor = UIColor(red: 255.0/255.0, green: 211.0/255.0, blue: 224.0/255.0, alpha: 0.8)
+        collectionView.backgroundColor = UIColor(red: 255.0/255.0, green: 211.0/255.0, blue: 224.0/255.0, alpha: 1)
         collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let height: CGFloat = 44
+        let searchY = self.searchVisible ? 0 : -height
+        self.searchBar.frame = CGRectMake(0, searchY, self.view.bounds.size.width, height)
+        (self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3 + 20)
+        var collectionViewFrame = self.view.bounds
+        collectionViewFrame.origin.y = CGRectGetMaxY(self.searchBar.frame)
+        collectionViewFrame.size.height = self.view.bounds.size.height - collectionViewFrame.origin.y
+        self.collectionView.frame = collectionViewFrame
     }
     
     func crystalAt(indexPath: NSIndexPath) -> Crystal? {
@@ -68,13 +103,22 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
         presentViewController(nav, animated: true, completion: nil)
     }
     
+    func toggleSearch() {
+        self.searchVisible = !self.searchVisible
+    }
+    
+    // MARK: UISearchBarDelegate
+    @objc func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        self.crystalStore.searchQuery.value = searchText
+    }
+    
     // MARK: UICollectionViewDataSource
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    @objc func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.diffCalculator?.rows.count ?? 0
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    @objc func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CrystalCollectionViewCell
         if let crystal = crystalAt(indexPath) {
             let viewModel = CrystalCellViewModel(crystal: crystal)
@@ -83,9 +127,8 @@ class CrystalCollectionViewController: UICollectionViewController, UICollectionV
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let collectionView = self.collectionView,
-            cell = self.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? CrystalCollectionViewCell,
+    @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard let cell = self.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? CrystalCollectionViewCell,
             image = cell.imageView.image else { return }
         guard let crystal = crystalAt(indexPath) else { return }
         let viewModel = CrystalDetailViewModel(crystal: crystal, bootstrapImage: image)

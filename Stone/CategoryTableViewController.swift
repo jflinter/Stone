@@ -24,7 +24,7 @@ class CategoryTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Vibes"
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
     }
     
     func categoryAt(indexPath: NSIndexPath) -> Category {

@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootViewController = CrystalCollectionViewController(crystalStore: crystalStore)
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.navigationBar.translucent = false
-        nav.delegate = rootViewController
         self.window?.rootViewController = nav
         self.window?.makeKeyAndVisible()
         return true
