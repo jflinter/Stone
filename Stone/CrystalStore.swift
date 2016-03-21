@@ -19,7 +19,7 @@ class CrystalStore {
         let filters = self.selectedCategory.combineLatestWith(self.searchQuery)
         return self.allCrystals.combineLatestWith(filters).map { (crystals: [Crystal], filters: (Category?, String)) -> [Crystal] in
             var filtered = crystals
-            if let category = filters.0 {
+            if let category = filters.0 where category != "all crystals" {
                 filtered = crystals.filter { $0.categories.contains(category) }
             }
             let searchQuery = filters.1
@@ -31,7 +31,7 @@ class CrystalStore {
         }
     }
     var allCategories: Set<Category> {
-        return Set(self.allCrystals.value.map({$0.categories}).flatten())
+        return Set(self.allCrystals.value.map({$0.categories}).flatten() + ["all crystals"])
     }
     var selectedCategory: Observable<Category?> = Observable(nil)
     var searchQuery: Observable<String> = Observable("")

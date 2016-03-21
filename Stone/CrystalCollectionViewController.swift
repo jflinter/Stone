@@ -60,8 +60,6 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.view.addSubview(self.collectionView)
         self.view.addSubview(self.searchBar)
         
-        crystalStore.selectedCategory.observe { self.navigationItem.leftBarButtonItem = ($0 == nil) ? nil : UIBarButtonItem(title: "Clear Vibe", style: UIBarButtonItemStyle.Plain, target: self, action: "clearFilter") }
-        
         crystalStore.selectedCategory.observe { self.navigationItem.title = $0 ?? "All Crystals" }
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Organize, target: self, action: "showCategories")
@@ -92,11 +90,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     func crystalAt(indexPath: NSIndexPath) -> Crystal? {
         return self.diffCalculator?.rows[indexPath.row]
     }
-    
-    func clearFilter() {
-        self.crystalStore.selectedCategory.value = nil
-    }
-    
+        
     func showCategories() {
         let categoryController = CategoryTableViewController(crystalStore: self.crystalStore)
         let nav = UINavigationController(rootViewController: categoryController)

@@ -13,7 +13,7 @@ import PaintBucket
 struct BackgroundRemovingImageFilter: ImageFilter {
     var filter: Image -> Image {
         return { image in
-            let transformed = image.pbk_imageByReplacingColorAt(1, 1, withColor: UIColor.clearColor(), tolerance: 300, antialias: true)
+            let transformed = image.pbk_imageByReplacingColorAt(1, 1, withColor: UIColor.clearColor(), tolerance: 320, antialias: false)
             return transformed
         }
     }
