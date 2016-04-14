@@ -9,7 +9,7 @@
 import UIKit
 import Iris
 
-struct CrystalCellViewModel {
+struct CrystalCellViewModel: Equatable {
     let crystal: Crystal
     let imageURL: NSURL?
     
@@ -22,4 +22,8 @@ struct CrystalCellViewModel {
         let options = ImageOptions(format: .JPEG, width: size.width, height: size.height, scale: UIScreen.mainScreen().scale, fit: .Clip, crop: nil)
         return self.imageURL?.imgixURL(imageOptions: options)
     }
+}
+
+func ==(lhs: CrystalCellViewModel, rhs: CrystalCellViewModel) -> Bool {
+    return lhs.crystal == rhs.crystal
 }

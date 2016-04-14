@@ -22,9 +22,13 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         return collectionView
     }()
-    var diffCalculator: CollectionViewDiffCalculator<Crystal>?
+    var diffCalculator: CollectionViewDiffCalculator<CrystalCellViewModel>?
     let crystalStore: CrystalStore
-    let searchBar = UISearchBar()
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.searchBarStyle = .Minimal
+        return searchBar
+    }()
     var searchVisible: Bool = false {
         didSet {
             UIView.animateWithDuration(0.3, animations: {
@@ -66,7 +70,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: "toggleSearch")
         
         self.diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
-        crystalStore.visibleCrystals.observe { self.diffCalculator?.rows = $0 }
+        crystalStore.visibleCrystals.observe { self.diffCalculator?.rows = $0.map(CrystalCellViewModel.init) }
         crystalStore.fetchCrystals()
         
 //        collectionView.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
@@ -87,7 +91,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.collectionView.frame = collectionViewFrame
     }
     
-    func crystalAt(indexPath: NSIndexPath) -> Crystal? {
+    func viewModelAt(indexPath: NSIndexPath) -> CrystalCellViewModel? {
         return self.diffCalculator?.rows[indexPath.row]
     }
         
@@ -114,8 +118,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
 
     @objc func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CrystalCollectionViewCell
-        if let crystal = crystalAt(indexPath) {
-            let viewModel = CrystalCellViewModel(crystal: crystal)
+        if let viewModel = viewModelAt(indexPath) {
             cell.viewModel = viewModel
         }
         return cell
@@ -123,9 +126,8 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     
     @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         guard let cell = self.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? CrystalCollectionViewCell,
-            image = cell.imageView.image else { return }
-        guard let crystal = crystalAt(indexPath) else { return }
-        let viewModel = CrystalDetailViewModel(crystal: crystal, bootstrapImage: image)
+            image = cell.imageView.image, cellViewModel = viewModelAt(indexPath), imageURL = cellViewModel.imageURLForSize(CGRectIntegral(cell.frame).size) else { return }
+        let viewModel = CrystalDetailViewModel(crystal: cellViewModel.crystal, bootstrapImage: AnnotatedImage(image: image, imageURL: imageURL))
         let detail = CrystalDetailViewController(viewModel: viewModel)
         let nav = UINavigationController(rootViewController: detail)
         self.presentViewController(nav, animated: true, completion: nil)

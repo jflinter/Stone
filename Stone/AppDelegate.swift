@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let crystalStore: CrystalStore = CrystalStore()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+        var t = 0
+        srand48(time(&t))
         BITHockeyManager.sharedHockeyManager().configureWithIdentifier("6e9f05f2cfa44a098bfbba010a692853")
         // Do some additional configuration if needed here
         BITHockeyManager.sharedHockeyManager().startManager()

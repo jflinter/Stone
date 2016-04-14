@@ -7,3 +7,5 @@ github "jflinter/Dwifft" ~> 0.3
 github "SwiftBond/Bond" ~> 4.0
 github "stripe/stripe-ios" ~> 6.0
 github "jflinter/PaintBucket" "1904b73005cdc8677bb060ab7538177caad437dd"
+github "hyperoslo/Hue" ~> 1.1
+github "jflinter/AGGeometryKit" "95aaca17351637b3c0e868db7e46ae48a35abb87"
