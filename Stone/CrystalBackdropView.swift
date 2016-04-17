@@ -13,20 +13,41 @@ import CoreImage
 class CrystalBackdropView: UIView {
 
     let colors: [UIColor]
-    let colorViews: [UIView]
+    let colorLayers: [CALayer]
+    
+    static func buildGradientLayer(color1: UIColor, _ color2: UIColor, top: Bool) -> CALayer {
+        let grayColor = UIColor(white: 0.9, alpha: 1.0)
+        let layer = CAGradientLayer()
+        if top {
+            layer.colors = [
+                grayColor.colorWithAlphaComponent(0).CGColor,
+                color1.colorWithAlphaComponent(0.2).CGColor,
+                color2.colorWithAlphaComponent(0.4).CGColor
+            ]
+            layer.locations = [0, 0.75, 1]
+            layer.opacity = 0.7
+        } else {
+            layer.colors = [
+                grayColor.colorWithAlphaComponent(0).CGColor,
+                color2.colorWithAlphaComponent(0.2).CGColor,
+                color1.colorWithAlphaComponent(0.2).CGColor
+            ]
+            layer.locations = [0, 0.6, 1]
+            layer.opacity = 0.9
+        }
+        layer.anchorPoint = CGPointZero
+        return layer
+    }
     
     init(colors: [UIColor]) {
         
         self.colors = Array(colors.prefix(2))
-        self.colorViews = self.colors.enumerate().map { i, color in
-            let view = UIView()
-            view.backgroundColor = color
-            view.layer.anchorPoint = CGPoint.zero
-            view.layer.opacity = pow(0.8, Float(i + 2))
-            return view
-        }
+        self.colorLayers = [
+            CrystalBackdropView.buildGradientLayer(self.colors.first!, self.colors.last!, top: false),
+            CrystalBackdropView.buildGradientLayer(self.colors.first!, self.colors.last!, top: true),
+        ]
         super.init(frame: CGRectZero)
-        self.colorViews.forEach({ self.addSubview($0) })
+        self.colorLayers.forEach({ self.layer.addSublayer($0) })
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,9 +60,8 @@ class CrystalBackdropView: UIView {
     }
     
     func skewLayers() {
-        self.colorViews.forEach { view in
-            view.frame = self.bounds
-            let layer = view.layer
+        self.colorLayers.forEach { layer in
+            layer.frame = self.bounds
             
             var quad = AGKQuadMakeWithCGSize(CGSizeMake(1, 1))
             

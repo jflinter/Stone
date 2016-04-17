@@ -8,10 +8,9 @@
 
 import UIKit
 import AlamofireImage
-import PassKit
 import Stripe
 
-class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewControllerDelegate {
+class CrystalDetailViewController: UIViewController {
     
     let viewModel: CrystalDetailViewModel
     let scrollView = UIScrollView()
@@ -23,6 +22,7 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
     init(viewModel: CrystalDetailViewModel) {
         self.viewModel = viewModel
         self.colorBackdropView = CrystalBackdropView(colors: [viewModel.bootstrapImage.primaryColor, viewModel.bootstrapImage.secondaryColor, viewModel.bootstrapImage.detailColor])
+        self.colorBackdropView.hidden = true
         super.init(nibName: nil, bundle: nil)
         self.title = viewModel.name
     }
@@ -33,8 +33,8 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
+        self.view.backgroundColor = UIColor.whiteColor()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(CrystalDetailViewController.dismiss))
         self.navigationItem.leftBarButtonItem?.tintColor = self.viewModel.bootstrapImage.primaryColor
         self.scrollView.alwaysBounceVertical = true
         self.view.addSubview(self.scrollView)
@@ -42,6 +42,8 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
         self.imageView.contentMode = .ScaleAspectFit
         self.imageView.image = self.viewModel.bootstrapImage.image
         self.scrollView.addSubview(imageView)
+        
+        self.textView.hidden = true
         self.textView.backgroundColor = UIColor.clearColor()
         self.textView.scrollEnabled = false
         self.textView.editable = false
@@ -52,7 +54,6 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
         self.paymentButton.setTitle("Buy", forState: .Normal)
         self.paymentButton.sizeToFit()
         self.scrollView.addSubview(self.paymentButton)
-        self.paymentButton.addTarget(self, action: "buyCrystal", forControlEvents: .TouchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,32 +74,4 @@ class CrystalDetailViewController: UIViewController, PKPaymentAuthorizationViewC
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func buyCrystal() {
-        Checkout.createOrder(self.viewModel.skus).onSuccess { order in
-            guard let paymentRequest = order.paymentRequest else { return }
-            let paymentVC = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
-            paymentVC.delegate = self
-            self.presentViewController(paymentVC, animated: true, completion: nil)
-        }.onFailure { error in
-            print(error.description)
-        }
-    }
-    
-    // MARK: PKPaymentAuthorizationViewControllerDelegate
-    func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: (PKPaymentAuthorizationStatus) -> Void) {
-        let client = STPAPIClient(publishableKey: "pk_test_iweIKQXjUpKF9Pp7LCJMO4hF")
-        client.createTokenWithPayment(payment) { token, error in
-            if let token = token {
-                print(token.tokenId)
-                completion(.Success)
-            } else {
-                completion(.Failure)
-            }
-        }
-    }
-    
-    func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-
 }

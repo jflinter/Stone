@@ -1,11 +1,12 @@
-github "Thomvis/BrightFutures" ~> 3.1
-github "Alamofire/Alamofire" ~> 3.0
-github "Alamofire/AlamofireImage" ~> 2.1
-github "bitstadium/HockeySDK-iOS" ~> 3.8
-github "hodinkee/iris" ~> 1.0
-github "jflinter/Dwifft" ~> 0.3
-github "SwiftBond/Bond" ~> 4.0
-github "stripe/stripe-ios" ~> 6.0
+github "Thomvis/BrightFutures"
+github "Alamofire/Alamofire"
+github "Alamofire/AlamofireImage"
+github "bitstadium/HockeySDK-iOS"
+github "hodinkee/iris"
+github "jflinter/Dwifft"
+github "SwiftBond/Bond"
+github "stripe/stripe-ios"
 github "jflinter/PaintBucket" "1904b73005cdc8677bb060ab7538177caad437dd"
-github "hyperoslo/Hue" ~> 1.1
+github "hyperoslo/Hue"
 github "jflinter/AGGeometryKit" "95aaca17351637b3c0e868db7e46ae48a35abb87"
+github "facebook/pop"
