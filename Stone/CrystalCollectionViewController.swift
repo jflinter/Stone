@@ -42,7 +42,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         return segmentedControl
     }()
     
-    let vibesView = VibesView()
+    let vibesView: VibesView
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -54,6 +54,10 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
             if searchVisible {
                 self.searchView.hidden = false
             }
+            else {
+                self.crystalStore.selectedVibe.value = nil
+                self.crystalStore.searchQuery.value = ""
+            }
             UIView.animateWithDuration(0.3, animations: {
                 self.view.setNeedsLayout()
                 self.view.layoutIfNeeded()
@@ -62,8 +66,10 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
                 if self.searchVisible {
                     self.searchBar.becomeFirstResponder()
                 } else {
+                    self.vibesView.resetSelection()
                     if self.searchBar.isFirstResponder() {
                         self.searchBar.resignFirstResponder()
+                        self.searchBar.text = ""
                     }
                     self.searchView.hidden = true
                 }
@@ -73,6 +79,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     
     init(crystalStore: CrystalStore) {
         self.crystalStore = crystalStore
+        self.vibesView = VibesView(crystalStore: crystalStore)
         super.init(nibName: nil, bundle: nil)
         self.searchBar.delegate = self
         self.collectionView.delegate = self
@@ -121,8 +128,10 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.searchHairline.backgroundColor = UIColor.grayColor()
         self.view.addSubview(self.searchHairline)
         self.searchBar.alpha = 1
-        self.vibesView.hidden = true // TODO
+        self.vibesView.alpha = 0
         self.searchView.addSubview(self.vibesView)
+        
+        self.searchSegmentedControl.addTarget(self, action: #selector(CrystalCollectionViewController.segmentedControlChanged(_:)), forControlEvents: .ValueChanged)
         
         let imageView = UIImageView(image: Resource.Image.Stone_Logo_Icon.image)
         imageView.contentMode = .Center
@@ -141,6 +150,27 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
         self.searchVisible = false
+    }
+    
+    func segmentedControlChanged(segmentedControl: UISegmentedControl) {
+        let showSearch = segmentedControl.selectedSegmentIndex == 0
+        if showSearch {
+            self.crystalStore.selectedVibe.value = nil
+            self.vibesView.resetSelection()
+        } else {
+            self.crystalStore.searchQuery.value = ""
+            self.searchBar.resignFirstResponder()
+        }
+        UIView.animateWithDuration(0.2, animations: {
+            self.searchBar.alpha = showSearch ? 1 : 0
+            self.vibesView.alpha = showSearch ? 0 : 1
+        }, completion: { completed in
+            if showSearch {
+                self.searchBar.becomeFirstResponder()
+            } else {
+                self.searchBar.text = ""
+            }
+        })
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -183,7 +213,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         )
         self.searchHairline.frame = CGRectMake(0, CGRectGetMaxY(self.searchView.frame) + 0.5, self.searchView.bounds.size.width, 0.5)
         
-        self.vibesView.frame = CGRectMake(0, 50, self.searchView.bounds.width, 50)
+        self.vibesView.frame = CGRectMake(0, 40, self.searchView.bounds.width, 80)
         
         (self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3 + 20)
         
@@ -203,12 +233,6 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         return self.diffCalculator?.rows[indexPath.row]
     }
         
-    func showCategories() {
-        let categoryController = CategoryTableViewController(crystalStore: self.crystalStore)
-        let nav = UINavigationController(rootViewController: categoryController)
-        presentViewController(nav, animated: true, completion: nil)
-    }
-    
     func toggleSearch() {
         self.searchVisible = !self.searchVisible
     }

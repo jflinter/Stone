@@ -16,11 +16,11 @@ class CrystalStore {
     private let allCrystals: Observable<[Crystal]> = Observable<[Crystal]>([])
     
     var visibleCrystals: EventProducer<[Crystal]> {
-        let filters = self.selectedCategory.combineLatestWith(self.searchQuery)
-        return self.allCrystals.combineLatestWith(filters).map { (crystals: [Crystal], filters: (Category?, String)) -> [Crystal] in
+        let filters = self.selectedVibe.combineLatestWith(self.searchQuery)
+        return self.allCrystals.combineLatestWith(filters).map { (crystals: [Crystal], filters: (Vibe?, String)) -> [Crystal] in
             var filtered = crystals
-            if let category = filters.0 where category != "all crystals" {
-                filtered = crystals.filter { $0.categories.contains(category) }
+            if let vibe = filters.0 {
+                filtered = crystals.filter { $0.vibes.contains(vibe) }
             }
             let searchQuery = filters.1
             filtered = TextSuggest(contents: filtered).suggestResults(searchQuery)
@@ -30,10 +30,13 @@ class CrystalStore {
             return filtered
         }
     }
-    var allCategories: Set<Category> {
-        return Set(self.allCrystals.value.map({$0.categories}).flatten() + ["all crystals"])
+    
+    var allVibes: EventProducer<Set<Vibe>> {
+        return self.allCrystals.map { (crystals: [Crystal]) -> Set<Vibe> in
+            return Set(crystals.map({ $0.vibes }).flatten())
+        }
     }
-    var selectedCategory: Observable<Category?> = Observable(nil)
+    var selectedVibe: Observable<Vibe?> = Observable(nil)
     var searchQuery: Observable<String> = Observable("")
     
     func fetchCrystals() -> Future<[Crystal], NSError> {

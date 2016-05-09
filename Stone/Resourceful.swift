@@ -27,11 +27,36 @@ public enum Resource {
 public enum Image: String, ResourceImageConvertible {
     
     case Stone_Logo_Icon = "Stone-Logo-Icon"
-    case Focus = "focus"
-    case Footer = "footer"
     case Icon__close = "icon_close"
-    case Meta = "meta"
     
+    
+public enum Icons: String, ResourceImageConvertible {
+    
+    case Balance = "Balance"
+    case Calm = "Calm"
+    case Clarity = "Clarity"
+    case Cleansing = "Cleansing"
+    case Confidence = "Confidence"
+    case Courage = "Courage"
+    case Creativity = "Creativity"
+    case Dreamwork = "Dreamwork"
+    case Focus = "Focus"
+    case Grounding = "Grounding"
+    case Insight = "Insight"
+    case Intuition = "Intuition"
+    case Joy = "Joy"
+    case Love = "Love"
+    case Manifestation = "Manifestation"
+    case Motivation = "Motivation"
+    case Passion = "Passion"
+    case Peace = "Peace"
+    case Protection = "Protection"
+    case Strength = "Strength"
+    case Transformation = "Transformation"
+    case Vitality = "Vitality"
+    
+}
+
 }
 
 }

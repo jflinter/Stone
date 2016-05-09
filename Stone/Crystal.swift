@@ -8,12 +8,10 @@
 
 import Foundation
 
-typealias Category = String
-
 typealias Crystal = Product
 
 extension Product {
-    var categories: Set<Category> {
-        return Set(self.caption.characters.split{$0 == ","}.map(String.init).map({$0.lowercaseString}))
+    var vibes: Set<Vibe> {
+        return Set(self.caption.characters.split{$0 == ","}.map(String.init).flatMap({ Vibe(rawValue: $0.lowercaseString) }))
     }
 }
