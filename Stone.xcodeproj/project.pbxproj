@@ -35,6 +35,13 @@
 		A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; };
 		A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A03757CA1C151D68002E3620 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03757C91C151D68002E3620 /* CategoryTableViewController.swift */; };
+		A05DB1881CC450FB005C444C /* ScaledVisibleCellsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB1871CC450FB005C444C /* ScaledVisibleCellsCollectionView.swift */; };
+		A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */; };
+		A05DB18C1CCEF091005C444C /* VibesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB18B1CCEF091005C444C /* VibesView.swift */; };
+		A05DB18F1CDFDBD5005C444C /* Resourceful.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB18E1CDFDBD5005C444C /* Resourceful.swift */; };
+		A05DB1961CE00CFE005C444C /* Brown-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A05DB1941CE00CFE005C444C /* Brown-Light.otf */; };
+		A05DB1971CE00CFE005C444C /* Brown-Regular-Alt.otf in Resources */ = {isa = PBXBuildFile; fileRef = A05DB1951CE00CFE005C444C /* Brown-Regular-Alt.otf */; };
+		A05DB1991CE0162B005C444C /* Brown-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A05DB1981CE0162B005C444C /* Brown-Bold.otf */; };
 		A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; };
 		A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */; };
@@ -112,6 +119,13 @@
 		A03757BF1C14A946002E3620 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		A03757C21C14B60C002E3620 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
 		A03757C91C151D68002E3620 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		A05DB1871CC450FB005C444C /* ScaledVisibleCellsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaledVisibleCellsCollectionView.swift; sourceTree = "<group>"; };
+		A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibeCollectionViewCell.swift; sourceTree = "<group>"; };
+		A05DB18B1CCEF091005C444C /* VibesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibesView.swift; sourceTree = "<group>"; };
+		A05DB18E1CDFDBD5005C444C /* Resourceful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resourceful.swift; sourceTree = "<group>"; };
+		A05DB1941CE00CFE005C444C /* Brown-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Light.otf"; sourceTree = "<group>"; };
+		A05DB1951CE00CFE005C444C /* Brown-Regular-Alt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Regular-Alt.otf"; sourceTree = "<group>"; };
+		A05DB1981CE0162B005C444C /* Brown-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold.otf"; sourceTree = "<group>"; };
 		A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaintBucket.framework; path = Carthage/Build/iOS/PaintBucket.framework; sourceTree = "<group>"; };
 		A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailViewController.swift; sourceTree = "<group>"; };
 		A0D408611C02B1C100CEEBDB /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
@@ -203,12 +217,27 @@
 				A0F1AB7C1C12A8E6005AAAEC /* CrystalDetailViewModel.swift */,
 				A009D06F1C9FC38D00966B6D /* CrystalBackdropView.swift */,
 				A0E9097F1CC427AB00C16230 /* CrystalDetailAnimator.swift */,
+				A05DB1871CC450FB005C444C /* ScaledVisibleCellsCollectionView.swift */,
+				A05DB18B1CCEF091005C444C /* VibesView.swift */,
+				A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */,
+				A05DB18E1CDFDBD5005C444C /* Resourceful.swift */,
 				A01D2EA01BDDDB39004286A9 /* Assets.xcassets */,
+				A05DB1931CE00CFE005C444C /* Fonts */,
 				A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */,
 				A01D2EA51BDDDB39004286A9 /* Info.plist */,
 				A0F1AB691C12969B005AAAEC /* xcconfigs */,
 			);
 			path = Stone;
+			sourceTree = "<group>";
+		};
+		A05DB1931CE00CFE005C444C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A05DB1941CE00CFE005C444C /* Brown-Light.otf */,
+				A05DB1951CE00CFE005C444C /* Brown-Regular-Alt.otf */,
+				A05DB1981CE0162B005C444C /* Brown-Bold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		A0D408601C02B1A700CEEBDB /* Frameworks */ = {
@@ -254,6 +283,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A01D2EA81BDDDB39004286A9 /* Build configuration list for PBXNativeTarget "Stone" */;
 			buildPhases = (
+				A05DB18D1CDFDB81005C444C /* Resourceful */,
 				A01D2E921BDDDB39004286A9 /* Sources */,
 				A01D2E931BDDDB39004286A9 /* Frameworks */,
 				A01D2E941BDDDB39004286A9 /* Resources */,
@@ -311,12 +341,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A05DB1991CE0162B005C444C /* Brown-Bold.otf in Resources */,
 				A01D2EA41BDDDB39004286A9 /* LaunchScreen.storyboard in Resources */,
+				A05DB1971CE00CFE005C444C /* Brown-Regular-Alt.otf in Resources */,
+				A05DB1961CE00CFE005C444C /* Brown-Light.otf in Resources */,
 				A01D2EA11BDDDB39004286A9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A05DB18D1CDFDB81005C444C /* Resourceful */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Stone/Assets.xcassets",
+			);
+			name = Resourceful;
+			outputPaths = (
+				"$(SRCROOT)/Stone/Resourceful.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = resourceful;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A01D2E921BDDDB39004286A9 /* Sources */ = {
@@ -327,6 +379,7 @@
 				A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */,
 				A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */,
 				A0154B961C758E5300A29763 /* Order+ApplePay.swift in Sources */,
+				A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */,
 				A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */,
 				A009D0701C9FC38D00966B6D /* CrystalBackdropView.swift in Sources */,
 				A0154B941C758E5300A29763 /* Checkout.swift in Sources */,
@@ -338,9 +391,12 @@
 				A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */,
 				A0154B931C758E5300A29763 /* API.swift in Sources */,
 				A0154B971C758E5300A29763 /* Order+Deserialization.swift in Sources */,
+				A05DB1881CC450FB005C444C /* ScaledVisibleCellsCollectionView.swift in Sources */,
+				A05DB18C1CCEF091005C444C /* VibesView.swift in Sources */,
 				A0FB7E231BDDF5DC00113C46 /* CrystalStore.swift in Sources */,
 				A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */,
 				A0154B981C758E5300A29763 /* ResponseObjectSerializable.swift in Sources */,
+				A05DB18F1CDFDBD5005C444C /* Resourceful.swift in Sources */,
 				A009D0681C9F6E8200966B6D /* TextSuggest.swift in Sources */,
 				A0154B951C758E5300A29763 /* Order.swift in Sources */,
 				A03757CA1C151D68002E3620 /* CategoryTableViewController.swift in Sources */,

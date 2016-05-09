@@ -25,6 +25,35 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     }()
     var diffCalculator: CollectionViewDiffCalculator<CrystalCellViewModel>?
     let crystalStore: CrystalStore
+    let searchView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        return view
+    }()
+    let searchGradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.colors = [
+            UIColor(white: 1, alpha: 1).CGColor,
+            UIColor(white: 1, alpha: 1).CGColor,
+            UIColor(white: 1, alpha: 0).CGColor
+        ]
+        gradient.locations = [0, 0.65, 1]
+        gradient.startPoint = CGPointMake(0.5, 0)
+        gradient.endPoint = CGPointMake(0.5, 1)
+        return gradient
+    }()
+    let searchSegmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl()
+        segmentedControl.insertSegmentWithTitle("NAME", atIndex: 0, animated: false)
+        segmentedControl.insertSegmentWithTitle("VIBE", atIndex: 1, animated: false)
+        segmentedControl.tintColor = UIColor.grayColor()
+        segmentedControl.layer.borderColor = UIColor.grayColor().CGColor
+        segmentedControl.layer.borderWidth = 1.0
+        return segmentedControl
+    }()
+    
+    let vibesView = VibesView()
+    
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = .Minimal
@@ -63,33 +92,78 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         super.viewDidLoad()
         
         self.view.addSubview(self.collectionView)
-        self.view.addSubview(self.searchBar)
+        self.view.addSubview(self.searchView)
+        self.searchView.layer.addSublayer(self.searchGradientLayer)
+        self.searchView.addSubview(self.searchSegmentedControl)
+        self.searchView.addSubview(self.searchBar)
+        self.searchBar.alpha = 0
+        self.vibesView.hidden = true // TODO
+        self.searchView.addSubview(self.vibesView)
         
-        crystalStore.selectedCategory.observe { self.navigationItem.title = $0 ?? "All Crystals" }
+        let imageView = UIImageView(image: Resource.Image.Stone_Logo_Icon.image)
+        imageView.contentMode = .Center
+        self.navigationItem.titleView = imageView
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Organize, target: self, action: #selector(CrystalCollectionViewController.showCategories))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(CrystalCollectionViewController.toggleSearch))
         
         self.diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
-        crystalStore.visibleCrystals.observe { self.diffCalculator?.rows = $0.map(CrystalCellViewModel.init) }
+        crystalStore.visibleCrystals.observe {
+            self.diffCalculator?.rows = $0.map(CrystalCellViewModel.init)
+            self.updateCellParallax()
+        }
         crystalStore.fetchCrystals()
         
-//        collectionView.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 247.0/255.0, alpha: 1)
         collectionView.backgroundColor = UIColor.whiteColor()
         collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.updateCellParallax()
+    }
+    
+    func updateCellParallax() {
+        for cell in self.collectionView.visibleCells() {
+            guard let cell = cell as? CrystalCollectionViewCell else { return }
+            let distanceFromBottom = self.collectionView.frame.size.height - CGRectGetMaxY(cell.convertRect(cell.bounds, toView: nil))
+            let percentage = distanceFromBottom / self.collectionView.frame.size.height
+            let transformed = percentage / 0.5
+            let fraction = max(min(transformed + 0.7, 1), 0)
+            cell.transform = CGAffineTransformMakeScale(fraction, fraction)
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let height: CGFloat = 44
+        let height: CGFloat = 120
         let searchY = self.searchVisible ? 0 : -height
-        self.searchBar.frame = CGRectMake(0, searchY, self.view.bounds.size.width, height)
+        
+        self.searchView.frame = CGRectMake(0, searchY, self.view.bounds.size.width, height)
+        
+        self.searchGradientLayer.frame = self.searchView.bounds
+        
+        let segmentedControlWidth = CGFloat(175)
+        self.searchSegmentedControl.frame = CGRectMake(
+            searchView.frame.size.width / 2 - segmentedControlWidth/2,
+            10,
+            segmentedControlWidth,
+            30
+        )
+        self.searchSegmentedControl.layer.cornerRadius = self.searchSegmentedControl.frame.size.height / 2
+        self.searchSegmentedControl.clipsToBounds = true
+        let searchBarX = CGFloat(10)
+        self.searchBar.frame = CGRectMake(
+            searchBarX,
+            50,
+            searchView.frame.size.width - (searchBarX * 2),
+            30
+        )
+        
+        self.vibesView.frame = CGRectMake(0, 50, self.searchView.bounds.width, 50)
+        
         (self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3 + 20)
-        var collectionViewFrame = self.view.bounds
-        collectionViewFrame.origin.y = CGRectGetMaxY(self.searchBar.frame)
-        collectionViewFrame.size.height = self.view.bounds.size.height - collectionViewFrame.origin.y
-        self.collectionView.frame = collectionViewFrame
+        
+        self.collectionView.frame = self.view.bounds
     }
     
     func viewModelAt(indexPath: NSIndexPath) -> CrystalCellViewModel? {
@@ -125,69 +199,13 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         return cell
     }
     
-//    @objc func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-//        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CrystalCollectionViewCell else { return }
-//        let animation = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
-//        animation.springSpeed = 2
-//        animation.springBounciness = 1
-//        animation.toValue = NSValue(CGSize: CGSizeMake(0.9, 0.9))
-//        cell.pop_addAnimation(animation, forKey: nil)
-//    }
-//    
-//    @objc func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-//        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CrystalCollectionViewCell else { return }
-//        let animation = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
-//        animation.springSpeed = 2
-//        animation.springBounciness = 1
-//        animation.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
-//        cell.pop_addAnimation(animation, forKey: nil)
-//    }
-    
     @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CrystalCollectionViewCell,
             image = cell.imageView.image, cellViewModel = viewModelAt(indexPath), imageURL = cellViewModel.imageURLForSize(CGRectIntegral(cell.frame).size) else { return }
-//        let viewModel = CrystalDetailViewModel(crystal: cellViewModel.crystal, bootstrapImage: AnnotatedImage(image: image, imageURL: imageURL))
-//        let detail = CrystalDetailViewController(viewModel: viewModel)
-        
-        var indices = self.collectionView.indexPathsForVisibleItems()
-//        indices.removeObject(indexPath)
-        
-        let crystalViews = indices.flatMap { index in
-            return self.collectionView.cellForItemAtIndexPath(index) as? CrystalCollectionViewCell
-        }
-//        
-//        let originalRect = cell.frame
-//
-        
-        
-//        UIView.animateWithDuration(0.2, animations: {
-//            cell.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(3.0, 3.0), 0, 20)
-//        })
-//        
-        for crystalView in crystalViews {
-            let duration = drand48() * 0.25 + 0.1
-            UIView.animateWithDuration(duration, animations: {
-                crystalView.alpha = 0
-                crystalView.transform = CGAffineTransformMakeScale(0.5, 0.5)
-            })
-        }
-        
-        let fakeView = TempView(image: image)
-        self.collectionView.addSubview(fakeView)
-        fakeView.frame = collectionView.bounds
-        fakeView.layoutSubviews()
-        fakeView.show()
-        
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            fakeView.removeFromSuperview()
-            for crystalView in self.collectionView.visibleCells() {
-                crystalView.alpha = 1
-                crystalView.transform = CGAffineTransformIdentity
-            }
-        }
-        
-//        self.presentViewController(detail, animated: true, completion: nil)
+        let viewModel = CrystalDetailViewModel(crystal: cellViewModel.crystal, bootstrapImage: AnnotatedImage(image: image, imageURL: imageURL))
+        let detail = CrystalDetailViewController(viewModel: viewModel)
+        detail.transitioningDelegate = self
+        self.presentViewController(detail, animated: true, completion: nil)
     }
     
     // MARK: UIViewControllerTransitioningDelegate
@@ -202,81 +220,4 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         return self.animator
     }
 
-}
-
-class TempView: UIView {
-    
-    let crystalImageView = UIImageView()
-    let fakeFooterView = UIImageView(image: UIImage(named: "meta"))
-    let fakeBuyView = UIImageView(image: UIImage(named: "footer"))
-    
-    convenience init(image: UIImage) {
-        self.init(frame: CGRectZero)
-        self.backgroundColor = UIColor.clearColor()
-        self.crystalImageView.image = image
-        self.addSubview(self.crystalImageView)
-        self.addSubview(self.fakeFooterView)
-        self.crystalImageView.contentMode = .ScaleAspectFit
-        self.crystalImageView.frame = CGRectMake(50, 10, 340, 340)
-        self.fakeFooterView.frame = CGRectMake(0, 385, 414, 500)
-        self.fakeFooterView.contentMode = .Center
-        
-        self.addSubview(self.fakeBuyView)
-        self.fakeBuyView.frame = CGRectMake(0, 626, 414, 50)
-    }
-    
-    func show() {
-        
-        self.crystalImageView.layer.transform =
-            CATransform3DTranslate(CATransform3DMakeScale(0.7, 0.7, 1), 0, 70, 0)
-        self.crystalImageView.layer.opacity = 0
-        
-        for (keyPath, value) in [
-            (kPOPLayerTranslationY, 0),
-            (kPOPLayerOpacity, 1),
-            (kPOPLayerScaleX, 1),
-            (kPOPLayerScaleY, 1),
-            ] {
-                let animation = POPSpringAnimation(propertyNamed: keyPath)
-                animation.springSpeed = 4
-                animation.springBounciness = 1
-                animation.toValue = value
-                self.crystalImageView.layer.pop_addAnimation(animation, forKey: nil)
-        }
-        
-        self.fakeFooterView.alpha = 0
-        self.fakeFooterView.layer.transform = CATransform3DMakeTranslation(0, 70, 0)
-        let animation = POPSpringAnimation(propertyNamed: kPOPLayerTranslationY)
-        animation.springSpeed = 5
-        animation.springBounciness = 1
-        animation.toValue = 0
-        self.fakeFooterView.layer.pop_addAnimation(animation, forKey: nil)
-        
-        let animation2 = POPSpringAnimation(propertyNamed: kPOPViewAlpha)
-        animation2.springSpeed = 5
-        animation2.springBounciness = 1
-        animation2.toValue = 1
-        self.fakeFooterView.pop_addAnimation(animation2, forKey: nil)
-        
-        self.fakeBuyView.layer.transform = CATransform3DMakeTranslation(0, 50, 0)
-        let animation3 = POPSpringAnimation(propertyNamed: kPOPLayerTranslationY)
-        animation3.springSpeed = 5
-        animation3.springBounciness = 1
-        animation3.toValue = 0
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.fakeBuyView.layer.pop_addAnimation(animation3, forKey: nil)
-        }
-    }
-    
-}
-
-extension RangeReplaceableCollectionType where Generator.Element : Equatable {
-    
-    // Remove first collection element that is equal to the given `object`:
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
-        }
-    }
 }

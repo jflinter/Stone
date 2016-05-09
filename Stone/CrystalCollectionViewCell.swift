@@ -12,14 +12,9 @@ import PaintBucket
 
 struct BackgroundRemovingImageFilter: ImageFilter {
     
-    let url: NSURL?
-    
     var filter: Image -> Image {
         return { image in
             let transformed = image.pbk_imageByReplacingColorAt(1, 1, withColor: UIColor.clearColor(), tolerance: 320, antialias: false)
-            if let url = self.url {
-                ColorCache.sharedInstance.setImage(image, forURL: url)
-            }
             return transformed
         }
     }
@@ -32,14 +27,25 @@ class CrystalCollectionViewCell: UICollectionViewCell {
     var viewModel: CrystalCellViewModel? {
         didSet {
             self.imageView.image = nil
-            if let url = viewModel?.imageURLForSize(CGRectIntegral(self.frame).size) {
-                self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: BackgroundRemovingImageFilter(url: url), imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
+            let size = CGRectIntegral(self.bounds).size
+            if let url = viewModel?.imageURLForSize(size) {
+                let mutableURLRequest = NSMutableURLRequest(URL: url)
+                mutableURLRequest.setValue("max-age=31536000", forHTTPHeaderField: "Cache-Control")
+                mutableURLRequest.cachePolicy = .ReturnCacheDataElseLoad
+                self.imageView.af_setImageWithURLRequest(mutableURLRequest, placeholderImage: nil, filter: nil, progress: nil, progressQueue: dispatch_get_main_queue(), imageTransition: .CrossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
+//                self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: BackgroundRemovingImageFilter(url: url), imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: { response in
+//                    if let _ = response.result.error {
+//                        let productID = self.viewModel?.crystal.productID
+//                        print(productID)
+//                    }
+//                })
             }
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.imageView.frame = self.bounds
         self.imageView.contentMode = .ScaleAspectFit
         self.addSubview(self.imageView)
     }
@@ -48,9 +54,16 @@ class CrystalCollectionViewCell: UICollectionViewCell {
         fatalError("Not implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.imageView.frame = self.bounds
+    override var highlighted: Bool {
+        set {
+            UIView.animateWithDuration(0.5, delay: newValue ? 0 : 0.1, usingSpringWithDamping: 17.5, initialSpringVelocity: 0, options: [], animations: {
+                self.imageView.transform = newValue ? CGAffineTransformMakeScale(0.8, 0.8) : CGAffineTransformIdentity
+                }, completion: nil)
+            super.highlighted = newValue
+        }
+        get {
+            return super.highlighted
+        }
     }
     
 }

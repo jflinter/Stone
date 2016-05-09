@@ -8,6 +8,8 @@
 
 import UIKit
 import HockeySDK
+import Alamofire
+import AlamofireImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Do some additional configuration if needed here
         BITHockeyManager.sharedHockeyManager().startManager()
         BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+        
+        let bytesPerMegabyte = 1000000
+        NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 100 * bytesPerMegabyte, diskCapacity: 200 * bytesPerMegabyte, diskPath: "com.stonecrystals.urlcache"))
+        
+        let configuration = ImageDownloader.defaultURLSessionConfiguration()
+        configuration.URLCache = NSURLCache.sharedURLCache()
+        configuration.HTTPAdditionalHeaders = ["Cache-Control": "max-age=31536000"]
+        configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+        
+        UIImageView.af_sharedImageDownloader = ImageDownloader(configuration: configuration, downloadPrioritization: .LIFO, maximumActiveDownloads: 16)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
