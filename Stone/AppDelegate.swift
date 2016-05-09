@@ -35,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIImageView.af_sharedImageDownloader = ImageDownloader(configuration: configuration, downloadPrioritization: .LIFO, maximumActiveDownloads: 16)
         
+        let navBarAppearance: UINavigationBar = UINavigationBar.appearance()
+        navBarAppearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navBarAppearance.shadowImage = UIImage()
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
         let rootViewController = CrystalCollectionViewController(crystalStore: crystalStore)

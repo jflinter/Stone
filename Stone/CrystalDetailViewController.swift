@@ -130,7 +130,7 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
 
         scrollView.showsVerticalScrollIndicator = !scalingImage
         if scalingImage {
-            let scaleFactor: CGFloat = 5
+            let scaleFactor: CGFloat = 4
             let delta = -scrollView.contentOffset.y * scaleFactor / scrollView.bounds.size.height
             let deltaY = delta * self.imageView.bounds.size.height / 8
             self.imageView.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1 + delta, 1 + delta), 0, -deltaY)

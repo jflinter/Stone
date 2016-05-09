@@ -50,6 +50,8 @@ import pop
             }
             UIView.animateWithDuration(0.05) {
                 self.collectionViewController.navigationController?.navigationBar.alpha = 0
+                self.collectionViewController.searchView.alpha = 0
+                self.collectionViewController.searchHairline.alpha = 0
             }
             
             detailViewController.closeButton.transform =  CGAffineTransformRotate(CGAffineTransformMakeScale(0.7, 0.7), 120)
@@ -106,6 +108,8 @@ import pop
             
             UIView.animateWithDuration(0.1, delay: 0.1, options: [], animations: { 
                 self.collectionViewController.navigationController?.navigationBar.alpha = 1
+                self.collectionViewController.searchView.alpha = 1
+                self.collectionViewController.searchHairline.alpha = 1
             }, completion: nil)
             
             let indexPaths = collectionViewController.collectionView.indexPathsForVisibleItems()

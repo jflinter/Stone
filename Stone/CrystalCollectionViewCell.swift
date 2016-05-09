@@ -29,16 +29,12 @@ class CrystalCollectionViewCell: UICollectionViewCell {
             self.imageView.image = nil
             let size = CGRectIntegral(self.bounds).size
             if let url = viewModel?.imageURLForSize(size) {
-                let mutableURLRequest = NSMutableURLRequest(URL: url)
-                mutableURLRequest.setValue("max-age=31536000", forHTTPHeaderField: "Cache-Control")
-                mutableURLRequest.cachePolicy = .ReturnCacheDataElseLoad
-                self.imageView.af_setImageWithURLRequest(mutableURLRequest, placeholderImage: nil, filter: nil, progress: nil, progressQueue: dispatch_get_main_queue(), imageTransition: .CrossDissolve(0.3), runImageTransitionIfCached: false, completion: nil)
-//                self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: BackgroundRemovingImageFilter(url: url), imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: { response in
-//                    if let _ = response.result.error {
-//                        let productID = self.viewModel?.crystal.productID
-//                        print(productID)
-//                    }
-//                })
+                self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: .CrossDissolve(0.2), runImageTransitionIfCached: false, completion: { response in
+                    if let _ = response.result.error {
+                        let productID = self.viewModel?.crystal.productID
+                        print(productID)
+                    }
+                })
             }
         }
     }
