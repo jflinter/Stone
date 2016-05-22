@@ -10,6 +10,7 @@ import Foundation
 import BrightFutures
 import Alamofire
 import Bond
+import Result
 
 class CrystalStore {
     
@@ -39,17 +40,40 @@ class CrystalStore {
     var selectedVibe: Observable<Vibe?> = Observable(nil)
     var searchQuery: Observable<String> = Observable("")
     
-    func fetchCrystals() -> Future<[Crystal], NSError> {
-        let promise = Promise<[Crystal], NSError>()
+    var crystalPromise: Promise<[Crystal], NoError> = {
+        let promise = Promise<[Crystal], NoError>()
+        promise.success([])
+        return promise
+    }()
+    func fetchCrystals() -> Future<[Crystal], NoError> {
+        if (self.crystalPromise.future.isCompleted) {
+            self.crystalPromise = Promise<[Crystal], NoError>()
+            makeRequest(0) { [weak self] crystals in
+                self?.crystalPromise.success(crystals)
+            }
+        }
+        return self.crystalPromise.future
+    }
+    
+    func makeRequest(afterDelay: NSTimeInterval, completion: [Crystal] -> Void) {
         Alamofire.request(.GET, API.baseURL + "products").responseCollection { (response: Response<[Crystal], NSError>) in
             if let value = response.result.value {
                 self.allCrystals.value = value.filter { !$0.imageURLs.isEmpty }
-                promise.success(value)
-            } else if let error = response.result.error {
-                promise.failure(error)
+                completion(value)
+                
+            } else if let _ = response.result.error {
+                let delay: NSTimeInterval
+                if (afterDelay <= 0) {
+                    delay = 1
+                } else {
+                    delay = afterDelay * 2
+                }
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime, dispatch_get_main_queue()) {
+                    self.makeRequest(delay, completion: completion)
+                }
             }
         }
-        return promise.future
     }
     
 }

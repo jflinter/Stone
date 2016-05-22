@@ -26,6 +26,9 @@ public enum Resource {
     
 public enum Image: String, ResourceImageConvertible {
     
+    case Gradient = "Gradient"
+    case LaunchIcon = "LaunchIcon"
+    case LaunchTitle = "LaunchTitle"
     case Stone_Logo_Icon = "Stone-Logo-Icon"
     case Icon__close = "icon_close"
     

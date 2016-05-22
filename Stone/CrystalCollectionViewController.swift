@@ -9,7 +9,6 @@
 import UIKit
 import Dwifft
 import Bond
-import pop
 
 private let reuseIdentifier = "Cell"
 
@@ -94,24 +93,13 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         fatalError("not implemented")
     }
     
-    var oldInsetBottom: CGFloat = 0
     func keyboardWillChangeFrame(notification: NSNotification) {
         
-        let oldFrame = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue() ?? CGRectZero
-        guard let window = self.view.window else { return }
-        if (!CGRectIntersectsRect(window.frame, oldFrame)) {
-            oldInsetBottom = self.collectionView.contentInset.bottom
-        }
-        
         let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue ?? CGRectZero
+        let intersection = CGRectIntersection(keyboardFrame, self.view.frame)
         
-        let keyboardHeight = CGRectGetHeight(keyboardFrame)
         var inset = self.collectionView.contentInset
-        if (!CGRectIntersectsRect(window.frame, keyboardFrame)) {
-            inset.bottom = oldInsetBottom
-        } else {
-            inset.bottom = oldInsetBottom + keyboardHeight
-        }
+        inset.bottom = intersection.size.height
         
         self.collectionView.contentInset = inset
         self.collectionView.scrollIndicatorInsets = inset
@@ -258,8 +246,8 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     
     @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CrystalCollectionViewCell,
-            image = cell.imageView.image, cellViewModel = viewModelAt(indexPath), imageURL = cellViewModel.imageURLForSize(CGRectIntegral(cell.frame).size) else { return }
-        let viewModel = CrystalDetailViewModel(crystal: cellViewModel.crystal, bootstrapImage: AnnotatedImage(image: image, imageURL: imageURL))
+            image = cell.imageView.image, cellViewModel = viewModelAt(indexPath) else { return }
+        let viewModel = CrystalDetailViewModel(crystal: cellViewModel.crystal, bootstrapImage: image)
         let detail = CrystalDetailViewController(viewModel: viewModel)
         detail.transitioningDelegate = self
         self.presentViewController(detail, animated: true, completion: nil)

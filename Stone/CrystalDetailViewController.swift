@@ -36,12 +36,9 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
     }()
     let textView = UITextView()
     let paymentButton = UIButton(type: UIButtonType.System)
-    let colorBackdropView: CrystalBackdropView
     
     init(viewModel: CrystalDetailViewModel) {
         self.viewModel = viewModel
-        self.colorBackdropView = CrystalBackdropView(colors: [viewModel.bootstrapImage.primaryColor, viewModel.bootstrapImage.secondaryColor, viewModel.bootstrapImage.detailColor])
-        self.colorBackdropView.hidden = true
         super.init(nibName: nil, bundle: nil)
         self.title = viewModel.name
     }
@@ -62,7 +59,7 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(self.scrollView)
         
         self.imageView.contentMode = .ScaleAspectFit
-        self.imageView.image = self.viewModel.bootstrapImage.image
+        self.imageView.image = self.viewModel.bootstrapImage
         self.imageView.frame = CGRectMake(0, 10, self.view.bounds.width, 300)
         self.scrollView.addSubview(imageView)
         
@@ -91,8 +88,8 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
         self.closeButton.frame = CGRectMake(35, 35, self.closeButton.bounds.size.width, self.closeButton.bounds.size.height)
         self.scrollView.frame = self.view.bounds
         self.imageView.frame = CGRectMake(0, 30, self.view.bounds.width, 300)
-        self.colorBackdropView.frame = self.imageView.frame
         if let url = self.viewModel.imageURLForSize(CGRectIntegral(self.imageView.bounds).size) {
+            
             self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
         }
         

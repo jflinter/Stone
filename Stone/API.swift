@@ -9,5 +9,5 @@
 import UIKit
 
 struct API {
-    static let baseURL = "https://powerful-dusk-1713.herokuapp.com/"
+    static let baseURL = "https://api.stoneproject.co/"
 }

@@ -10,8 +10,8 @@ import UIKit
 
 class VibeCollectionViewCell: UICollectionViewCell {
     
-    static let selectedColor = UIColor.blueColor()
-    static let unselectedColor = UIColor.blackColor()
+    static let selectedColor = UIColor(red: 0, green: 122.0/255.0, blue: 1, alpha: 1)
+    static let unselectedColor = UIColor.blackColor().colorWithAlphaComponent(0.75)
 
     private lazy var label: UILabel = {
         let label = UILabel()

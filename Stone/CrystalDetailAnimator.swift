@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import pop
 
 @objc class CrystalDetailAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 

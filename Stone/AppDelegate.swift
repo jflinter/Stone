@@ -31,20 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let configuration = ImageDownloader.defaultURLSessionConfiguration()
         configuration.URLCache = NSURLCache.sharedURLCache()
         configuration.HTTPAdditionalHeaders = ["Cache-Control": "max-age=31536000"]
-        configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+        configuration.requestCachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
         
         UIImageView.af_sharedImageDownloader = ImageDownloader(configuration: configuration, downloadPrioritization: .LIFO, maximumActiveDownloads: 16)
         
         let navBarAppearance: UINavigationBar = UINavigationBar.appearance()
         navBarAppearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBarAppearance.shadowImage = UIImage()
+        navBarAppearance.translucent = false
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
-        let rootViewController = CrystalCollectionViewController(crystalStore: crystalStore)
-        let nav = UINavigationController(rootViewController: rootViewController)
-        nav.navigationBar.translucent = false
-        self.window?.rootViewController = nav
+        
+        self.window?.rootViewController = MainContainerViewController(crystalStore: crystalStore)
         self.window?.makeKeyAndVisible()
         return true
     }

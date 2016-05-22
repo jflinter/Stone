@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A009D0681C9F6E8200966B6D /* TextSuggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A009D0671C9F6E8200966B6D /* TextSuggest.swift */; };
-		A009D06B1C9F94B900966B6D /* Hue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A009D0691C9F94AE00966B6D /* Hue.framework */; };
-		A009D06C1C9F94B900966B6D /* Hue.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A009D0691C9F94AE00966B6D /* Hue.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A009D06E1C9F95FE00966B6D /* AnnotatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A009D06D1C9F95FE00966B6D /* AnnotatedImage.swift */; };
-		A009D0701C9FC38D00966B6D /* CrystalBackdropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A009D06F1C9FC38D00966B6D /* CrystalBackdropView.swift */; };
-		A009D1021C9FCD1600966B6D /* AGGeometryKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A009D1001C9FCD0700966B6D /* AGGeometryKit.framework */; };
-		A009D1031C9FCD1600966B6D /* AGGeometryKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A009D1001C9FCD0700966B6D /* AGGeometryKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0154B8C1C758AD400A29763 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B8B1C758AD400A29763 /* Product.swift */; };
 		A0154B931C758E5300A29763 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B8D1C758E5300A29763 /* API.swift */; };
 		A0154B941C758E5300A29763 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B8E1C758E5300A29763 /* Checkout.swift */; };
@@ -23,7 +17,6 @@
 		A0154B981C758E5300A29763 /* ResponseObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B921C758E5300A29763 /* ResponseObjectSerializable.swift */; };
 		A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2E991BDDDB39004286A9 /* AppDelegate.swift */; };
 		A01D2EA11BDDDB39004286A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01D2EA01BDDDB39004286A9 /* Assets.xcassets */; };
-		A01D2EA41BDDDB39004286A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */; };
 		A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAB1BDDDBDE004286A9 /* CrystalCollectionViewController.swift */; };
 		A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAD1BDDDC47004286A9 /* Crystal.swift */; };
 		A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */; };
@@ -34,6 +27,11 @@
 		A03757C11C14A946002E3620 /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757BF1C14A946002E3620 /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; };
 		A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A046A81E1CF022E8005BCB5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A046A81D1CF022E8005BCB5A /* LaunchScreen.storyboard */; };
+		A046A8201CF02A50005BCB5A /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046A81F1CF02A50005BCB5A /* MainContainerViewController.swift */; };
+		A046A8221CF03AD3005BCB5A /* CrystalLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046A8211CF03AD3005BCB5A /* CrystalLoadingView.swift */; };
+		A059CCBF1CF0184300366718 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059CCBD1CF0184300366718 /* SplashScreenViewController.swift */; };
+		A059CCC01CF0184300366718 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A059CCBE1CF0184300366718 /* SplashScreenViewController.xib */; };
 		A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */; };
 		A05DB18C1CCEF091005C444C /* VibesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB18B1CCEF091005C444C /* VibesView.swift */; };
 		A05DB18F1CDFDBD5005C444C /* Resourceful.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB18E1CDFDBD5005C444C /* Resourceful.swift */; };
@@ -57,8 +55,6 @@
 		A0D4087A1C042FE800CEEBDB /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408781C042E5D00CEEBDB /* HockeySDK.framework */; };
 		A0D4087B1C042FE800CEEBDB /* HockeySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408781C042E5D00CEEBDB /* HockeySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0E909801CC427AB00C16230 /* CrystalDetailAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E9097F1CC427AB00C16230 /* CrystalDetailAnimator.swift */; };
-		A0E909831CC434AF00C16230 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E909811CC434A600C16230 /* pop.framework */; };
-		A0E909841CC434AF00C16230 /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0E909811CC434A600C16230 /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0F1AB7A1C129FF0005AAAEC /* Iris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0F1AB671C12955B005AAAEC /* Iris.framework */; };
 		A0F1AB7B1C129FF0005AAAEC /* Iris.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0F1AB671C12955B005AAAEC /* Iris.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F1AB7C1C12A8E6005AAAEC /* CrystalDetailViewModel.swift */; };
@@ -73,18 +69,15 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A0D408661C02B1CC00CEEBDB /* BrightFutures.framework in Embed Frameworks */,
-				A009D06C1C9F94B900966B6D /* Hue.framework in Embed Frameworks */,
 				A0F1AB7B1C129FF0005AAAEC /* Iris.framework in Embed Frameworks */,
 				A0D4086D1C02B32C00CEEBDB /* Alamofire.framework in Embed Frameworks */,
 				A03757C11C14A946002E3620 /* Dwifft.framework in Embed Frameworks */,
 				A0D408681C02B1CC00CEEBDB /* Result.framework in Embed Frameworks */,
 				A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */,
 				A0D4087B1C042FE800CEEBDB /* HockeySDK.framework in Embed Frameworks */,
-				A0E909841CC434AF00C16230 /* pop.framework in Embed Frameworks */,
 				A0D408751C02F6DD00CEEBDB /* AlamofireImage.framework in Embed Frameworks */,
 				A02D79581C155CA1007F6A17 /* Stripe.framework in Embed Frameworks */,
 				A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */,
-				A009D1031C9FCD1600966B6D /* AGGeometryKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,10 +86,6 @@
 
 /* Begin PBXFileReference section */
 		A009D0671C9F6E8200966B6D /* TextSuggest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSuggest.swift; sourceTree = "<group>"; };
-		A009D0691C9F94AE00966B6D /* Hue.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hue.framework; path = Carthage/Build/iOS/Hue.framework; sourceTree = "<group>"; };
-		A009D06D1C9F95FE00966B6D /* AnnotatedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotatedImage.swift; sourceTree = "<group>"; };
-		A009D06F1C9FC38D00966B6D /* CrystalBackdropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalBackdropView.swift; sourceTree = "<group>"; };
-		A009D1001C9FCD0700966B6D /* AGGeometryKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGGeometryKit.framework; path = Carthage/Build/iOS/AGGeometryKit.framework; sourceTree = "<group>"; };
 		A0154B8B1C758AD400A29763 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A0154B8D1C758E5300A29763 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A0154B8E1C758E5300A29763 /* Checkout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
@@ -107,7 +96,6 @@
 		A01D2E961BDDDB39004286A9 /* Stone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01D2E991BDDDB39004286A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A01D2EA01BDDDB39004286A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A01D2EA31BDDDB39004286A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A01D2EA51BDDDB39004286A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A01D2EAB1BDDDBDE004286A9 /* CrystalCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCollectionViewController.swift; sourceTree = "<group>"; };
 		A01D2EAD1BDDDC47004286A9 /* Crystal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crystal.swift; sourceTree = "<group>"; };
@@ -117,6 +105,11 @@
 		A02D79591C155E9B007F6A17 /* Stone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Stone.entitlements; sourceTree = "<group>"; };
 		A03757BF1C14A946002E3620 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		A03757C21C14B60C002E3620 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
+		A046A81D1CF022E8005BCB5A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A046A81F1CF02A50005BCB5A /* MainContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
+		A046A8211CF03AD3005BCB5A /* CrystalLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalLoadingView.swift; sourceTree = "<group>"; };
+		A059CCBD1CF0184300366718 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		A059CCBE1CF0184300366718 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
 		A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibeCollectionViewCell.swift; sourceTree = "<group>"; };
 		A05DB18B1CCEF091005C444C /* VibesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibesView.swift; sourceTree = "<group>"; };
 		A05DB18E1CDFDBD5005C444C /* Resourceful.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resourceful.swift; sourceTree = "<group>"; };
@@ -134,7 +127,6 @@
 		A0D408721C02F6D500CEEBDB /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		A0D408781C042E5D00CEEBDB /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
 		A0E9097F1CC427AB00C16230 /* CrystalDetailAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailAnimator.swift; sourceTree = "<group>"; };
-		A0E909811CC434A600C16230 /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		A0F1AB671C12955B005AAAEC /* Iris.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iris.framework; path = Carthage/Build/iOS/Iris.framework; sourceTree = "<group>"; };
 		A0F1AB6A1C12969B005AAAEC /* Project-Beta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Project-Beta.xcconfig"; sourceTree = "<group>"; };
 		A0F1AB6B1C12969B005AAAEC /* Project-Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Project-Debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,9 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0E909831CC434AF00C16230 /* pop.framework in Frameworks */,
 				A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */,
-				A009D06B1C9F94B900966B6D /* Hue.framework in Frameworks */,
 				A0F1AB7A1C129FF0005AAAEC /* Iris.framework in Frameworks */,
 				A0D4086C1C02B32C00CEEBDB /* Alamofire.framework in Frameworks */,
 				A03757C01C14A946002E3620 /* Dwifft.framework in Frameworks */,
@@ -165,7 +155,6 @@
 				A0D408741C02F6DD00CEEBDB /* AlamofireImage.framework in Frameworks */,
 				A02D79571C155CA1007F6A17 /* Stripe.framework in Frameworks */,
 				A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */,
-				A009D1021C9FCD1600966B6D /* AGGeometryKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,21 +195,23 @@
 				A0D408701C02ECA900CEEBDB /* ResponseCollectionSerializable.swift */,
 				A0154B8D1C758E5300A29763 /* API.swift */,
 				A009D0671C9F6E8200966B6D /* TextSuggest.swift */,
-				A009D06D1C9F95FE00966B6D /* AnnotatedImage.swift */,
+				A046A81F1CF02A50005BCB5A /* MainContainerViewController.swift */,
+				A059CCBD1CF0184300366718 /* SplashScreenViewController.swift */,
+				A059CCBE1CF0184300366718 /* SplashScreenViewController.xib */,
 				A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */,
+				A046A8211CF03AD3005BCB5A /* CrystalLoadingView.swift */,
 				A01D2EAB1BDDDBDE004286A9 /* CrystalCollectionViewController.swift */,
 				A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */,
 				A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */,
 				A0F1AB7C1C12A8E6005AAAEC /* CrystalDetailViewModel.swift */,
-				A009D06F1C9FC38D00966B6D /* CrystalBackdropView.swift */,
 				A0E9097F1CC427AB00C16230 /* CrystalDetailAnimator.swift */,
 				A05DB18B1CCEF091005C444C /* VibesView.swift */,
 				A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */,
 				A05DB18E1CDFDBD5005C444C /* Resourceful.swift */,
 				A05DB19A1CE06D8E005C444C /* Vibes.swift */,
+				A046A81D1CF022E8005BCB5A /* LaunchScreen.storyboard */,
 				A01D2EA01BDDDB39004286A9 /* Assets.xcassets */,
 				A05DB1931CE00CFE005C444C /* Fonts */,
-				A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */,
 				A01D2EA51BDDDB39004286A9 /* Info.plist */,
 				A0F1AB691C12969B005AAAEC /* xcconfigs */,
 			);
@@ -240,17 +231,14 @@
 		A0D408601C02B1A700CEEBDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A009D1001C9FCD0700966B6D /* AGGeometryKit.framework */,
 				A0D4086A1C02B32400CEEBDB /* Alamofire.framework */,
 				A0D408721C02F6D500CEEBDB /* AlamofireImage.framework */,
 				A03757C21C14B60C002E3620 /* Bond.framework */,
 				A0D408611C02B1C100CEEBDB /* BrightFutures.framework */,
 				A03757BF1C14A946002E3620 /* Dwifft.framework */,
 				A0D408781C042E5D00CEEBDB /* HockeySDK.framework */,
-				A009D0691C9F94AE00966B6D /* Hue.framework */,
 				A0F1AB671C12955B005AAAEC /* Iris.framework */,
 				A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */,
-				A0E909811CC434A600C16230 /* pop.framework */,
 				A0D408621C02B1C100CEEBDB /* Result.framework */,
 				A02D79561C155CA1007F6A17 /* Stripe.framework */,
 			);
@@ -339,7 +327,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A05DB1991CE0162B005C444C /* Brown-Bold.otf in Resources */,
-				A01D2EA41BDDDB39004286A9 /* LaunchScreen.storyboard in Resources */,
+				A046A81E1CF022E8005BCB5A /* LaunchScreen.storyboard in Resources */,
+				A059CCC01CF0184300366718 /* SplashScreenViewController.xib in Resources */,
 				A05DB1971CE00CFE005C444C /* Brown-Regular-Alt.otf in Resources */,
 				A05DB1961CE00CFE005C444C /* Brown-Light.otf in Resources */,
 				A01D2EA11BDDDB39004286A9 /* Assets.xcassets in Resources */,
@@ -372,13 +361,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A009D06E1C9F95FE00966B6D /* AnnotatedImage.swift in Sources */,
 				A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */,
 				A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */,
 				A0154B961C758E5300A29763 /* Order+ApplePay.swift in Sources */,
 				A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */,
 				A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */,
-				A009D0701C9FC38D00966B6D /* CrystalBackdropView.swift in Sources */,
+				A046A8221CF03AD3005BCB5A /* CrystalLoadingView.swift in Sources */,
 				A0154B941C758E5300A29763 /* Checkout.swift in Sources */,
 				A0D4086F1C02EBA200CEEBDB /* Product+Deserialization.swift in Sources */,
 				A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */,
@@ -388,8 +376,10 @@
 				A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */,
 				A0154B931C758E5300A29763 /* API.swift in Sources */,
 				A0154B971C758E5300A29763 /* Order+Deserialization.swift in Sources */,
+				A059CCBF1CF0184300366718 /* SplashScreenViewController.swift in Sources */,
 				A05DB18C1CCEF091005C444C /* VibesView.swift in Sources */,
 				A0FB7E231BDDF5DC00113C46 /* CrystalStore.swift in Sources */,
+				A046A8201CF02A50005BCB5A /* MainContainerViewController.swift in Sources */,
 				A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */,
 				A0154B981C758E5300A29763 /* ResponseObjectSerializable.swift in Sources */,
 				A05DB18F1CDFDBD5005C444C /* Resourceful.swift in Sources */,
@@ -401,17 +391,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A01D2EA21BDDDB39004286A9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A01D2EA31BDDDB39004286A9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A01D2EA61BDDDB39004286A9 /* Debug */ = {

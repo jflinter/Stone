@@ -10,17 +10,16 @@ import UIKit
 import Iris
 import PassKit
 import Stripe
-import Hue
 
 struct CrystalDetailViewModel {
     private let crystal: Crystal
     let name: String
     let imageURLs: [NSURL]
     let descriptionText: NSAttributedString
-    let bootstrapImage: AnnotatedImage
+    let bootstrapImage: UIImage
     let skus: [SKU]
     
-    init(crystal: Crystal, bootstrapImage: AnnotatedImage) {
+    init(crystal: Crystal, bootstrapImage: UIImage) {
         self.crystal = crystal
         self.name = crystal.name
         let paragraphStyle = NSMutableParagraphStyle()
