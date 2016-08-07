@@ -18,6 +18,7 @@ import UIKit
     }
     
     var presenting: Bool = true
+    var rightItem: UIBarButtonItem?
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.4
@@ -47,8 +48,12 @@ import UIKit
                     crystalView.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 })
             }
+            
+            self.rightItem = self.collectionViewController.navigationItem.rightBarButtonItem
+            
             UIView.animateWithDuration(0.05) {
-                self.collectionViewController.navigationController?.navigationBar.alpha = 0
+                self.collectionViewController.navigationItem.setRightBarButtonItem(nil, animated: true)
+                self.collectionViewController.navigationItem.titleView?.alpha = 0
                 self.collectionViewController.searchView.alpha = 0
                 self.collectionViewController.searchHairline.alpha = 0
             }
@@ -104,9 +109,12 @@ import UIKit
                     transitionContext.completeTransition(completed)
                 }
             )
+
+            self.collectionViewController.navigationItem.titleView?.alpha = 1
+            self.collectionViewController.navigationItem.setRightBarButtonItem(self.rightItem, animated: false)
             
-            UIView.animateWithDuration(0.1, delay: 0.1, options: [], animations: { 
-                self.collectionViewController.navigationController?.navigationBar.alpha = 1
+            UIView.animateWithDuration(0.1, delay: 0.1, options: [], animations: {
+
                 self.collectionViewController.searchView.alpha = 1
                 self.collectionViewController.searchHairline.alpha = 1
             }, completion: nil)

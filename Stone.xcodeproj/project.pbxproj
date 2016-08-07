@@ -30,6 +30,7 @@
 		A046A81E1CF022E8005BCB5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A046A81D1CF022E8005BCB5A /* LaunchScreen.storyboard */; };
 		A046A8201CF02A50005BCB5A /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046A81F1CF02A50005BCB5A /* MainContainerViewController.swift */; };
 		A046A8221CF03AD3005BCB5A /* CrystalLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046A8211CF03AD3005BCB5A /* CrystalLoadingView.swift */; };
+		A046A8241CF15EAC005BCB5A /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046A8231CF15EAC005BCB5A /* SessionStore.swift */; };
 		A059CCBF1CF0184300366718 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059CCBD1CF0184300366718 /* SplashScreenViewController.swift */; };
 		A059CCC01CF0184300366718 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A059CCBE1CF0184300366718 /* SplashScreenViewController.xib */; };
 		A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */; };
@@ -39,6 +40,9 @@
 		A05DB1971CE00CFE005C444C /* Brown-Regular-Alt.otf in Resources */ = {isa = PBXBuildFile; fileRef = A05DB1951CE00CFE005C444C /* Brown-Regular-Alt.otf */; };
 		A05DB1991CE0162B005C444C /* Brown-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A05DB1981CE0162B005C444C /* Brown-Bold.otf */; };
 		A05DB19B1CE06D8E005C444C /* Vibes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB19A1CE06D8E005C444C /* Vibes.swift */; };
+		A07B82021CF20DE200FD502C /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07B82011CF20DE200FD502C /* SSKeychain.framework */; };
+		A07B82031CF20DE200FD502C /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A07B82011CF20DE200FD502C /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A07B82051CF2BA2C00FD502C /* APIAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B82041CF2BA2C00FD502C /* APIAdapter.swift */; };
 		A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; };
 		A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */; };
@@ -68,6 +72,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A07B82031CF20DE200FD502C /* SSKeychain.framework in Embed Frameworks */,
 				A0D408661C02B1CC00CEEBDB /* BrightFutures.framework in Embed Frameworks */,
 				A0F1AB7B1C129FF0005AAAEC /* Iris.framework in Embed Frameworks */,
 				A0D4086D1C02B32C00CEEBDB /* Alamofire.framework in Embed Frameworks */,
@@ -108,6 +113,7 @@
 		A046A81D1CF022E8005BCB5A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A046A81F1CF02A50005BCB5A /* MainContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		A046A8211CF03AD3005BCB5A /* CrystalLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalLoadingView.swift; sourceTree = "<group>"; };
+		A046A8231CF15EAC005BCB5A /* SessionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		A059CCBD1CF0184300366718 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		A059CCBE1CF0184300366718 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
 		A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -117,6 +123,8 @@
 		A05DB1951CE00CFE005C444C /* Brown-Regular-Alt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Regular-Alt.otf"; sourceTree = "<group>"; };
 		A05DB1981CE0162B005C444C /* Brown-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold.otf"; sourceTree = "<group>"; };
 		A05DB19A1CE06D8E005C444C /* Vibes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vibes.swift; sourceTree = "<group>"; };
+		A07B82011CF20DE200FD502C /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
+		A07B82041CF2BA2C00FD502C /* APIAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAdapter.swift; sourceTree = "<group>"; };
 		A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaintBucket.framework; path = Carthage/Build/iOS/PaintBucket.framework; sourceTree = "<group>"; };
 		A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailViewController.swift; sourceTree = "<group>"; };
 		A0D408611C02B1C100CEEBDB /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
@@ -145,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A07B82021CF20DE200FD502C /* SSKeychain.framework in Frameworks */,
 				A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */,
 				A0F1AB7A1C129FF0005AAAEC /* Iris.framework in Frameworks */,
 				A0D4086C1C02B32C00CEEBDB /* Alamofire.framework in Frameworks */,
@@ -164,6 +173,7 @@
 		A01D2E8D1BDDDB39004286A9 = {
 			isa = PBXGroup;
 			children = (
+				A07B82011CF20DE200FD502C /* SSKeychain.framework */,
 				A01D2E981BDDDB39004286A9 /* Stone */,
 				A01D2E971BDDDB39004286A9 /* Products */,
 			);
@@ -183,6 +193,8 @@
 				A02D79591C155E9B007F6A17 /* Stone.entitlements */,
 				A0D408601C02B1A700CEEBDB /* Frameworks */,
 				A01D2E991BDDDB39004286A9 /* AppDelegate.swift */,
+				A046A8231CF15EAC005BCB5A /* SessionStore.swift */,
+				A07B82041CF2BA2C00FD502C /* APIAdapter.swift */,
 				A0154B921C758E5300A29763 /* ResponseObjectSerializable.swift */,
 				A0154B8B1C758AD400A29763 /* Product.swift */,
 				A0D4086E1C02EBA200CEEBDB /* Product+Deserialization.swift */,
@@ -363,9 +375,11 @@
 			files = (
 				A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */,
 				A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */,
+				A07B82051CF2BA2C00FD502C /* APIAdapter.swift in Sources */,
 				A0154B961C758E5300A29763 /* Order+ApplePay.swift in Sources */,
 				A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */,
 				A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */,
+				A046A8241CF15EAC005BCB5A /* SessionStore.swift in Sources */,
 				A046A8221CF03AD3005BCB5A /* CrystalLoadingView.swift in Sources */,
 				A0154B941C758E5300A29763 /* Checkout.swift in Sources */,
 				A0D4086F1C02EBA200CEEBDB /* Product+Deserialization.swift in Sources */,

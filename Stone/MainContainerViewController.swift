@@ -48,8 +48,8 @@ class MainContainerViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.crystalStore.fetchCrystals().onSuccess { _ in
-            UIView.animateWithDuration(0.3, animations: { 
+        SessionStore.sharedInstance.getOrCreateSession().recover(task: { _ in return "" }).zip(self.crystalStore.fetchCrystals()).onSuccess { _ in
+            UIView.animateWithDuration(0.3, animations: {
                 self.splash.view.alpha = 0
             }, completion: { _ in
                 self.splash.removeFromParentViewController()

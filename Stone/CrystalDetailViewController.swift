@@ -16,10 +16,11 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
     let closeButton: UIButton = {
         let button = UIButton()
         button.setImage(Resource.Image.Icon__close.image, forState: .Normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        button.imageEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         button.layer.borderColor = UIColor.blackColor().CGColor
         button.layer.borderWidth = 0
         button.sizeToFit()
+        button.frame = UIEdgeInsetsInsetRect(button.frame, UIEdgeInsetsMake(-8, -8, -8, -8))
         button.layer.cornerRadius = button.frame.size.width / 2
         button.clipsToBounds = true
         button.backgroundColor = UIColor.whiteColor()
