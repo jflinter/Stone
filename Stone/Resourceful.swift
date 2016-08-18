@@ -26,6 +26,7 @@ public enum Resource {
     
 public enum Image: String, ResourceImageConvertible {
     
+    case Fatty = "Fatty"
     case Gradient = "Gradient"
     case LaunchIcon = "LaunchIcon"
     case LaunchTitle = "LaunchTitle"
