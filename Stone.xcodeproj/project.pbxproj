@@ -42,7 +42,6 @@
 		A05DB19B1CE06D8E005C444C /* Vibes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB19A1CE06D8E005C444C /* Vibes.swift */; };
 		A07B82021CF20DE200FD502C /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07B82011CF20DE200FD502C /* SSKeychain.framework */; };
 		A07B82031CF20DE200FD502C /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A07B82011CF20DE200FD502C /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A07B82051CF2BA2C00FD502C /* APIAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B82041CF2BA2C00FD502C /* APIAdapter.swift */; };
 		A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; };
 		A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */; };
@@ -124,7 +123,6 @@
 		A05DB1981CE0162B005C444C /* Brown-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold.otf"; sourceTree = "<group>"; };
 		A05DB19A1CE06D8E005C444C /* Vibes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vibes.swift; sourceTree = "<group>"; };
 		A07B82011CF20DE200FD502C /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
-		A07B82041CF2BA2C00FD502C /* APIAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAdapter.swift; sourceTree = "<group>"; };
 		A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaintBucket.framework; path = Carthage/Build/iOS/PaintBucket.framework; sourceTree = "<group>"; };
 		A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailViewController.swift; sourceTree = "<group>"; };
 		A0D408611C02B1C100CEEBDB /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 		A01D2E8D1BDDDB39004286A9 = {
 			isa = PBXGroup;
 			children = (
-				A07B82011CF20DE200FD502C /* SSKeychain.framework */,
 				A01D2E981BDDDB39004286A9 /* Stone */,
 				A01D2E971BDDDB39004286A9 /* Products */,
 			);
@@ -194,7 +191,6 @@
 				A0D408601C02B1A700CEEBDB /* Frameworks */,
 				A01D2E991BDDDB39004286A9 /* AppDelegate.swift */,
 				A046A8231CF15EAC005BCB5A /* SessionStore.swift */,
-				A07B82041CF2BA2C00FD502C /* APIAdapter.swift */,
 				A0154B921C758E5300A29763 /* ResponseObjectSerializable.swift */,
 				A0154B8B1C758AD400A29763 /* Product.swift */,
 				A0D4086E1C02EBA200CEEBDB /* Product+Deserialization.swift */,
@@ -252,6 +248,7 @@
 				A0F1AB671C12955B005AAAEC /* Iris.framework */,
 				A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */,
 				A0D408621C02B1C100CEEBDB /* Result.framework */,
+				A07B82011CF20DE200FD502C /* SSKeychain.framework */,
 				A02D79561C155CA1007F6A17 /* Stripe.framework */,
 			);
 			name = Frameworks;
@@ -285,6 +282,7 @@
 				A01D2E931BDDDB39004286A9 /* Frameworks */,
 				A01D2E941BDDDB39004286A9 /* Resources */,
 				A0D408691C02B1CC00CEEBDB /* Embed Frameworks */,
+				A0AB65911D56F123001FD56B /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -366,6 +364,31 @@
 			shellPath = /bin/sh;
 			shellScript = resourceful;
 		};
+		A0AB65911D56F123001FD56B /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Bond.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Dwifft.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Iris.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PaintBucket.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SSKeychain.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Stripe.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -375,7 +398,6 @@
 			files = (
 				A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */,
 				A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */,
-				A07B82051CF2BA2C00FD502C /* APIAdapter.swift in Sources */,
 				A0154B961C758E5300A29763 /* Order+ApplePay.swift in Sources */,
 				A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */,
 				A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */,
