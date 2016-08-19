@@ -28,24 +28,57 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     let searchView = UIView()
     let searchHairline = UIView()
     
-    let searchSegmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl()
-        segmentedControl.setTitleTextAttributes(
-            [NSFontAttributeName: UIFont(name: "Brown-Light", size: 14) ?? UIFont.systemFontOfSize(14)], forState: .Normal)
-        segmentedControl.insertSegmentWithTitle("NAME", atIndex: 0, animated: false)
-        segmentedControl.insertSegmentWithTitle("VIBE", atIndex: 1, animated: false)
+    let searchSegmentedControl: HMSegmentedControl = {
+        let segmentedControl = HMSegmentedControl(sectionTitles: ["NAME ", "VIBE "])
+        segmentedControl.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "Brown-Light", size: 14) ?? UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.stoneLightBlue,
+        ]
+        segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
+        segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed
+        segmentedControl.selectionIndicatorHeight = 3
+        segmentedControl.segmentEdgeInset = UIEdgeInsetsZero
+        segmentedControl.selectionIndicatorColor = UIColor.stoneLightOrange
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = UIColor.grayColor()
-        segmentedControl.layer.borderColor = UIColor.grayColor().CGColor
-        segmentedControl.layer.borderWidth = 1.0
         return segmentedControl
+    }()
+    
+    lazy var searchButton: UIBarButtonItem = {
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(CrystalCollectionViewController.toggleSearch))
+        searchButton.tintColor = UIColor.stoneLightBlue
+        return searchButton
+    }()
+    
+    lazy var cancelSearchButton: UIBarButtonItem = {
+        let button = UIButton()
+        button.setImage(Resource.Image.Icon__close.image?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        button.tintColor = UIColor.stoneLightBlue
+        button.imageEdgeInsets = UIEdgeInsets(top: 16, left: 32, bottom: 16, right: 0)
+        button.sizeToFit()
+        button.frame = UIEdgeInsetsInsetRect(button.frame, UIEdgeInsetsMake(-8, -8, -8, -8))
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(CrystalCollectionViewController.toggleSearch), forControlEvents: .TouchUpInside)
+        let searchButton = UIBarButtonItem(customView: button)
+        searchButton.tintColor = UIColor.stoneLightBlue
+        return searchButton
     }()
     
     let vibesView: VibesView
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.searchBarStyle = .Minimal
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.stoneLightBlue,
+            NSFontAttributeName: UIFont(name: "Brown-Light", size: 16) ?? UIFont.systemFontOfSize(16),
+        ]
+        let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
+        textFieldInsideSearchBar?.layer.borderColor = UIColor.stoneDarkOrange.CGColor
+        textFieldInsideSearchBar?.layer.borderWidth = 1
+        textFieldInsideSearchBar?.layer.cornerRadius = 10
+        textFieldInsideSearchBar?.clearButtonMode = .Never
+        searchBar.backgroundImage = UIImage()
+        searchBar.tintColor = UIColor.stoneLightBlue
         return searchBar
     }()
     var searchVisible: Bool = false {
@@ -113,7 +146,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.searchView.backgroundColor = UIColor.whiteColor()
         self.searchView.addSubview(self.searchSegmentedControl)
         self.searchView.addSubview(self.searchBar)
-        self.searchHairline.backgroundColor = UIColor.grayColor()
+        self.searchHairline.backgroundColor = UIColor.stoneDarkBlue
         self.view.addSubview(self.searchHairline)
         self.searchBar.alpha = 1
         self.vibesView.alpha = 0
@@ -125,7 +158,8 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         imageView.contentMode = .Center
         self.navigationItem.titleView = imageView
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(CrystalCollectionViewController.toggleSearch))
+        self.navigationItem.rightBarButtonItem = self.searchButton
+            
         
         self.diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
         crystalStore.visibleCrystals.observe {
@@ -138,6 +172,12 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
         self.searchVisible = false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.vibesView.collectionView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
+        self.collectionView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
     }
     
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
@@ -223,6 +263,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         
     func toggleSearch() {
         self.searchVisible = !self.searchVisible
+        self.navigationItem.setRightBarButtonItem(self.searchVisible ? self.cancelSearchButton : self.searchButton, animated: true)
     }
     
     // MARK: UISearchBarDelegate

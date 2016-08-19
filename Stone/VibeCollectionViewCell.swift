@@ -10,8 +10,8 @@ import UIKit
 
 class VibeCollectionViewCell: UICollectionViewCell {
     
-    static let selectedColor = UIColor(red: 0, green: 122.0/255.0, blue: 1, alpha: 1)
-    static let unselectedColor = UIColor.blackColor().colorWithAlphaComponent(0.75)
+    static let selectedColor = UIColor.stoneDarkOrange
+    static let unselectedColor = UIColor.stoneLightBlue
 
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -45,7 +45,7 @@ class VibeCollectionViewCell: UICollectionViewCell {
     override var selected: Bool {
         didSet {
             self.imageView.tintColor = self.selected ? VibeCollectionViewCell.selectedColor : VibeCollectionViewCell.unselectedColor
-            self.label.textColor = self.selected ? VibeCollectionViewCell.selectedColor : VibeCollectionViewCell.unselectedColor
+            self.label.textColor = VibeCollectionViewCell.unselectedColor
         }
     }
     
