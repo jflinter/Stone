@@ -56,7 +56,7 @@ class CrystalStore {
     }
     
     func makeRequest(afterDelay: NSTimeInterval, completion: [Crystal] -> Void) {
-        Alamofire.request(.GET, API.baseURL + "products").responseCollection { (response: Response<[Crystal], NSError>) in
+        Alamofire.request(.GET, "https://s3-us-west-1.amazonaws.com/stone-products/products.json").responseCollection { (response: Response<[Crystal], NSError>) in
             if let value = response.result.value {
                 self.allCrystals.value = value.filter { !$0.imageURLs.isEmpty }
                 completion(value)

@@ -32,9 +32,8 @@ extension SKU: ResponseObjectSerializable {
 
 extension Product: ResponseCollectionSerializable, ResponseObjectSerializable {
     static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Crystal]? {
-        guard let json = representation as? [String: AnyObject],
-        results = json["data"] as? [[String: AnyObject]] else { return nil }
-        return results.flatMap { object in
+        guard let json = representation as? [[String: AnyObject]] else { return nil }
+        return json.flatMap { object in
             return Product(response: response, representation: object)
         }
     }
