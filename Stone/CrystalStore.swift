@@ -24,8 +24,8 @@ class CrystalStore {
                 filtered = crystals.filter { $0.vibes.contains(vibe) }
             }
             let searchQuery = filters.1
-            filtered = TextSuggest(contents: filtered).suggestResults(searchQuery)
             if !searchQuery.isEmpty {
+                filtered = TextSuggest(contents: filtered).suggestResults(searchQuery)
                 filtered = Array(filtered.prefix(4))
             }
             return filtered

@@ -32,6 +32,7 @@ public enum Image: String, ResourceImageConvertible {
     case LaunchTitle = "LaunchTitle"
     case Stone_Logo_Icon = "Stone-Logo-Icon"
     case Icon__close = "icon_close"
+    case ScrollIndicator = "scrollIndicator"
     
     
 public enum Icons: String, ResourceImageConvertible {
@@ -40,6 +41,7 @@ public enum Icons: String, ResourceImageConvertible {
     case Calm = "Calm"
     case Clarity = "Clarity"
     case Cleansing = "Cleansing"
+    case Communication = "Communication"
     case Confidence = "Confidence"
     case Courage = "Courage"
     case Creativity = "Creativity"
@@ -52,6 +54,7 @@ public enum Icons: String, ResourceImageConvertible {
     case Love = "Love"
     case Manifestation = "Manifestation"
     case Motivation = "Motivation"
+    case OldPassion = "OldPassion"
     case Passion = "Passion"
     case Peace = "Peace"
     case Protection = "Protection"

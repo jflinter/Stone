@@ -44,6 +44,7 @@
 		A0AB65A11D6761EE001FD56B /* CrystalVibesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AB65A01D6761EE001FD56B /* CrystalVibesView.swift */; };
 		A0AB65A31D681B8B001FD56B /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AB65A21D681B8B001FD56B /* Analytics.framework */; };
 		A0AB65A41D681B8B001FD56B /* Analytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0AB65A21D681B8B001FD56B /* Analytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A0AB65A61D6831BE001FD56B /* Brown-Regular-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0AB65A51D6831BE001FD56B /* Brown-Regular-Italic.otf */; };
 		A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */; };
 		A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408611C02B1C100CEEBDB /* BrightFutures.framework */; };
 		A0D408661C02B1CC00CEEBDB /* BrightFutures.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0D408611C02B1C100CEEBDB /* BrightFutures.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -126,6 +127,7 @@
 		A0AB659E1D675AA2001FD56B /* Brown-Light-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Light-Italic.otf"; sourceTree = "<group>"; };
 		A0AB65A01D6761EE001FD56B /* CrystalVibesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalVibesView.swift; sourceTree = "<group>"; };
 		A0AB65A21D681B8B001FD56B /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Analytics.framework; path = Carthage/Build/iOS/Analytics.framework; sourceTree = "<group>"; };
+		A0AB65A51D6831BE001FD56B /* Brown-Regular-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Regular-Italic.otf"; sourceTree = "<group>"; };
 		A0D4085E1C02873100CEEBDB /* CrystalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalDetailViewController.swift; sourceTree = "<group>"; };
 		A0D408611C02B1C100CEEBDB /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		A0D408621C02B1C100CEEBDB /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				A05DB1941CE00CFE005C444C /* Brown-Light.otf */,
 				A0AB659E1D675AA2001FD56B /* Brown-Light-Italic.otf */,
 				A05DB1951CE00CFE005C444C /* Brown-Regular-Alt.otf */,
+				A0AB65A51D6831BE001FD56B /* Brown-Regular-Italic.otf */,
 				A05DB1981CE0162B005C444C /* Brown-Bold.otf */,
 			);
 			path = Fonts;
@@ -342,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A05DB1991CE0162B005C444C /* Brown-Bold.otf in Resources */,
+				A0AB65A61D6831BE001FD56B /* Brown-Regular-Italic.otf in Resources */,
 				A046A81E1CF022E8005BCB5A /* LaunchScreen.storyboard in Resources */,
 				A059CCC01CF0184300366718 /* SplashScreenViewController.xib in Resources */,
 				A05DB1971CE00CFE005C444C /* Brown-Regular-Alt.otf in Resources */,

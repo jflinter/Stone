@@ -19,10 +19,11 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        layout.sectionInset = UIEdgeInsetsZero
+        layout.sectionInset = UIEdgeInsetsMake(20, 0, 0, 0)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         return collectionView
     }()
+    
     var diffCalculator: CollectionViewDiffCalculator<CrystalCellViewModel>?
     let crystalStore: CrystalStore
     
@@ -30,7 +31,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     let searchHairline = UIView()
     
     let searchSegmentedControl: HMSegmentedControl = {
-        let segmentedControl = HMSegmentedControl(sectionTitles: ["NAME ", "VIBE "])
+        let segmentedControl = HMSegmentedControl(sectionTitles: ["VIBE ", "NAME "])
         segmentedControl.titleTextAttributes = [
             NSFontAttributeName: UIFont(name: "Brown-Light", size: 14) ?? UIFont.systemFontOfSize(14),
             NSForegroundColorAttributeName: UIColor.stoneLightBlue,
@@ -96,8 +97,11 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
                 self.view.layoutIfNeeded()
             }) { completed in
                 guard completed else { return }
+                let showSearch = self.searchSegmentedControl.selectedSegmentIndex == 1
                 if self.searchVisible {
-                    self.searchBar.becomeFirstResponder()
+                    if showSearch {
+                        self.searchBar.becomeFirstResponder()
+                    }
                 } else {
                     self.vibesView.resetSelection()
                     if self.searchBar.isFirstResponder() {
@@ -149,8 +153,8 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.searchView.addSubview(self.searchBar)
         self.searchHairline.backgroundColor = UIColor.stoneDarkBlue
         self.view.addSubview(self.searchHairline)
-        self.searchBar.alpha = 1
-        self.vibesView.alpha = 0
+        self.searchBar.alpha = 0
+        self.vibesView.alpha = 1
         self.searchView.addSubview(self.vibesView)
         
         self.searchSegmentedControl.addTarget(self, action: #selector(CrystalCollectionViewController.segmentedControlChanged(_:)), forControlEvents: .ValueChanged)
@@ -182,7 +186,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     }
     
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
-        let showSearch = segmentedControl.selectedSegmentIndex == 0
+        let showSearch = segmentedControl.selectedSegmentIndex == 1
         if showSearch {
             self.crystalStore.selectedVibe.value = nil
             self.vibesView.resetSelection()

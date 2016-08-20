@@ -27,11 +27,17 @@ class CrystalCollectionViewCell: UICollectionViewCell {
     
     var viewModel: CrystalCellViewModel? {
         didSet {
+//            let colors = [
+//                UIColor(red:0.992,  green:0.714,  blue:0.427, alpha:1),
+//                UIColor(red:0.996,  green:0.718,  blue:0.875, alpha:1),
+//                UIColor(red:0.839,  green:0.741,  blue:0.992, alpha:1),
+//                UIColor(red:0.996,  green:0.902,  blue:0.439, alpha:1),
+//            ]
             let colors = [
-                UIColor(red:0.992,  green:0.714,  blue:0.427, alpha:1),
-                UIColor(red:0.996,  green:0.718,  blue:0.875, alpha:1),
-                UIColor(red:0.839,  green:0.741,  blue:0.992, alpha:1),
-                UIColor(red:0.996,  green:0.902,  blue:0.439, alpha:1),
+                UIColor.stoneDarkBlue,
+                UIColor.stoneLightBlue,
+                UIColor.stoneDarkOrange,
+                UIColor.stoneLightOrange,
             ]
             let randomIndex = Int(arc4random_uniform(UInt32(colors.count)))
             let color = colors[randomIndex]

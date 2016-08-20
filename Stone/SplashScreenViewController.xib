@@ -18,32 +18,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fatty" translatesAutoresizingMaskIntoConstraints="NO" id="hqn-Hh-47h">
-                    <rect key="frame" x="0.0" y="146" width="375" height="375"/>
+                    <rect key="frame" x="137" y="284" width="100" height="100"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="100" id="LhH-si-jli"/>
                         <constraint firstAttribute="width" secondItem="hqn-Hh-47h" secondAttribute="height" multiplier="1:1" id="jmf-X7-sS8"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-0V-LHH">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="333"/>
-                    <color key="backgroundColor" red="0.16078431369999999" green="0.30196078430000001" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Alp-0V-LHH" secondAttribute="height" multiplier="125:111" id="i9I-rb-EdY"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.zPosition">
-                            <integer key="value" value="-5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
             </subviews>
-            <color key="backgroundColor" red="0.16078431369999999" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="hqn-Hh-47h" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="1Ym-T1-N6M"/>
-                <constraint firstItem="hqn-Hh-47h" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="9TX-eO-zH0"/>
                 <constraint firstItem="hqn-Hh-47h" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Hi3-CY-0tk"/>
-                <constraint firstItem="Alp-0V-LHH" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Hjn-g1-lfA"/>
-                <constraint firstItem="Alp-0V-LHH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="b9Q-2f-6Mj"/>
-                <constraint firstItem="Alp-0V-LHH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="okj-iJ-Ter"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="305.5" y="304.5"/>

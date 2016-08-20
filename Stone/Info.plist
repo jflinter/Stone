@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.4</string>
+	<string>0.5</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -33,6 +33,7 @@
 		<string>Brown-Light-Italic.otf</string>
 		<string>Brown-Regular-Alt.otf</string>
 		<string>Brown-Bold.otf</string>
+		<string>Brown-Regular-Italic.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
