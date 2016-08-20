@@ -14,6 +14,7 @@ enum Vibe: String {
     case Calm = "calm"
     case Clarity = "clarity"
     case Cleansing = "cleansing"
+    case Communication = "communication"
     case Confidence = "confidence"
     case Courage = "courage"
     case Creativity = "creativity"
@@ -39,6 +40,7 @@ enum Vibe: String {
         case Calm: return Resource.Image.Icons.Calm.image
         case Clarity: return Resource.Image.Icons.Clarity.image
         case Cleansing: return Resource.Image.Icons.Cleansing.image
+        case .Communication: return Resource.Image.Icons.Communication.image
         case Confidence: return Resource.Image.Icons.Confidence.image
         case Courage: return Resource.Image.Icons.Courage.image
         case Creativity: return Resource.Image.Icons.Creativity.image
