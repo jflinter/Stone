@@ -8,7 +8,6 @@
 
 import UIKit
 import AlamofireImage
-import Stripe
 
 class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
     
@@ -35,11 +34,20 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
         label.textAlignment = .Center
         return label
     }()
+    let subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Brown-LightItalic", size: 14)
+        label.textAlignment = .Center
+        return label
+    }()
+    
+    let vibesView: CrystalVibesView
+    
     let textView = UITextView()
-    let paymentButton = UIButton(type: UIButtonType.System)
     
     init(viewModel: CrystalDetailViewModel) {
         self.viewModel = viewModel
+        self.vibesView = CrystalVibesView(availableVibes: viewModel.vibes)
         super.init(nibName: nil, bundle: nil)
         self.title = viewModel.name
     }
@@ -70,16 +78,17 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
         self.titleLabel.text = self.viewModel.name
         self.contentContainer.addSubview(self.titleLabel)
         
+        self.subtitleLabel.text = self.viewModel.subtitle
+        self.contentContainer.addSubview(self.subtitleLabel)
+        
+        self.contentContainer.addSubview(self.vibesView)
+        
         self.textView.backgroundColor = UIColor.clearColor()
         self.textView.scrollEnabled = false
         self.textView.editable = false
         self.textView.showsVerticalScrollIndicator = false
         self.textView.attributedText = self.viewModel.descriptionText
         self.contentContainer.addSubview(textView)
-        
-        self.paymentButton.setTitle("Buy", forState: .Normal)
-        self.paymentButton.sizeToFit()
-        self.scrollView.addSubview(self.paymentButton)
         
         self.view.bringSubviewToFront(self.closeButton)
     }
@@ -94,16 +103,22 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
             self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
         }
         
+        var contentFrame = CGRectMake(35, CGRectGetMaxY(self.imageView.frame), self.view.bounds.size.width - 70, 0)
+        self.titleLabel.frame = CGRectMake(0, 0, contentFrame.size.width, 40)
+        self.subtitleLabel.frame = CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), contentFrame.size.width, 40)
         
-        let textSize = self.textView.sizeThatFits(CGSizeMake(self.view.bounds.size.width - 70, CGFloat.max))
-        self.textView.frame = CGRectMake(0, 40, textSize.width, textSize.height)
+        let rows =  ceil(CGFloat(self.viewModel.vibes.count) / 3)
+        self.vibesView.frame = CGRectMake(0, CGRectGetMaxY(self.subtitleLabel.frame), contentFrame.size.width, rows * 60)
         
-        self.contentContainer.frame = CGRectMake(35, CGRectGetMaxY(self.imageView.frame), self.view.bounds.size.width - 70, CGRectGetMaxY(self.textView.frame))
+        let textSize = self.textView.sizeThatFits(CGSizeMake(contentFrame.size.width, CGFloat.max))
+        self.textView.frame = CGRectMake(0, CGRectGetMaxY(self.vibesView.frame), textSize.width, textSize.height)
         
-        self.titleLabel.frame = CGRectMake(0, 0, self.contentContainer.frame.size.width, 40)
+        contentFrame.size.height = CGRectGetMaxY(self.textView.frame)
+        self.contentContainer.frame = contentFrame
         
-        self.paymentButton.frame = CGRectMake(0, CGRectGetMaxY(self.contentContainer.frame), self.view.bounds.size.width, 44)
-        self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(self.paymentButton.frame) + 30)
+        
+        
+        self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(self.contentContainer.frame) + 30)
     }
     
     

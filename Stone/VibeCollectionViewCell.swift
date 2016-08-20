@@ -10,14 +10,16 @@ import UIKit
 
 class VibeCollectionViewCell: UICollectionViewCell {
     
-    static let selectedColor = UIColor.stoneDarkOrange
-    static let unselectedColor = UIColor.stoneLightBlue
+    var selectedColor = UIColor.stoneDarkOrange
+    var unselectedColor = UIColor.stoneLightBlue
+    
+    var highlightsSelection: Bool = true
 
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .Center
         label.font = UIFont(name: "Brown-Light", size: 10)
-        label.textColor = VibeCollectionViewCell.unselectedColor
+        label.textColor = self.unselectedColor
         label.adjustsFontSizeToFitWidth = true
         self.addSubview(label)
         return label
@@ -25,7 +27,7 @@ class VibeCollectionViewCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = VibeCollectionViewCell.unselectedColor
+        imageView.tintColor = self.unselectedColor
         self.addSubview(imageView)
         return imageView
     }()
@@ -44,8 +46,8 @@ class VibeCollectionViewCell: UICollectionViewCell {
     
     override var selected: Bool {
         didSet {
-            self.imageView.tintColor = self.selected ? VibeCollectionViewCell.selectedColor : VibeCollectionViewCell.unselectedColor
-            self.label.textColor = VibeCollectionViewCell.unselectedColor
+            self.imageView.tintColor = (self.selected && self.highlightsSelection) ? self.selectedColor : self.unselectedColor
+            self.label.textColor = self.unselectedColor
         }
     }
     

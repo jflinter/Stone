@@ -9,6 +9,7 @@
 import UIKit
 import Dwifft
 import Bond
+import Analytics
 
 private let reuseIdentifier = "Cell"
 
@@ -291,6 +292,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         let viewModel = CrystalDetailViewModel(crystal: cellViewModel.crystal, bootstrapImage: image)
         let detail = CrystalDetailViewController(viewModel: viewModel)
         detail.transitioningDelegate = self
+        SEGAnalytics.sharedAnalytics().track("Viewed Crystal", properties: ["name": cellViewModel.crystal.name])
         self.presentViewController(detail, animated: true, completion: nil)
     }
     

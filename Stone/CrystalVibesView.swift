@@ -9,27 +9,11 @@
 import UIKit
 import Dwifft
 
-class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
-
+class CrystalVibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
+    
     var diffCalculator: CollectionViewDiffCalculator<Vibe>?
     
-    let crystalStore: CrystalStore?
-    
-    var highlightsSelection: Bool = true
-    
-    init(crystalStore: CrystalStore) {
-        self.crystalStore = crystalStore
-        super.init(frame: CGRectZero)
-        self.diffCalculator = CollectionViewDiffCalculator(collectionView: self.collectionView)
-        crystalStore.allVibes.observe { vibes in
-            self.diffCalculator?.rows = Array(vibes).sort({ (a, b) -> Bool in
-                return a.rawValue < b.rawValue
-            })
-        }
-    }
-    
     init(availableVibes: [Vibe]) {
-        self.crystalStore = nil
         super.init(frame: CGRectZero)
         self.diffCalculator = CollectionViewDiffCalculator(collectionView: self.collectionView, initialRows: availableVibes)
     }
@@ -41,13 +25,18 @@ class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.collectionView.frame = self.bounds
+        (self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSizeMake((self.frame.size.width / 3) - 10, 45)
     }
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
+        layout.scrollDirection = .Vertical
         layout.itemSize = CGSize(width: 70, height: 45)
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 10
+        layout.sectionInset = UIEdgeInsetsZero
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        collectionView.scrollEnabled = false
         collectionView.backgroundColor = UIColor.clearColor()
         collectionView.registerClass(VibeCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.dataSource = self
@@ -68,18 +57,14 @@ class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! VibeCollectionViewCell
+        cell.selectedColor = UIColor.stoneDarkBlue
+        cell.unselectedColor = UIColor.stoneDarkBlue
         guard let diffCalculator = self.diffCalculator else { return cell }
         let vibe = diffCalculator.rows[indexPath.row]
         cell.image = vibe.image
         cell.title = vibe.rawValue.uppercaseString
-        cell.highlightsSelection = self.highlightsSelection
+        cell.highlightsSelection = false
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let diffCalculator = self.diffCalculator else { return }
-        let vibe = diffCalculator.rows[indexPath.row]
-        self.crystalStore?.selectedVibe.value = vibe
-    }
-
 }

@@ -10,6 +10,7 @@ import UIKit
 import HockeySDK
 import Alamofire
 import AlamofireImage
+import Analytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Do some additional configuration if needed here
         BITHockeyManager.sharedHockeyManager().startManager()
         BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+        
+        let segmentConfig = SEGAnalyticsConfiguration(writeKey: "vwWphE64rZPxJpoWzFYblkyHgeQxkUuc")
+        segmentConfig.trackApplicationLifecycleEvents = true
+        SEGAnalytics.setupWithConfiguration(segmentConfig)
         
         let bytesPerMegabyte = 1000000
         NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 100 * bytesPerMegabyte, diskCapacity: 200 * bytesPerMegabyte, diskPath: "com.stonecrystals.urlcache"))
