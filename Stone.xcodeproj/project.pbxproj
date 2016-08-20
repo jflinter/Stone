@@ -10,10 +10,6 @@
 		A009D0681C9F6E8200966B6D /* TextSuggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A009D0671C9F6E8200966B6D /* TextSuggest.swift */; };
 		A0154B8C1C758AD400A29763 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B8B1C758AD400A29763 /* Product.swift */; };
 		A0154B931C758E5300A29763 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B8D1C758E5300A29763 /* API.swift */; };
-		A0154B941C758E5300A29763 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B8E1C758E5300A29763 /* Checkout.swift */; };
-		A0154B951C758E5300A29763 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B8F1C758E5300A29763 /* Order.swift */; };
-		A0154B961C758E5300A29763 /* Order+ApplePay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B901C758E5300A29763 /* Order+ApplePay.swift */; };
-		A0154B971C758E5300A29763 /* Order+Deserialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B911C758E5300A29763 /* Order+Deserialization.swift */; };
 		A0154B981C758E5300A29763 /* ResponseObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0154B921C758E5300A29763 /* ResponseObjectSerializable.swift */; };
 		A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2E991BDDDB39004286A9 /* AppDelegate.swift */; };
 		A01D2EA11BDDDB39004286A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01D2EA01BDDDB39004286A9 /* Assets.xcassets */; };
@@ -21,8 +17,6 @@
 		A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAD1BDDDC47004286A9 /* Crystal.swift */; };
 		A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */; };
 		A01D2EB41BDDDFE2004286A9 /* CrystalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */; };
-		A02D79571C155CA1007F6A17 /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A02D79561C155CA1007F6A17 /* Stripe.framework */; };
-		A02D79581C155CA1007F6A17 /* Stripe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A02D79561C155CA1007F6A17 /* Stripe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A03757C01C14A946002E3620 /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757BF1C14A946002E3620 /* Dwifft.framework */; };
 		A03757C11C14A946002E3620 /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A03757BF1C14A946002E3620 /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03757C21C14B60C002E3620 /* Bond.framework */; };
@@ -87,7 +81,6 @@
 				A03757C41C14B60C002E3620 /* Bond.framework in Embed Frameworks */,
 				A0D4087B1C042FE800CEEBDB /* HockeySDK.framework in Embed Frameworks */,
 				A0D408751C02F6DD00CEEBDB /* AlamofireImage.framework in Embed Frameworks */,
-				A02D79581C155CA1007F6A17 /* Stripe.framework in Embed Frameworks */,
 				A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */,
 				A0AB65A41D681B8B001FD56B /* Analytics.framework in Embed Frameworks */,
 			);
@@ -100,10 +93,6 @@
 		A009D0671C9F6E8200966B6D /* TextSuggest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSuggest.swift; sourceTree = "<group>"; };
 		A0154B8B1C758AD400A29763 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A0154B8D1C758E5300A29763 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		A0154B8E1C758E5300A29763 /* Checkout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
-		A0154B8F1C758E5300A29763 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
-		A0154B901C758E5300A29763 /* Order+ApplePay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Order+ApplePay.swift"; sourceTree = "<group>"; };
-		A0154B911C758E5300A29763 /* Order+Deserialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Order+Deserialization.swift"; sourceTree = "<group>"; };
 		A0154B921C758E5300A29763 /* ResponseObjectSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseObjectSerializable.swift; sourceTree = "<group>"; };
 		A01D2E961BDDDB39004286A9 /* Stone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01D2E991BDDDB39004286A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,7 +102,6 @@
 		A01D2EAD1BDDDC47004286A9 /* Crystal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crystal.swift; sourceTree = "<group>"; };
 		A01D2EAF1BDDDE61004286A9 /* CrystalCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCellViewModel.swift; sourceTree = "<group>"; };
 		A01D2EB31BDDDFE2004286A9 /* CrystalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalCollectionViewCell.swift; sourceTree = "<group>"; };
-		A02D79561C155CA1007F6A17 /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stripe.framework; path = Carthage/Build/iOS/Stripe.framework; sourceTree = "<group>"; };
 		A02D79591C155E9B007F6A17 /* Stone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Stone.entitlements; sourceTree = "<group>"; };
 		A03757BF1C14A946002E3620 /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = Carthage/Build/iOS/Dwifft.framework; sourceTree = "<group>"; };
 		A03757C21C14B60C002E3620 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
@@ -176,7 +164,6 @@
 				A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */,
 				A0D4087A1C042FE800CEEBDB /* HockeySDK.framework in Frameworks */,
 				A0D408741C02F6DD00CEEBDB /* AlamofireImage.framework in Frameworks */,
-				A02D79571C155CA1007F6A17 /* Stripe.framework in Frameworks */,
 				A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */,
 				A0AB65A31D681B8B001FD56B /* Analytics.framework in Frameworks */,
 			);
@@ -213,10 +200,6 @@
 				A0154B921C758E5300A29763 /* ResponseObjectSerializable.swift */,
 				A0154B8B1C758AD400A29763 /* Product.swift */,
 				A0D4086E1C02EBA200CEEBDB /* Product+Deserialization.swift */,
-				A0154B8F1C758E5300A29763 /* Order.swift */,
-				A0154B901C758E5300A29763 /* Order+ApplePay.swift */,
-				A0154B911C758E5300A29763 /* Order+Deserialization.swift */,
-				A0154B8E1C758E5300A29763 /* Checkout.swift */,
 				A01D2EAD1BDDDC47004286A9 /* Crystal.swift */,
 				A0FB7E221BDDF5DC00113C46 /* CrystalStore.swift */,
 				A0D408701C02ECA900CEEBDB /* ResponseCollectionSerializable.swift */,
@@ -274,7 +257,6 @@
 				A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */,
 				A0D408621C02B1C100CEEBDB /* Result.framework */,
 				A07B82011CF20DE200FD502C /* SSKeychain.framework */,
-				A02D79561C155CA1007F6A17 /* Stripe.framework */,
 			);
 			name = Frameworks;
 			path = ..;
@@ -407,7 +389,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/PaintBucket.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SSKeychain.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Stripe.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Analytics.framework",
 			);
 			name = "Run Script";
@@ -426,14 +407,12 @@
 			files = (
 				A0D4085F1C02873100CEEBDB /* CrystalDetailViewController.swift in Sources */,
 				A01D2E9A1BDDDB39004286A9 /* AppDelegate.swift in Sources */,
-				A0154B961C758E5300A29763 /* Order+ApplePay.swift in Sources */,
 				A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */,
 				A0AB65A11D6761EE001FD56B /* CrystalVibesView.swift in Sources */,
 				A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */,
 				A0AB659A1D66CAE4001FD56B /* Colors.swift in Sources */,
 				A046A8241CF15EAC005BCB5A /* SessionStore.swift in Sources */,
 				A046A8221CF03AD3005BCB5A /* CrystalLoadingView.swift in Sources */,
-				A0154B941C758E5300A29763 /* Checkout.swift in Sources */,
 				A0D4086F1C02EBA200CEEBDB /* Product+Deserialization.swift in Sources */,
 				A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */,
 				A01D2EB01BDDDE61004286A9 /* CrystalCellViewModel.swift in Sources */,
@@ -441,7 +420,6 @@
 				A0D408711C02ECA900CEEBDB /* ResponseCollectionSerializable.swift in Sources */,
 				A0F1AB7D1C12A8E6005AAAEC /* CrystalDetailViewModel.swift in Sources */,
 				A0154B931C758E5300A29763 /* API.swift in Sources */,
-				A0154B971C758E5300A29763 /* Order+Deserialization.swift in Sources */,
 				A059CCBF1CF0184300366718 /* SplashScreenViewController.swift in Sources */,
 				A0AB65981D66C8D8001FD56B /* HMSegmentedControl.m in Sources */,
 				A05DB18C1CCEF091005C444C /* VibesView.swift in Sources */,
@@ -453,7 +431,6 @@
 				A05DB18F1CDFDBD5005C444C /* Resourceful.swift in Sources */,
 				A05DB19B1CE06D8E005C444C /* Vibes.swift in Sources */,
 				A009D0681C9F6E8200966B6D /* TextSuggest.swift in Sources */,
-				A0154B951C758E5300A29763 /* Order.swift in Sources */,
 				A0154B8C1C758AD400A29763 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,6 @@
 import UIKit
 import Iris
 import PassKit
-import Stripe
 
 struct CrystalDetailViewModel {
     private let crystal: Crystal
