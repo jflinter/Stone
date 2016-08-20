@@ -24,7 +24,6 @@
 		A046A81E1CF022E8005BCB5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A046A81D1CF022E8005BCB5A /* LaunchScreen.storyboard */; };
 		A046A8201CF02A50005BCB5A /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046A81F1CF02A50005BCB5A /* MainContainerViewController.swift */; };
 		A046A8221CF03AD3005BCB5A /* CrystalLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046A8211CF03AD3005BCB5A /* CrystalLoadingView.swift */; };
-		A046A8241CF15EAC005BCB5A /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A046A8231CF15EAC005BCB5A /* SessionStore.swift */; };
 		A059CCBF1CF0184300366718 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059CCBD1CF0184300366718 /* SplashScreenViewController.swift */; };
 		A059CCC01CF0184300366718 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A059CCBE1CF0184300366718 /* SplashScreenViewController.xib */; };
 		A05DB18A1CCEEF76005C444C /* VibeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */; };
@@ -108,7 +107,6 @@
 		A046A81D1CF022E8005BCB5A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A046A81F1CF02A50005BCB5A /* MainContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		A046A8211CF03AD3005BCB5A /* CrystalLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrystalLoadingView.swift; sourceTree = "<group>"; };
-		A046A8231CF15EAC005BCB5A /* SessionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		A059CCBD1CF0184300366718 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		A059CCBE1CF0184300366718 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
 		A05DB1891CCEEF76005C444C /* VibeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 				A0AB65961D66C8D8001FD56B /* HMSegmentedControl.h */,
 				A0AB65971D66C8D8001FD56B /* HMSegmentedControl.m */,
 				A01D2E991BDDDB39004286A9 /* AppDelegate.swift */,
-				A046A8231CF15EAC005BCB5A /* SessionStore.swift */,
 				A0154B921C758E5300A29763 /* ResponseObjectSerializable.swift */,
 				A0154B8B1C758AD400A29763 /* Product.swift */,
 				A0D4086E1C02EBA200CEEBDB /* Product+Deserialization.swift */,
@@ -411,7 +408,6 @@
 				A0AB65A11D6761EE001FD56B /* CrystalVibesView.swift in Sources */,
 				A01D2EAC1BDDDBDE004286A9 /* CrystalCollectionViewController.swift in Sources */,
 				A0AB659A1D66CAE4001FD56B /* Colors.swift in Sources */,
-				A046A8241CF15EAC005BCB5A /* SessionStore.swift in Sources */,
 				A046A8221CF03AD3005BCB5A /* CrystalLoadingView.swift in Sources */,
 				A0D4086F1C02EBA200CEEBDB /* Product+Deserialization.swift in Sources */,
 				A01D2EAE1BDDDC47004286A9 /* Crystal.swift in Sources */,
