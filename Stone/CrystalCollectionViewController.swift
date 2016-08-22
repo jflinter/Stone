@@ -86,7 +86,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     }()
     var searchVisible: Bool = false {
         didSet {
-            self.navigationItem.setRightBarButtonItem(self.searchVisible ? self.cancelSearchButton : self.searchButton, animated: self.visible)
+            self.navigationItem.setRightBarButtonItem(self.searchVisible ? self.cancelSearchButton : self.searchButton, animated: true)
             if searchVisible {
                 self.searchView.hidden = false
             }
@@ -193,6 +193,11 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
         self.searchVisible = false
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.rightBarButtonItem = self.searchVisible ? self.cancelSearchButton : self.searchButton
     }
     
     var visible: Bool = false
