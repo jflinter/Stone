@@ -189,10 +189,10 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         let promptedAt = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSDate
         if promptedAt == nil {
             let alertController = UIAlertController(title: nil, message: "Would you like us to let you know when we update STONE with more dazzling crystals?", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "No thanks.", style: .Cancel, handler: { _ in
+            alertController.addAction(UIAlertAction(title: "No thanks.", style: .Default, handler: { _ in
                 NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
             }))
-            alertController.addAction(UIAlertAction(title: "Please do.", style: .Default, handler: { _ in
+            alertController.addAction(UIAlertAction(title: "Please do.", style: UIAlertActionStyle.Default, handler: { _ in
                 NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
                 OneSignal.defaultClient().registerForPushNotifications()
             }))
