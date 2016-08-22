@@ -789,6 +789,7 @@
 				A0E059341D6AAF92003B17C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
