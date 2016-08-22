@@ -10,6 +10,7 @@ import UIKit
 import Dwifft
 import Bond
 import Analytics
+import OneSignal
 
 private let reuseIdentifier = "Cell"
 
@@ -183,6 +184,20 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         super.viewDidAppear(animated)
         self.vibesView.collectionView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
         self.collectionView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
+        
+        let key = "STNPromptedForPushNotificationsAt"
+        let promptedAt = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSDate
+        if promptedAt == nil {
+            let alertController = UIAlertController(title: nil, message: "Would you like us to let you know when we update STONE with more dazzling crystals?", preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "No thanks.", style: .Cancel, handler: { _ in
+                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
+            }))
+            alertController.addAction(UIAlertAction(title: "Please do.", style: .Default, handler: { _ in
+                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
+                OneSignal.defaultClient().registerForPushNotifications()
+            }))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {

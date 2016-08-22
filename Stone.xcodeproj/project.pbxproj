@@ -35,6 +35,7 @@
 		A05DB19B1CE06D8E005C444C /* Vibes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB19A1CE06D8E005C444C /* Vibes.swift */; };
 		A07B82021CF20DE200FD502C /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07B82011CF20DE200FD502C /* SSKeychain.framework */; };
 		A07B82031CF20DE200FD502C /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A07B82011CF20DE200FD502C /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A09C02D31D6A8AED000B1F7B /* OneSignal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09C02D21D6A8AED000B1F7B /* OneSignal.framework */; };
 		A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; };
 		A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0AB65981D66C8D8001FD56B /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AB65971D66C8D8001FD56B /* HMSegmentedControl.m */; };
@@ -118,6 +119,7 @@
 		A05DB1981CE0162B005C444C /* Brown-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold.otf"; sourceTree = "<group>"; };
 		A05DB19A1CE06D8E005C444C /* Vibes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vibes.swift; sourceTree = "<group>"; };
 		A07B82011CF20DE200FD502C /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
+		A09C02D21D6A8AED000B1F7B /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = Carthage/Build/iOS/OneSignal.framework; sourceTree = "<group>"; };
 		A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaintBucket.framework; path = Carthage/Build/iOS/PaintBucket.framework; sourceTree = "<group>"; };
 		A0AB65921D66C834001FD56B /* Stone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stone-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0AB65961D66C8D8001FD56B /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				A0D408741C02F6DD00CEEBDB /* AlamofireImage.framework in Frameworks */,
 				A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */,
 				A0AB65A31D681B8B001FD56B /* Analytics.framework in Frameworks */,
+				A09C02D31D6A8AED000B1F7B /* OneSignal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +249,7 @@
 		A0D408601C02B1A700CEEBDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A09C02D21D6A8AED000B1F7B /* OneSignal.framework */,
 				A0D4086A1C02B32400CEEBDB /* Alamofire.framework */,
 				A0D408721C02F6D500CEEBDB /* AlamofireImage.framework */,
 				A0AB65A21D681B8B001FD56B /* Analytics.framework */,
@@ -314,8 +318,14 @@
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 4QS5C2WVW4;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.OMC = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -391,6 +401,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SSKeychain.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Analytics.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OneSignal.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
@@ -527,6 +538,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -534,6 +547,7 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -545,6 +559,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -552,6 +568,7 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
 			};
 			name = Release;
@@ -608,6 +625,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -615,6 +634,7 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};

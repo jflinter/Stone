@@ -11,6 +11,7 @@ import HockeySDK
 import Alamofire
 import AlamofireImage
 import Analytics
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let segmentConfig = SEGAnalyticsConfiguration(writeKey: "vwWphE64rZPxJpoWzFYblkyHgeQxkUuc")
         segmentConfig.trackApplicationLifecycleEvents = true
         SEGAnalytics.setupWithConfiguration(segmentConfig)
+
+        OneSignal.setDefaultClient(OneSignal(launchOptions: launchOptions, appId: "24cf8981-2d7c-4983-bcb2-6ebe14c590bf", handleNotification: nil, autoRegister: false))
         
         let bytesPerMegabyte = 1000000
         NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 100 * bytesPerMegabyte, diskCapacity: 200 * bytesPerMegabyte, diskPath: "com.stonecrystals.urlcache"))

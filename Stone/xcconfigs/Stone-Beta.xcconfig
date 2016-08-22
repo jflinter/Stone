@@ -7,5 +7,5 @@
 
 #include "Stone-Shared.xcconfig"
 
-BUNDLE_ID_SUFFIX = .beta
+PRODUCT_BUNDLE_IDENTIFIER = com.jflinter.stone.beta
 PROVISIONING_PROFILE = bd17457a-d964-4a12-9831-4c0023a49909

@@ -7,5 +7,5 @@
 
 #include "Stone-Shared.xcconfig"
 
-BUNDLE_ID_SUFFIX = .debug
+PRODUCT_BUNDLE_IDENTIFIER = com.jflinter.stone.debug
 PROVISIONING_PROFILE = ffca50cb-1d15-48f9-bd65-e4f53fec9e3a

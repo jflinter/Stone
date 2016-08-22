@@ -7,4 +7,4 @@
 
 #include "Stone-Shared.xcconfig"
 
-BUNDLE_ID_SUFFIX =
+PRODUCT_BUNDLE_IDENTIFIER = com.stoneproject.appstore
