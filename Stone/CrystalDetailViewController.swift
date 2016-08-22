@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
+class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, CrystalVibesViewDelegate {
     
     let viewModel: CrystalDetailViewModel
     let closeButton: UIButton = {
@@ -47,12 +47,15 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
     let vibesView: CrystalVibesView
     
     let textView = UITextView()
+    let crystalStore: CrystalStore
     
-    init(viewModel: CrystalDetailViewModel) {
+    init(viewModel: CrystalDetailViewModel, store: CrystalStore) {
         self.viewModel = viewModel
         self.vibesView = CrystalVibesView(availableVibes: viewModel.vibes)
+        self.crystalStore = store
         super.init(nibName: nil, bundle: nil)
         self.title = viewModel.name
+        self.vibesView.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -174,6 +177,11 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate {
         widthAnimation.duration = 0.1
         self.closeButton.layer.borderWidth = destinationBorderWidth
         self.closeButton.layer.addAnimation(widthAnimation, forKey: nil)
+    }
+    
+    func crystalVibesViewDidSelectVibe(vibe: Vibe) {
+        self.crystalStore.selectedVibe.value = vibe
+        self.dismiss()
     }
     
 }

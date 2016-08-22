@@ -8,6 +8,7 @@
 
 import UIKit
 import Dwifft
+import Bond
 
 class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -25,6 +26,15 @@ class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
             self.diffCalculator?.rows = Array(vibes).sort({ (a, b) -> Bool in
                 return a.rawValue < b.rawValue
             })
+        }
+        crystalStore.selectedVibe.observe { value in
+            if let value = value {
+                guard let index = self.diffCalculator?.rows.indexOf(value) else { return }
+                let indexPath = NSIndexPath(forItem: index, inSection: 0)
+                if !(self.collectionView.indexPathsForSelectedItems()?.contains(indexPath) ?? false) {
+                    self.collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .CenteredHorizontally)
+                }
+            }
         }
     }
     

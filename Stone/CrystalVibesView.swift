@@ -9,9 +9,15 @@
 import UIKit
 import Dwifft
 
+protocol CrystalVibesViewDelegate {
+    func crystalVibesViewDidSelectVibe(vibe: Vibe)
+}
+
 class CrystalVibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var diffCalculator: CollectionViewDiffCalculator<Vibe>?
+    
+    var delegate: CrystalVibesViewDelegate?
     
     init(availableVibes: [Vibe]) {
         super.init(frame: CGRectZero)
@@ -57,14 +63,20 @@ class CrystalVibesView: UIView, UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! VibeCollectionViewCell
-        cell.selectedColor = UIColor.stoneDarkBlue
-        cell.unselectedColor = UIColor.stoneDarkBlue
+        cell.selectedColor = UIColor.stoneLightBlue
+        cell.unselectedColor = UIColor.stoneLightBlue
         guard let diffCalculator = self.diffCalculator else { return cell }
         let vibe = diffCalculator.rows[indexPath.row]
         cell.image = vibe.image
         cell.title = vibe.rawValue.uppercaseString
         cell.highlightsSelection = false
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard let diffCalculator = self.diffCalculator else { return }
+        let vibe = diffCalculator.rows[indexPath.row]
+        self.delegate?.crystalVibesViewDidSelectVibe(vibe)
     }
     
 }

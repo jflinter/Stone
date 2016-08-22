@@ -86,6 +86,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     }()
     var searchVisible: Bool = false {
         didSet {
+            self.navigationItem.setRightBarButtonItem(self.searchVisible ? self.cancelSearchButton : self.searchButton, animated: self.visible)
             if searchVisible {
                 self.searchView.hidden = false
             }
@@ -93,7 +94,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
                 self.crystalStore.selectedVibe.value = nil
                 self.crystalStore.searchQuery.value = ""
             }
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animateWithDuration(self.visible ? 0.3 : 0, animations: {
                 self.view.setNeedsLayout()
                 self.view.layoutIfNeeded()
             }) { completed in
@@ -168,9 +169,23 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
             
         
         self.diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
-        crystalStore.visibleCrystals.observe {
-            self.diffCalculator?.rows = $0.map(CrystalCellViewModel.init)
-            self.updateCellParallax()
+        crystalStore.visibleCrystals.observe { value in
+            if (self.visible) {
+                self.diffCalculator?.rows = value.map(CrystalCellViewModel.init)
+                self.updateCellParallax()
+            } else {
+                UIView.performWithoutAnimation({ 
+                    self.diffCalculator?.rows = value.map(CrystalCellViewModel.init)
+                    self.updateCellParallax()
+                })
+            }
+            
+        }
+        crystalStore.selectedVibe.observe { value in
+            if value != nil {
+                self.searchVisible = true
+                self.vibesSelected = true
+            }
         }
         crystalStore.fetchCrystals()
         
@@ -180,8 +195,10 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.searchVisible = false
     }
     
+    var visible: Bool = false
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.visible = true
         self.vibesView.collectionView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
         self.collectionView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
         
@@ -200,25 +217,36 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         }
     }
     
-    func segmentedControlChanged(segmentedControl: UISegmentedControl) {
-        let showSearch = segmentedControl.selectedSegmentIndex == 1
-        if showSearch {
-            self.crystalStore.selectedVibe.value = nil
-            self.vibesView.resetSelection()
-        } else {
-            self.crystalStore.searchQuery.value = ""
-            self.searchBar.resignFirstResponder()
-        }
-        UIView.animateWithDuration(0.2, animations: {
-            self.searchBar.alpha = showSearch ? 1 : 0
-            self.vibesView.alpha = showSearch ? 0 : 1
-        }, completion: { completed in
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.visible = false
+    }
+    
+    var vibesSelected = false {
+        didSet {
+            self.searchSegmentedControl.setSelectedSegmentIndex(vibesSelected ? 0 : 1, animated: self.visible)
+            let showSearch = !self.vibesSelected
             if showSearch {
-                self.searchBar.becomeFirstResponder()
+                self.crystalStore.selectedVibe.value = nil
+                self.vibesView.resetSelection()
             } else {
-                self.searchBar.text = ""
+                self.crystalStore.searchQuery.value = ""
+                self.searchBar.resignFirstResponder()
             }
-        })
+            UIView.animateWithDuration(self.visible ? 0.2 : 0, animations: {
+                self.searchBar.alpha = showSearch ? 1 : 0
+                self.vibesView.alpha = showSearch ? 0 : 1
+                }, completion: { completed in
+                    if showSearch {
+                        self.searchBar.becomeFirstResponder()
+                    } else {
+                        self.searchBar.text = ""
+                    }
+            })
+        }
+    }
+    func segmentedControlChanged(segmentedControl: UISegmentedControl) {
+        self.vibesSelected = segmentedControl.selectedSegmentIndex == 0
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -283,7 +311,6 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         
     func toggleSearch() {
         self.searchVisible = !self.searchVisible
-        self.navigationItem.setRightBarButtonItem(self.searchVisible ? self.cancelSearchButton : self.searchButton, animated: true)
     }
     
     // MARK: UISearchBarDelegate
@@ -309,7 +336,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CrystalCollectionViewCell,
             image = cell.imageView.image, cellViewModel = viewModelAt(indexPath) else { return }
         let viewModel = CrystalDetailViewModel(crystal: cellViewModel.crystal, bootstrapImage: image)
-        let detail = CrystalDetailViewController(viewModel: viewModel)
+        let detail = CrystalDetailViewController(viewModel: viewModel, store: self.crystalStore)
         detail.transitioningDelegate = self
         SEGAnalytics.sharedAnalytics().track("Viewed Crystal", properties: ["name": cellViewModel.crystal.name])
         self.presentViewController(detail, animated: true, completion: nil)
