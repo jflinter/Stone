@@ -27,12 +27,10 @@ extension Alamofire.Request {
                     if let collection = T.collection(response: response, representation: value) {
                         return .Success(collection)
                     } else {
-                        return .Failure(Error.errorWithCode(.JSONSerializationFailed, failureReason: "could not deserialize objects"))
+                        return .Failure(NSError(domain: NSURLErrorDomain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "could not deserialize objects"]))
                     }
                 } else {
-                    let failureReason = "Response collection could not be serialized due to nil response"
-                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: failureReason)
-                    return .Failure(error)
+                    return .Failure(NSError(domain: NSURLErrorDomain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "Response collection could not be serialized due to nil response"]))
                 }
             case .Failure(let error):
                 return .Failure(error)

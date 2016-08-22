@@ -1,0 +1,38 @@
+{
+  "default": {
+    "title": {
+      "font": "./fonts/Brown-Regular-Alt.otf"
+    },
+    "padding": 50,
+    "show_complete_frame": false
+  },
+
+  "data": [
+    {
+      "filter": "0Grid",
+      "title": {
+        "color": "#2A4D66",
+        "text":
+        "Playful and punchy descriptions\nof crystals and their powers\ntell it like it is."
+      },
+      "background": "./FDE3BA.png"
+    },
+    {
+      "filter": "1Moldavite",
+      "title": {
+        "color": "#FDE3BA",
+        "text":
+        "Beautiful, detailed photography\nwill have you all enchanted\nlike, \"ooh la la.\""
+      },
+      "background": "./2A4D66.png"
+    },
+    {
+      "filter": "2Apophyllite",
+      "title": {
+        "color": "#2A4D66",
+        "text": "Search from a series of vibes\nto find a crystal that suits\ntoday’s mood. And tomorrow’s!"
+      },
+      "background": "./FDE3BA.png"
+    }
+  ]
+}

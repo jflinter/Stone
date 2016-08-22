@@ -22,6 +22,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         layout.minimumLineSpacing = 0
         layout.sectionInset = UIEdgeInsetsMake(20, 0, 0, 0)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.accessibilityIdentifier = "crystal collection view"
         return collectionView
     }()
     
@@ -44,6 +45,10 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         segmentedControl.selectionIndicatorColor = UIColor.stoneLightOrange
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = UIColor.grayColor()
+        segmentedControl.accessibilityIdentifier = "search segmented control"
+        segmentedControl.subviews.enumerate().forEach({ (index: Int, element: UIView) in
+            element.accessibilityIdentifier = "search segmented control subview \(index)"
+        })
         return segmentedControl
     }()
     
@@ -71,6 +76,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.accessibilityIdentifier = "crystal search bar"
         UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [
             NSForegroundColorAttributeName: UIColor.stoneLightBlue,
             NSFontAttributeName: UIFont(name: "Brown-Light", size: 16) ?? UIFont.systemFontOfSize(16),

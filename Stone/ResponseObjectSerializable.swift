@@ -30,8 +30,7 @@ extension Request {
                     return .Success(responseObject)
                 } else {
                     let failureReason = "JSON could not be serialized into response object: \(value)"
-                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: failureReason)
-                    return .Failure(error)
+                    return .Failure(NSError(domain: NSURLErrorDomain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: failureReason]))
                 }
             case .Failure(let error):
                 return .Failure(error)
