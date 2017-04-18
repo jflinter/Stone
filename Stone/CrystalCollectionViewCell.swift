@@ -12,9 +12,9 @@ import PaintBucket
 
 struct BackgroundRemovingImageFilter: ImageFilter {
     
-    var filter: Image -> Image {
+    var filter: (Image) -> Image {
         return { image in
-            let transformed = image.pbk_imageByReplacingColorAt(1, 1, withColor: UIColor.clearColor(), tolerance: 320, antialias: false)
+            let transformed = image.pbk_imageByReplacingColorAt(1, 1, withColor: UIColor.clear, tolerance: 320, antialias: false)
             return transformed
         }
     }
@@ -43,10 +43,10 @@ class CrystalCollectionViewCell: UICollectionViewCell {
             let color = colors[randomIndex]
             
             self.imageView.image = nil
-            let size = CGRectIntegral(self.bounds).size
+            let size = self.bounds.integral.size
             self.loadingView.tintColor = color
             if let url = viewModel?.imageURLForSize(size) {
-                self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: .CrossDissolve(0.2), runImageTransitionIfCached: false, completion: nil)
+                self.imageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.2), runImageTransitionIfCached: false)
             }
         }
     }
@@ -54,7 +54,7 @@ class CrystalCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.imageView.frame = self.bounds
-        self.imageView.contentMode = .ScaleAspectFit
+        self.imageView.contentMode = .scaleAspectFit
         self.loadingView.frame = self.bounds
         self.addSubview(self.loadingView)
         self.addSubview(self.imageView)
@@ -64,15 +64,15 @@ class CrystalCollectionViewCell: UICollectionViewCell {
         fatalError("Not implemented")
     }
     
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         set {
-            UIView.animateWithDuration(0.5, delay: newValue ? 0 : 0.1, usingSpringWithDamping: 17.5, initialSpringVelocity: 0, options: [], animations: {
-                self.imageView.transform = newValue ? CGAffineTransformMakeScale(0.8, 0.8) : CGAffineTransformIdentity
+            UIView.animate(withDuration: 0.5, delay: newValue ? 0 : 0.1, usingSpringWithDamping: 17.5, initialSpringVelocity: 0, options: [], animations: {
+                self.imageView.transform = newValue ? CGAffineTransform(scaleX: 0.8, y: 0.8) : CGAffineTransform.identity
                 }, completion: nil)
-            super.highlighted = newValue
+            super.isHighlighted = newValue
         }
         get {
-            return super.highlighted
+            return super.isHighlighted
         }
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 import Dwifft
-import Bond
+import ReactiveKit
 import Analytics
 import OneSignal
 
@@ -26,47 +26,47 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         return collectionView
     }()
     
-    var diffCalculator: CollectionViewDiffCalculator<CrystalCellViewModel>?
+    var diffCalculator: SingleSectionCollectionViewDiffCalculator<CrystalCellViewModel>?
     let crystalStore: CrystalStore
     
     let searchView = UIView()
     let searchHairline = UIView()
     
     let searchSegmentedControl: HMSegmentedControl = {
-        let segmentedControl = HMSegmentedControl(sectionTitles: ["VIBE ", "NAME "])
+        let segmentedControl = HMSegmentedControl(sectionTitles: ["VIBE ", "NAME "])!
         segmentedControl.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Brown-Light", size: 14) ?? UIFont.systemFontOfSize(14),
+            NSFontAttributeName: UIFont(name: "Brown-Light", size: 14) ?? UIFont.systemFont(ofSize: 14),
             NSForegroundColorAttributeName: UIColor.stoneLightBlue,
         ]
-        segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
-        segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed
+        segmentedControl.selectionIndicatorLocation = .down
+        segmentedControl.segmentWidthStyle = .fixed
         segmentedControl.selectionIndicatorHeight = 3
-        segmentedControl.segmentEdgeInset = UIEdgeInsetsZero
+        segmentedControl.segmentEdgeInset = UIEdgeInsets.zero
         segmentedControl.selectionIndicatorColor = UIColor.stoneLightOrange
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.tintColor = UIColor.grayColor()
+        segmentedControl.tintColor = UIColor.gray
         segmentedControl.accessibilityIdentifier = "search segmented control"
-        segmentedControl.subviews.enumerate().forEach({ (index: Int, element: UIView) in
+        segmentedControl.subviews.enumerated().forEach({ (index: Int, element: UIView) in
             element.accessibilityIdentifier = "search segmented control subview \(index)"
         })
         return segmentedControl
     }()
     
     lazy var searchButton: UIBarButtonItem = {
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(CrystalCollectionViewController.toggleSearch))
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(CrystalCollectionViewController.toggleSearch))
         searchButton.tintColor = UIColor.stoneLightBlue
         return searchButton
     }()
     
     lazy var cancelSearchButton: UIBarButtonItem = {
         let button = UIButton()
-        button.setImage(Resource.Image.Icon__close.image?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        button.setImage(Resource.Image.Icon__close.image?.withRenderingMode(.alwaysTemplate), for: UIControlState())
         button.tintColor = UIColor.stoneLightBlue
         button.imageEdgeInsets = UIEdgeInsets(top: 16, left: 32, bottom: 16, right: 0)
         button.sizeToFit()
         button.frame = UIEdgeInsetsInsetRect(button.frame, UIEdgeInsetsMake(-8, -8, -8, -8))
         button.clipsToBounds = true
-        button.addTarget(self, action: #selector(CrystalCollectionViewController.toggleSearch), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(CrystalCollectionViewController.toggleSearch), for: .touchUpInside)
         let searchButton = UIBarButtonItem(customView: button)
         searchButton.tintColor = UIColor.stoneLightBlue
         return searchButton
@@ -77,33 +77,33 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.accessibilityIdentifier = "crystal search bar"
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [
             NSForegroundColorAttributeName: UIColor.stoneLightBlue,
-            NSFontAttributeName: UIFont(name: "Brown-Light", size: 16) ?? UIFont.systemFontOfSize(16),
+            NSFontAttributeName: UIFont(name: "Brown-Light", size: 16) ?? UIFont.systemFont(ofSize: 16),
         ]
-        let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
-        textFieldInsideSearchBar?.layer.borderColor = UIColor.stoneDarkOrange.CGColor
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.layer.borderColor = UIColor.stoneDarkOrange.cgColor
         textFieldInsideSearchBar?.layer.borderWidth = 1
         textFieldInsideSearchBar?.layer.cornerRadius = 10
-        textFieldInsideSearchBar?.clearButtonMode = .Never
+        textFieldInsideSearchBar?.clearButtonMode = .never
         searchBar.backgroundImage = UIImage()
         searchBar.tintColor = UIColor.stoneLightBlue
         return searchBar
     }()
     var searchVisible: Bool = false {
         didSet {
-            self.navigationItem.setRightBarButtonItem(self.searchVisible ? self.cancelSearchButton : self.searchButton, animated: true)
+            self.navigationItem.setRightBarButton(self.searchVisible ? self.cancelSearchButton : self.searchButton, animated: true)
             if searchVisible {
-                self.searchView.hidden = false
+                self.searchView.isHidden = false
             }
             else {
                 self.crystalStore.selectedVibe.value = nil
                 self.crystalStore.searchQuery.value = ""
             }
-            UIView.animateWithDuration(self.visible ? 0.3 : 0, animations: {
+            UIView.animate(withDuration: self.visible ? 0.3 : 0, animations: {
                 self.view.setNeedsLayout()
                 self.view.layoutIfNeeded()
-            }) { completed in
+            }, completion: { completed in
                 guard completed else { return }
                 let showSearch = self.searchSegmentedControl.selectedSegmentIndex == 1
                 if self.searchVisible {
@@ -112,13 +112,13 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
                     }
                 } else {
                     self.vibesView.resetSelection()
-                    if self.searchBar.isFirstResponder() {
+                    if self.searchBar.isFirstResponder {
                         self.searchBar.resignFirstResponder()
                         self.searchBar.text = ""
                     }
-                    self.searchView.hidden = true
+                    self.searchView.isHidden = true
                 }
-            }
+            }) 
         }
     }
     
@@ -129,20 +129,20 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.searchBar.delegate = self
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
         self.automaticallyAdjustsScrollViewInsets = false
         self.extendedLayoutIncludesOpaqueBars = false
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CrystalCollectionViewController.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CrystalCollectionViewController.keyboardWillChangeFrame(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("not implemented")
     }
     
-    func keyboardWillChangeFrame(notification: NSNotification) {
+    func keyboardWillChangeFrame(_ notification: Notification) {
         
-        let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue ?? CGRectZero
-        let intersection = CGRectIntersection(keyboardFrame, self.view.frame)
+        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue ?? CGRect.zero
+        let intersection = keyboardFrame.intersection(self.view.frame)
         
         var inset = self.collectionView.contentInset
         inset.bottom = intersection.size.height
@@ -156,7 +156,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         
         self.view.addSubview(self.collectionView)
         self.view.addSubview(self.searchView)
-        self.searchView.backgroundColor = UIColor.whiteColor()
+        self.searchView.backgroundColor = UIColor.white
         self.searchView.addSubview(self.searchSegmentedControl)
         self.searchView.addSubview(self.searchBar)
         self.searchHairline.backgroundColor = UIColor.stoneDarkBlue
@@ -165,70 +165,69 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.vibesView.alpha = 1
         self.searchView.addSubview(self.vibesView)
         
-        self.searchSegmentedControl.addTarget(self, action: #selector(CrystalCollectionViewController.segmentedControlChanged(_:)), forControlEvents: .ValueChanged)
+        self.searchSegmentedControl.addTarget(self, action: #selector(CrystalCollectionViewController.segmentedControlChanged(_:)), for: .valueChanged)
         
         let imageView = UIImageView(image: Resource.Image.Stone_Logo_Icon.image)
-        imageView.contentMode = .Center
+        imageView.contentMode = .center
         self.navigationItem.titleView = imageView
         
         self.navigationItem.rightBarButtonItem = self.searchButton
             
         
-        self.diffCalculator = CollectionViewDiffCalculator(collectionView: collectionView)
-        crystalStore.visibleCrystals.observe { value in
+        self.diffCalculator = SingleSectionCollectionViewDiffCalculator(collectionView: collectionView)
+        let _ = crystalStore.visibleCrystals.observeNext { crystals in
             if (self.visible) {
-                self.diffCalculator?.rows = value.map(CrystalCellViewModel.init)
+                self.diffCalculator?.items = crystals.map(CrystalCellViewModel.init)
                 self.updateCellParallax()
             } else {
-                UIView.performWithoutAnimation({ 
-                    self.diffCalculator?.rows = value.map(CrystalCellViewModel.init)
+                UIView.performWithoutAnimation({
+                    self.diffCalculator?.items = crystals.map(CrystalCellViewModel.init)
                     self.updateCellParallax()
                 })
             }
-            
         }
-        crystalStore.selectedVibe.observe { value in
-            if value != nil {
+        let _ = crystalStore.selectedVibe.observeNext { vibe in
+            if vibe != nil {
                 self.searchVisible = true
                 self.vibesSelected = true
             }
         }
-        crystalStore.fetchCrystals()
+        let _ = crystalStore.fetchCrystals()
         
-        collectionView.backgroundColor = UIColor.whiteColor()
-        collectionView.registerClass(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.backgroundColor = UIColor.white
+        collectionView.register(CrystalCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.alwaysBounceVertical = true
         self.searchVisible = false
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.rightBarButtonItem = self.searchVisible ? self.cancelSearchButton : self.searchButton
     }
     
     var visible: Bool = false
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.visible = true
         self.vibesView.collectionView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
         self.collectionView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
         
         let key = "STNPromptedForPushNotificationsAt"
-        let promptedAt = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSDate
+        let promptedAt = UserDefaults.standard.object(forKey: key) as? Date
         if promptedAt == nil {
-            let alertController = UIAlertController(title: nil, message: "Would you like us to let you know when we update STONE with more dazzling crystals?", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "No thanks.", style: .Default, handler: { _ in
-                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
+            let alertController = UIAlertController(title: nil, message: "Would you like us to let you know when we update STONE with more dazzling crystals?", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "No thanks.", style: .default, handler: { _ in
+                UserDefaults.standard.set(Date(), forKey: key)
             }))
-            alertController.addAction(UIAlertAction(title: "Please do.", style: UIAlertActionStyle.Default, handler: { _ in
-                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: key)
+            alertController.addAction(UIAlertAction(title: "Please do.", style: UIAlertActionStyle.default, handler: { _ in
+                UserDefaults.standard.set(Date(), forKey: key)
                 OneSignal.defaultClient().registerForPushNotifications()
             }))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.visible = false
     }
@@ -244,7 +243,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
                 self.crystalStore.searchQuery.value = ""
                 self.searchBar.resignFirstResponder()
             }
-            UIView.animateWithDuration(self.visible ? 0.2 : 0, animations: {
+            UIView.animate(withDuration: self.visible ? 0.2 : 0, animations: {
                 self.searchBar.alpha = showSearch ? 1 : 0
                 self.vibesView.alpha = showSearch ? 0 : 1
                 }, completion: { completed in
@@ -256,22 +255,22 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
             })
         }
     }
-    func segmentedControlChanged(segmentedControl: UISegmentedControl) {
+    func segmentedControlChanged(_ segmentedControl: UISegmentedControl) {
         self.vibesSelected = segmentedControl.selectedSegmentIndex == 0
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.updateCellParallax()
     }
     
     func updateCellParallax() {
-        for cell in self.collectionView.visibleCells() {
+        for cell in self.collectionView.visibleCells {
             guard let cell = cell as? CrystalCollectionViewCell else { return }
-            let distanceFromBottom = self.collectionView.frame.size.height - CGRectGetMaxY(cell.convertRect(cell.bounds, toView: nil))
+            let distanceFromBottom = self.collectionView.frame.size.height - cell.convert(cell.bounds, to: nil).maxY
             let percentage = distanceFromBottom / self.collectionView.frame.size.height
             let transformed = percentage / 0.5
             let fraction = max(min(transformed + 0.7, 1), 0)
-            cell.transform = CGAffineTransformMakeScale(fraction, fraction)
+            cell.transform = CGAffineTransform(scaleX: fraction, y: fraction)
         }
     }
     
@@ -280,34 +279,34 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         let height: CGFloat = 120
         let searchY = self.searchVisible ? 0 : -height
         
-        self.searchView.frame = CGRectMake(0, searchY, self.view.bounds.size.width, height)
+        self.searchView.frame = CGRect(x: 0, y: searchY, width: self.view.bounds.size.width, height: height)
         
         let segmentedControlWidth = CGFloat(175)
-        self.searchSegmentedControl.frame = CGRectMake(
-            searchView.frame.size.width / 2 - segmentedControlWidth/2,
-            10,
-            segmentedControlWidth,
-            30
+        self.searchSegmentedControl.frame = CGRect(
+            x: searchView.frame.size.width / 2 - segmentedControlWidth/2,
+            y: 10,
+            width: segmentedControlWidth,
+            height: 30
         )
         self.searchSegmentedControl.layer.cornerRadius = self.searchSegmentedControl.frame.size.height / 2
         self.searchSegmentedControl.clipsToBounds = true
         let searchBarX = CGFloat(10)
-        self.searchBar.frame = CGRectMake(
-            searchBarX,
-            60,
-            searchView.frame.size.width - (searchBarX * 2),
-            30
+        self.searchBar.frame = CGRect(
+            x: searchBarX,
+            y: 60,
+            width: searchView.frame.size.width - (searchBarX * 2),
+            height: 30
         )
-        self.searchHairline.frame = CGRectMake(0, CGRectGetMaxY(self.searchView.frame) + 0.5, self.searchView.bounds.size.width, 0.5)
+        self.searchHairline.frame = CGRect(x: 0, y: self.searchView.frame.maxY + 0.5, width: self.searchView.bounds.size.width, height: 0.5)
         
-        self.vibesView.frame = CGRectMake(0, 40, self.searchView.bounds.width, 80)
+        self.vibesView.frame = CGRect(x: 0, y: 40, width: self.searchView.bounds.width, height: 80)
         
-        (self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSizeMake(self.view.frame.size.width / 3, self.view.frame.size.width / 3 + 20)
+        (self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSize(width: self.view.frame.size.width / 3, height: self.view.frame.size.width / 3 + 20)
         
         self.collectionView.frame = self.view.bounds
         var oldContentOffset = self.collectionView.contentOffset
         var inset = self.collectionView.contentInset
-        inset.top = self.searchVisible ? CGRectGetMaxY(self.searchView.frame) : 0
+        inset.top = self.searchVisible ? self.searchView.frame.maxY : 0
         self.collectionView.contentInset = inset
         self.collectionView.scrollIndicatorInsets = inset
         if oldContentOffset.y == 0 {
@@ -316,8 +315,8 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         }
     }
     
-    func viewModelAt(indexPath: NSIndexPath) -> CrystalCellViewModel? {
-        return self.diffCalculator?.rows[indexPath.row]
+    func viewModelAt(_ indexPath: IndexPath) -> CrystalCellViewModel? {
+        return self.diffCalculator?.items[indexPath.item]
     }
         
     func toggleSearch() {
@@ -325,42 +324,42 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     }
     
     // MARK: UISearchBarDelegate
-    @objc func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    @objc func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.crystalStore.searchQuery.value = searchText
     }
     
     // MARK: UICollectionViewDataSource
     
-    @objc func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.diffCalculator?.rows.count ?? 0
+    @objc func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.diffCalculator?.items.count ?? 0
     }
 
-    @objc func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CrystalCollectionViewCell
+    @objc func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CrystalCollectionViewCell
         if let viewModel = viewModelAt(indexPath) {
             cell.viewModel = viewModel
         }
         return cell
     }
     
-    @objc func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CrystalCollectionViewCell,
-            image = cell.imageView.image, cellViewModel = viewModelAt(indexPath) else { return }
+    @objc func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CrystalCollectionViewCell,
+            let image = cell.imageView.image, let cellViewModel = viewModelAt(indexPath) else { return }
         let viewModel = CrystalDetailViewModel(crystal: cellViewModel.crystal, bootstrapImage: image)
         let detail = CrystalDetailViewController(viewModel: viewModel, store: self.crystalStore)
         detail.transitioningDelegate = self
-        SEGAnalytics.sharedAnalytics().track("Viewed Crystal", properties: ["name": cellViewModel.crystal.name])
-        self.presentViewController(detail, animated: true, completion: nil)
+        SEGAnalytics.shared().track("Viewed Crystal", properties: ["name": cellViewModel.crystal.name])
+        self.present(detail, animated: true, completion: nil)
     }
     
     // MARK: UIViewControllerTransitioningDelegate
     var animator: CrystalDetailAnimator? = nil
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.animator = CrystalDetailAnimator(collectionViewController: self)
         return self.animator
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.animator?.presenting = false
         return self.animator
     }

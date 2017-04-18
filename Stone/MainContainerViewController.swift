@@ -24,10 +24,10 @@ class MainContainerViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.addChildViewController(nav)
-        nav.didMoveToParentViewController(self)
+        nav.didMove(toParentViewController: self)
         
         self.addChildViewController(splash)
-        splash.didMoveToParentViewController(self)
+        splash.didMove(toParentViewController: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,14 +46,14 @@ class MainContainerViewController: UIViewController {
         splash.view.frame = self.view.bounds
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.crystalStore.fetchCrystals().onSuccess { _ in
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.splash.view.alpha = 0
             }, completion: { _ in
                 self.splash.removeFromParentViewController()
-                self.splash.didMoveToParentViewController(nil)
+                self.splash.didMove(toParentViewController: nil)
                 self.splash.view.removeFromSuperview()
             })
         }

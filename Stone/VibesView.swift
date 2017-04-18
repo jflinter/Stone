@@ -8,11 +8,11 @@
 
 import UIKit
 import Dwifft
-import Bond
+import ReactiveKit
 
 class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    var diffCalculator: CollectionViewDiffCalculator<Vibe>?
+    var diffCalculator: SingleSectionCollectionViewDiffCalculator<Vibe>?
     
     let crystalStore: CrystalStore?
     
@@ -20,19 +20,21 @@ class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     init(crystalStore: CrystalStore) {
         self.crystalStore = crystalStore
-        super.init(frame: CGRectZero)
-        self.diffCalculator = CollectionViewDiffCalculator(collectionView: self.collectionView)
-        crystalStore.allVibes.observe { vibes in
-            self.diffCalculator?.rows = Array(vibes).sort({ (a, b) -> Bool in
+        super.init(frame: CGRect.zero)
+        self.diffCalculator = SingleSectionCollectionViewDiffCalculator(collectionView: self.collectionView)
+        let _ = crystalStore.allVibes.observeNext { vibes in
+            self.diffCalculator?.items = Array(vibes).sorted(by: { (a, b) -> Bool in
                 return a.rawValue < b.rawValue
             })
         }
-        crystalStore.selectedVibe.observe { value in
-            if let value = value {
-                guard let index = self.diffCalculator?.rows.indexOf(value) else { return }
-                let indexPath = NSIndexPath(forItem: index, inSection: 0)
-                if !(self.collectionView.indexPathsForSelectedItems()?.contains(indexPath) ?? false) {
-                    self.collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .CenteredHorizontally)
+        let _ = crystalStore.selectedVibe.observe { value in
+            if case .next(let vibe) = value {
+                if let vibe = vibe {
+                    guard let index = self.diffCalculator?.items.index(of: vibe) else { return }
+                    let indexPath = IndexPath(item: index, section: 0)
+                    if !(self.collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false) {
+                        self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+                    }
                 }
             }
         }
@@ -40,8 +42,8 @@ class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     init(availableVibes: [Vibe]) {
         self.crystalStore = nil
-        super.init(frame: CGRectZero)
-        self.diffCalculator = CollectionViewDiffCalculator(collectionView: self.collectionView, initialRows: availableVibes)
+        super.init(frame: CGRect.zero)
+        self.diffCalculator = SingleSectionCollectionViewDiffCalculator(collectionView: self.collectionView, initialItems: availableVibes)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,11 +57,11 @@ class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
+        layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 70, height: 45)
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.clearColor()
-        collectionView.registerClass(VibeCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.register(VibeCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.dataSource = self
         collectionView.delegate = self
         self.addSubview(collectionView)
@@ -67,28 +69,26 @@ class VibesView: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     }()
     
     func resetSelection() {
-        self.collectionView.indexPathsForSelectedItems()?.forEach { indexPath in
-            self.collectionView.deselectItemAtIndexPath(indexPath, animated: false)
+        self.collectionView.indexPathsForSelectedItems?.forEach { indexPath in
+            self.collectionView.deselectItem(at: indexPath, animated: false)
         }
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.diffCalculator?.rows.count ?? 0
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.diffCalculator!.items.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! VibeCollectionViewCell
-        guard let diffCalculator = self.diffCalculator else { return cell }
-        let vibe = diffCalculator.rows[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! VibeCollectionViewCell
+        let vibe = diffCalculator!.items[indexPath.item]
         cell.image = vibe.image
-        cell.title = vibe.rawValue.uppercaseString
+        cell.title = vibe.rawValue.uppercased()
         cell.highlightsSelection = self.highlightsSelection
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let diffCalculator = self.diffCalculator else { return }
-        let vibe = diffCalculator.rows[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vibe = diffCalculator!.items[indexPath.item]
         self.crystalStore?.selectedVibe.value = vibe
     }
 

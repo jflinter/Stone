@@ -15,9 +15,9 @@ class VibeCollectionViewCell: UICollectionViewCell {
     
     var highlightsSelection: Bool = true
 
-    private lazy var label: UILabel = {
+    fileprivate lazy var label: UILabel = {
         let label = UILabel()
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.font = UIFont(name: "Brown-Light", size: 10)
         label.textColor = self.unselectedColor
         label.adjustsFontSizeToFitWidth = true
@@ -25,7 +25,7 @@ class VibeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var imageView: UIImageView = {
+    fileprivate lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = self.unselectedColor
         self.addSubview(imageView)
@@ -34,7 +34,7 @@ class VibeCollectionViewCell: UICollectionViewCell {
     
     var image: UIImage? {
         didSet {
-            self.imageView.image = image?.imageWithRenderingMode(.AlwaysTemplate)
+            self.imageView.image = image?.withRenderingMode(.alwaysTemplate)
         }
     }
     
@@ -44,19 +44,19 @@ class VibeCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    override var selected: Bool {
+    override var isSelected: Bool {
         didSet {
-            self.imageView.tintColor = (self.selected && self.highlightsSelection) ? self.selectedColor : self.unselectedColor
+            self.imageView.tintColor = (self.isSelected && self.highlightsSelection) ? self.selectedColor : self.unselectedColor
             self.label.textColor = self.unselectedColor
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let iconHeight = CGRectGetHeight(self.frame) - 13
+        let iconHeight = self.frame.height - 13
         let iconWidth = iconHeight
-        self.imageView.frame = CGRectMake((self.frame.size.width - iconHeight) / 2, 0, iconWidth, iconHeight)
-        self.label.frame = CGRectMake(0, CGRectGetMaxY(self.imageView.frame) + 3, self.frame.size.width, 10)
+        self.imageView.frame = CGRect(x: (self.frame.size.width - iconHeight) / 2, y: 0, width: iconWidth, height: iconHeight)
+        self.label.frame = CGRect(x: 0, y: self.imageView.frame.maxY + 3, width: self.frame.size.width, height: 10)
     }
     
 }

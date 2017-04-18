@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import PaintBucket
 
 extension UIScrollView {
-    func setScrollIndicatorColor(color: UIColor) {
+    func setScrollIndicatorColor(_ color: UIColor) {
         
         for view in self.subviews {
-            if view.isKindOfClass(UIImageView.self),
+            if view.isKind(of: UIImageView.self),
                 let imageView = view as? UIImageView,
                 let image = imageView.image  {
                 if image.size.width < 5 {
@@ -21,7 +20,7 @@ extension UIScrollView {
                     imageView.layer.cornerRadius = 3
                     imageView.layer.masksToBounds = true
                 }
-                imageView.superview?.sendSubviewToBack(imageView)
+                imageView.superview?.sendSubview(toBack: imageView)
             }
         }
     }

@@ -11,14 +11,15 @@ import BrightFutures
 import Alamofire
 import Bond
 import Result
+import ReactiveKit
 
 class CrystalStore {
     
-    private let allCrystals: Observable<[Crystal]> = Observable<[Crystal]>([])
+    fileprivate let allCrystals: Observable<[Crystal]> = Observable<[Crystal]>([])
     
-    var visibleCrystals: EventProducer<[Crystal]> {
-        let filters = self.selectedVibe.combineLatestWith(self.searchQuery)
-        return self.allCrystals.combineLatestWith(filters).map { (crystals: [Crystal], filters: (Vibe?, String)) -> [Crystal] in
+    var visibleCrystals: ReactiveKit.Signal<[Crystal], ReactiveKit.NoError> {
+        let filters = self.selectedVibe.combineLatest(with: self.searchQuery)
+        return self.allCrystals.combineLatest(with: filters).map { (crystals: [Crystal], filters: (Vibe?, String)) -> [Crystal] in
             var filtered = crystals
             if let vibe = filters.0 {
                 filtered = crystals.filter { $0.vibes.contains(vibe) }
@@ -32,22 +33,22 @@ class CrystalStore {
         }
     }
     
-    var allVibes: EventProducer<Set<Vibe>> {
+    var allVibes: ReactiveKit.Signal<Set<Vibe>, ReactiveKit.NoError> {
         return self.allCrystals.map { (crystals: [Crystal]) -> Set<Vibe> in
-            return Set(crystals.map({ $0.vibes }).flatten())
+            return Set(crystals.map({ $0.vibes }).joined())
         }
     }
     var selectedVibe: Observable<Vibe?> = Observable(nil)
     var searchQuery: Observable<String> = Observable("")
     
-    var crystalPromise: Promise<[Crystal], NoError> = {
-        let promise = Promise<[Crystal], NoError>()
+    var crystalPromise: Promise<[Crystal], ReactiveKit.NoError> = {
+        let promise = Promise<[Crystal], ReactiveKit.NoError>()
         promise.success([])
         return promise
     }()
-    func fetchCrystals() -> Future<[Crystal], NoError> {
+    func fetchCrystals() -> Future<[Crystal], ReactiveKit.NoError> {
         if (self.crystalPromise.future.isCompleted) {
-            self.crystalPromise = Promise<[Crystal], NoError>()
+            self.crystalPromise = Promise<[Crystal], ReactiveKit.NoError>()
             makeRequest(0) { [weak self] crystals in
                 self?.crystalPromise.success(crystals)
             }
@@ -55,21 +56,21 @@ class CrystalStore {
         return self.crystalPromise.future
     }
     
-    func makeRequest(afterDelay: NSTimeInterval, completion: [Crystal] -> Void) {
-        Alamofire.request(.GET, "https://s3-us-west-1.amazonaws.com/stone-products/products.json").responseCollection { (response: Response<[Crystal], NSError>) in
+    func makeRequest(_ afterDelay: Foundation.TimeInterval, completion: @escaping ([Crystal]) -> Void) {
+        Alamofire.request("https://s3-us-west-1.amazonaws.com/stone-products/products.json", method: .get).responseCollection { (response: DataResponse<[Crystal]>) in
             if let value = response.result.value {
                 self.allCrystals.value = value.filter { !$0.imageURLs.isEmpty }
                 completion(value)
                 
             } else if let _ = response.result.error {
-                let delay: NSTimeInterval
+                let delay: Foundation.TimeInterval
                 if (afterDelay <= 0) {
                     delay = 1
                 } else {
                     delay = afterDelay * 2
                 }
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
+                let delayTime = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: delayTime) {
                     self.makeRequest(delay, completion: completion)
                 }
             }

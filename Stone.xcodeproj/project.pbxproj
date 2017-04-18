@@ -33,8 +33,12 @@
 		A05DB1971CE00CFE005C444C /* Brown-Regular-Alt.otf in Resources */ = {isa = PBXBuildFile; fileRef = A05DB1951CE00CFE005C444C /* Brown-Regular-Alt.otf */; };
 		A05DB1991CE0162B005C444C /* Brown-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A05DB1981CE0162B005C444C /* Brown-Bold.otf */; };
 		A05DB19B1CE06D8E005C444C /* Vibes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DB19A1CE06D8E005C444C /* Vibes.swift */; };
-		A07B82021CF20DE200FD502C /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07B82011CF20DE200FD502C /* SSKeychain.framework */; };
-		A07B82031CF20DE200FD502C /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A07B82011CF20DE200FD502C /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A07F4F7C1EA563740030369A /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7B1EA563740030369A /* ReactiveKit.framework */; };
+		A07F4F7D1EA563960030369A /* ReactiveKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7B1EA563740030369A /* ReactiveKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A07F4F7E1EA563A20030369A /* OneSignal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A09C02D21D6A8AED000B1F7B /* OneSignal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A07F4F801EA5A7CA0030369A /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7F1EA5A7CA0030369A /* Diff.framework */; };
+		A07F4F811EA5A7DC0030369A /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7F1EA5A7CA0030369A /* Diff.framework */; };
+		A07F4F821EA5A7DC0030369A /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7F1EA5A7CA0030369A /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A09C02D31D6A8AED000B1F7B /* OneSignal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09C02D21D6A8AED000B1F7B /* OneSignal.framework */; };
 		A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; };
 		A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -85,7 +89,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A07B82031CF20DE200FD502C /* SSKeychain.framework in Embed Frameworks */,
+				A07F4F7E1EA563A20030369A /* OneSignal.framework in Embed Frameworks */,
+				A07F4F821EA5A7DC0030369A /* Diff.framework in Embed Frameworks */,
+				A07F4F7D1EA563960030369A /* ReactiveKit.framework in Embed Frameworks */,
 				A0D408661C02B1CC00CEEBDB /* BrightFutures.framework in Embed Frameworks */,
 				A0F1AB7B1C129FF0005AAAEC /* Iris.framework in Embed Frameworks */,
 				A0D4086D1C02B32C00CEEBDB /* Alamofire.framework in Embed Frameworks */,
@@ -130,7 +136,8 @@
 		A05DB1951CE00CFE005C444C /* Brown-Regular-Alt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Regular-Alt.otf"; sourceTree = "<group>"; };
 		A05DB1981CE0162B005C444C /* Brown-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold.otf"; sourceTree = "<group>"; };
 		A05DB19A1CE06D8E005C444C /* Vibes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vibes.swift; sourceTree = "<group>"; };
-		A07B82011CF20DE200FD502C /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
+		A07F4F7B1EA563740030369A /* ReactiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveKit.framework; path = Carthage/Build/iOS/ReactiveKit.framework; sourceTree = "<group>"; };
+		A07F4F7F1EA5A7CA0030369A /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
 		A09C02D21D6A8AED000B1F7B /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = Carthage/Build/iOS/OneSignal.framework; sourceTree = "<group>"; };
 		A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaintBucket.framework; path = Carthage/Build/iOS/PaintBucket.framework; sourceTree = "<group>"; };
 		A0AB65921D66C834001FD56B /* Stone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stone-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -173,11 +180,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A07B82021CF20DE200FD502C /* SSKeychain.framework in Frameworks */,
+				A07F4F801EA5A7CA0030369A /* Diff.framework in Frameworks */,
 				A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */,
 				A0F1AB7A1C129FF0005AAAEC /* Iris.framework in Frameworks */,
+				A07F4F7C1EA563740030369A /* ReactiveKit.framework in Frameworks */,
 				A0D4086C1C02B32C00CEEBDB /* Alamofire.framework in Frameworks */,
 				A03757C01C14A946002E3620 /* Dwifft.framework in Frameworks */,
+				A07F4F811EA5A7DC0030369A /* Diff.framework in Frameworks */,
 				A0D408671C02B1CC00CEEBDB /* Result.framework in Frameworks */,
 				A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */,
 				A0D4087A1C042FE800CEEBDB /* HockeySDK.framework in Frameworks */,
@@ -280,12 +289,13 @@
 				A0AB65A21D681B8B001FD56B /* Analytics.framework */,
 				A03757C21C14B60C002E3620 /* Bond.framework */,
 				A0D408611C02B1C100CEEBDB /* BrightFutures.framework */,
+				A07F4F7F1EA5A7CA0030369A /* Diff.framework */,
 				A03757BF1C14A946002E3620 /* Dwifft.framework */,
 				A0D408781C042E5D00CEEBDB /* HockeySDK.framework */,
 				A0F1AB671C12955B005AAAEC /* Iris.framework */,
 				A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */,
+				A07F4F7B1EA563740030369A /* ReactiveKit.framework */,
 				A0D408621C02B1C100CEEBDB /* Result.framework */,
-				A07B82011CF20DE200FD502C /* SSKeychain.framework */,
 			);
 			name = Frameworks;
 			path = ..;
@@ -370,6 +380,8 @@
 					A01D2E951BDDDB39004286A9 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 4QS5C2WVW4;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -384,6 +396,7 @@
 					};
 					A0E059291D6AAF92003B17C1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = A01D2E951BDDDB39004286A9;
 					};
 				};
@@ -464,9 +477,10 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Iris.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PaintBucket.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SSKeychain.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Analytics.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OneSignal.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Diff.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
@@ -618,8 +632,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0F1AB6F1C12969B005AAAEC /* Stone-Debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4QS5C2WVW4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -627,8 +644,11 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -636,8 +656,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0F1AB701C12969B005AAAEC /* Stone-Release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4QS5C2WVW4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -645,8 +668,9 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5e3c6db7-dc95-4958-bedb-bf672b20a045";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -660,6 +684,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jflinter.StoneUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5e3c6db7-dc95-4958-bedb-bf672b20a045";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Stone;
 			};
 			name = Debug;
@@ -675,6 +700,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jflinter.StoneUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5e3c6db7-dc95-4958-bedb-bf672b20a045";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Stone;
 			};
 			name = Beta;
@@ -690,6 +716,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jflinter.StoneUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5e3c6db7-dc95-4958-bedb-bf672b20a045";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Stone;
 			};
 			name = Release;
@@ -744,8 +771,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0F1AB6E1C12969B005AAAEC /* Stone-Beta.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4QS5C2WVW4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -753,8 +783,11 @@
 				INFOPLIST_FILE = Stone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Beta;
 		};

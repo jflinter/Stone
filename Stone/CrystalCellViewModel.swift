@@ -11,15 +11,15 @@ import Iris
 
 struct CrystalCellViewModel: Equatable {
     let crystal: Crystal
-    let imageURL: NSURL?
+    let imageURL: URL?
     
     init(crystal: Crystal) {
         self.crystal = crystal
         self.imageURL = crystal.imageURLs.first
     }
     
-    func imageURLForSize(size: CGSize) -> NSURL? {
-        let options = ImageOptions(format: .JPEG, width: size.width, height: size.height, scale: UIScreen.mainScreen().scale, fit: .Clip, crop: nil)
+    func imageURLForSize(_ size: CGSize) -> URL? {
+        let options = ImageOptions(format: .jpeg, width: size.width, height: size.height, scale: UIScreen.main.scale, fit: .clip, crop: nil)
         return self.imageURL?.imgixURL(imageOptions: options)
     }
 }

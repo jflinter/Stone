@@ -10,11 +10,11 @@ import XCTest
 
 extension XCUIElement {
     func forceTapElement() {
-        if self.hittable {
+        if self.isHittable {
             self.tap()
         }
         else {
-            let coordinate: XCUICoordinate = self.coordinateWithNormalizedOffset(CGVectorMake(0.0, 0.0))
+            let coordinate: XCUICoordinate = self.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0))
             coordinate.tap()
         }
     }
@@ -49,12 +49,12 @@ class StoneUITests: XCTestCase {
         app.otherElements["search segmented control"].tap()
         
         let crystalSearchBarElement = app.otherElements["crystal search bar"]
-        let searchField = crystalSearchBarElement.childrenMatchingType(.SearchField).element
+        let searchField = crystalSearchBarElement.children(matching: .searchField).element
         searchField.tap()
         searchField.typeText("moldav")
         
         let collectionView = app.collectionViews["crystal collection view"]
-        collectionView.childrenMatchingType(.Cell).elementBoundByIndex(0).childrenMatchingType(.Image).element.forceTapElement()
+        collectionView.children(matching: .cell).element(boundBy: 0).children(matching: .image).element.forceTapElement()
         
         snapshot("1Moldavite")
         
@@ -69,7 +69,7 @@ class StoneUITests: XCTestCase {
         searchField.typeText(XCUIKeyboardKeyDelete)
         searchField.typeText("apoph")
         
-        collectionView.childrenMatchingType(.Cell).elementBoundByIndex(0).childrenMatchingType(.Image).element.forceTapElement()
+        collectionView.children(matching: .cell).element(boundBy: 0).children(matching: .image).element.forceTapElement()
         snapshot("2Apophyllite")
         
         

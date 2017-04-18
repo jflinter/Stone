@@ -10,31 +10,53 @@ import Foundation
 import Alamofire
 
 public protocol ResponseCollectionSerializable {
-    static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Self]?
+    static func collection(from response: HTTPURLResponse, withRepresentation representation: Any) -> [Self]
 }
 
-extension Alamofire.Request {
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: Response<[T], NSError> -> Void) -> Self {
-        let responseSerializer = ResponseSerializer<[T], NSError> { request, response, data, error in
-            guard error == nil else { return .Failure(error!) }
-            
-            let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let result = JSONSerializer.serializeResponse(request, response, data, error)
-            
-            switch result {
-            case .Success(let value):
-                if let response = response {
-                    if let collection = T.collection(response: response, representation: value) {
-                        return .Success(collection)
-                    } else {
-                        return .Failure(NSError(domain: NSURLErrorDomain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "could not deserialize objects"]))
-                    }
-                } else {
-                    return .Failure(NSError(domain: NSURLErrorDomain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "Response collection could not be serialized due to nil response"]))
+public extension ResponseCollectionSerializable where Self: ResponseObjectSerializable {
+    static func collection(from response: HTTPURLResponse, withRepresentation representation: Any) -> [Self] {
+        var collection: [Self] = []
+        
+        if let representation = representation as? [[String: Any]] {
+            for itemRepresentation in representation {
+                if let item = Self(response: response, representation: itemRepresentation) {
+                    collection.append(item)
                 }
-            case .Failure(let error):
-                return .Failure(error)
             }
+        }
+        
+        return collection
+    }
+}
+
+public enum BackendError: Error {
+    case network(error: Error) // Capture any underlying Error from the URLSession API
+    case jsonSerialization
+    case objectSerialization(reason: String)
+}
+
+public extension DataRequest {
+    @discardableResult
+    func responseCollection<T: ResponseCollectionSerializable>(
+        queue: DispatchQueue? = nil,
+        completionHandler: @escaping (DataResponse<[T]>) -> Void) -> Self
+    {
+        let responseSerializer = DataResponseSerializer<[T]> { request, response, data, error in
+            guard error == nil else { return .failure(error!) }
+            
+            let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
+            let result = jsonSerializer.serializeResponse(request, response, data, nil)
+            
+            guard case let .success(jsonObject) = result else {
+                return .failure(BackendError.jsonSerialization)
+            }
+            
+            guard let response = response else {
+                let reason = "Response collection could not be serialized due to nil response."
+                return .failure(BackendError.objectSerialization(reason: reason))
+            }
+            
+            return .success(T.collection(from: response, withRepresentation: jsonObject))
         }
         
         return response(responseSerializer: responseSerializer, completionHandler: completionHandler)

@@ -20,17 +20,17 @@ class CrystalLoadingView: UIView {
         let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
         pulseAnimation.duration = 1
         pulseAnimation.fromValue = 1
-        pulseAnimation.toValue = NSNumber(double: 1.4)
+        pulseAnimation.toValue = NSNumber(value: 1.4 as Double)
         pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         pulseAnimation.autoreverses = true
-        pulseAnimation.repeatCount = FLT_MAX
-        circleView.layer.addAnimation(pulseAnimation, forKey: nil)
+        pulseAnimation.repeatCount = .greatestFiniteMagnitude
+        circleView.layer.add(pulseAnimation, forKey: nil)
         self.addSubview(circleView)
     }
     
     override var tintColor: UIColor! {
         didSet {
-            self.circleView.layer.borderColor = tintColor.CGColor
+            self.circleView.layer.borderColor = tintColor.cgColor
         }
     }
     

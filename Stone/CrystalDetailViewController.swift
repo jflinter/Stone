@@ -14,16 +14,16 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
     let viewModel: CrystalDetailViewModel
     let closeButton: UIButton = {
         let button = UIButton()
-        button.setImage(Resource.Image.Icon__close.image?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        button.setImage(Resource.Image.Icon__close.image?.withRenderingMode(.alwaysTemplate), for: UIControlState())
         button.tintColor = UIColor.stoneLightBlue
         button.imageEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        button.layer.borderColor = UIColor.stoneDarkBlue.CGColor
+        button.layer.borderColor = UIColor.stoneDarkBlue.cgColor
         button.layer.borderWidth = 0
         button.sizeToFit()
         button.frame = UIEdgeInsetsInsetRect(button.frame, UIEdgeInsetsMake(-8, -8, -8, -8))
         button.layer.cornerRadius = button.frame.size.width / 2
         button.clipsToBounds = true
-        button.backgroundColor = UIColor.whiteColor()
+        button.backgroundColor = UIColor.white
         return button
     }()
     let scrollView = UIScrollView()
@@ -33,14 +33,14 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         let label = UILabel()
         label.textColor = UIColor.stoneDarkBlue
         label.font = UIFont(name: "Brown-RegularAlt", size: 20)
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     let subtitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.stoneDarkBlue
         label.font = UIFont(name: "Brown-RegularItalic", size: 14)
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     
@@ -66,21 +66,21 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         super.viewDidLoad()
         
         self.view.addSubview(self.closeButton)
-        self.closeButton.addTarget(self, action: #selector(CrystalDetailViewController.dismiss), forControlEvents: .TouchUpInside)
+        self.closeButton.addTarget(self, action: #selector(CrystalDetailViewController.dismissMe), for: .touchUpInside)
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         self.scrollView.alwaysBounceVertical = true
         self.scrollView.delegate = self
         self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(20, 0, 0, 0)
         self.scrollView.showsVerticalScrollIndicator = false
         self.view.addSubview(self.scrollView)
         
-        self.imageView.contentMode = .ScaleAspectFit
+        self.imageView.contentMode = .scaleAspectFit
         self.imageView.image = self.viewModel.bootstrapImage
-        self.imageView.frame = CGRectMake(0, 10, self.view.bounds.width, 300)
+        self.imageView.frame = CGRect(x: 0, y: 10, width: self.view.bounds.width, height: 300)
         self.scrollView.addSubview(imageView)
         
-        self.contentContainer.backgroundColor = UIColor.clearColor()
+        self.contentContainer.backgroundColor = UIColor.clear
         self.scrollView.addSubview(self.contentContainer)
         
         self.titleLabel.text = self.viewModel.name
@@ -91,65 +91,64 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         
         self.contentContainer.addSubview(self.vibesView)
         
-        self.textView.backgroundColor = UIColor.clearColor()
+        self.textView.backgroundColor = UIColor.clear
         self.textView.textColor = UIColor.stoneDarkBlue
-        self.textView.scrollEnabled = false
-        self.textView.editable = false
+        self.textView.isScrollEnabled = false
+        self.textView.isEditable = false
         self.textView.showsVerticalScrollIndicator = false
         self.textView.attributedText = self.viewModel.descriptionText
         self.contentContainer.addSubview(textView)
         
-        self.view.bringSubviewToFront(self.closeButton)
+        self.view.bringSubview(toFront: self.closeButton)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.closeButton.frame = CGRectMake(35, 35, self.closeButton.bounds.size.width, self.closeButton.bounds.size.height)
+        self.closeButton.frame = CGRect(x: 35, y: 35, width: self.closeButton.bounds.size.width, height: self.closeButton.bounds.size.height)
         self.scrollView.frame = self.view.bounds
-        self.imageView.frame = CGRectMake(0, 30, self.view.bounds.width, 300)
-        if let url = self.viewModel.imageURLForSize(CGRectIntegral(self.imageView.bounds).size) {
-            
-            self.imageView.af_setImageWithURL(url, placeholderImage: nil, filter: nil, imageTransition: .CrossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
+        self.imageView.frame = CGRect(x: 0, y: 30, width: self.view.bounds.width, height: 300)
+        if let url = self.viewModel.imageURLForSize(self.imageView.bounds.integral.size) {
+            self.imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, imageTransition: .crossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
         }
         
-        var contentFrame = CGRectMake(35, CGRectGetMaxY(self.imageView.frame) - 15, self.view.bounds.size.width - 70, 0)
-        self.titleLabel.frame = CGRectMake(0, 0, contentFrame.size.width, 40)
-        self.subtitleLabel.frame = CGRectMake(0, CGRectGetMaxY(self.titleLabel.frame), contentFrame.size.width, 40)
+        var contentFrame = CGRect(x: 35, y: self.imageView.frame.maxY - 15, width: self.view.bounds.size.width - 70, height: 0)
+        self.titleLabel.frame = CGRect(x: 0, y: 0, width: contentFrame.size.width, height: 40)
+        self.subtitleLabel.frame = CGRect(x: 0, y: self.titleLabel.frame.maxY, width: contentFrame.size.width, height: 40)
         
         let rows =  ceil(CGFloat(self.viewModel.vibes.count) / 3)
-        self.vibesView.frame = CGRectMake(0, CGRectGetMaxY(self.subtitleLabel.frame) + 8, contentFrame.size.width, rows * 60)
+        self.vibesView.frame = CGRect(x: 0, y: self.subtitleLabel.frame.maxY + 8, width: contentFrame.size.width, height: rows * 60)
         
-        let textSize = self.textView.sizeThatFits(CGSizeMake(contentFrame.size.width, CGFloat.max))
-        self.textView.frame = CGRectMake(0, CGRectGetMaxY(self.vibesView.frame), textSize.width, textSize.height)
+        let textSize = self.textView.sizeThatFits(CGSize(width: contentFrame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        self.textView.frame = CGRect(x: 0, y: self.vibesView.frame.maxY, width: textSize.width, height: textSize.height)
         
-        contentFrame.size.height = CGRectGetMaxY(self.textView.frame)
+        contentFrame.size.height = self.textView.frame.maxY
         self.contentContainer.frame = contentFrame
         
         
         
-        self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(self.contentContainer.frame) + 30)
+        self.scrollView.contentSize = CGSize(width: self.view.bounds.size.width, height: self.contentContainer.frame.maxY + 30)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.scrollView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
     }
     
-    func dismiss() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func dismissMe() {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return !self.scrolledToTop
     }
     
-    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
-        return .Fade
+    override var preferredStatusBarUpdateAnimation : UIStatusBarAnimation {
+        return .fade
     }
     
     var scrolledToTop: Bool = true
     var closeButtonHidden: Bool = true
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let scalingImage = scrollView.contentOffset.y <= 0
         scrollView.showsVerticalScrollIndicator = !scalingImage
@@ -157,10 +156,10 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
             let scaleFactor: CGFloat = 4
             let delta = -scrollView.contentOffset.y * scaleFactor / scrollView.bounds.size.height
             let deltaY = delta * self.imageView.bounds.size.height / 8
-            self.imageView.transform = CGAffineTransformTranslate(CGAffineTransformMakeScale(1 + delta, 1 + delta), 0, -deltaY)
+            self.imageView.transform = CGAffineTransform(scaleX: 1 + delta, y: 1 + delta).translatedBy(x: 0, y: -deltaY)
         } else {
             self.scrollView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
-            self.imageView.transform = CGAffineTransformIdentity
+            self.imageView.transform = CGAffineTransform.identity
         }
         
         
@@ -169,19 +168,19 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
             return
         }
         self.scrolledToTop = scrolledToTop
-        UIView.animateWithDuration(0.1) { 
+        UIView.animate(withDuration: 0.1, animations: { 
             self.setNeedsStatusBarAppearanceUpdate()
-        }
+        }) 
         let destinationBorderWidth: CGFloat = (scrolledToTop || closeButtonHidden) ? 0 : 1
         let widthAnimation = CABasicAnimation(keyPath: "borderWidth")
         widthAnimation.duration = 0.1
         self.closeButton.layer.borderWidth = destinationBorderWidth
-        self.closeButton.layer.addAnimation(widthAnimation, forKey: nil)
+        self.closeButton.layer.add(widthAnimation, forKey: nil)
     }
     
-    func crystalVibesViewDidSelectVibe(vibe: Vibe) {
+    func crystalVibesViewDidSelectVibe(_ vibe: Vibe) {
         self.crystalStore.selectedVibe.value = vibe
-        self.dismiss()
+        self.dismissMe()
     }
     
 }
