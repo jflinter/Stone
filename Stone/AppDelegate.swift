@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OneSignal.setDefaultClient(OneSignal(launchOptions: launchOptions, appId: "24cf8981-2d7c-4983-bcb2-6ebe14c590bf", handleNotification: nil, autoRegister: false))
         
         let bytesPerMegabyte = 1000000
-        URLCache.shared = URLCache(memoryCapacity: 100 * bytesPerMegabyte, diskCapacity: 200 * bytesPerMegabyte, diskPath: "com.stonecrystals.urlcache")
+//        URLCache.shared = URLCache(memoryCapacity: 100 * bytesPerMegabyte, diskCapacity: 200 * bytesPerMegabyte, diskPath: "com.stonecrystals.urlcache")
         
         let configuration = ImageDownloader.defaultURLSessionConfiguration()
         configuration.urlCache = URLCache.shared

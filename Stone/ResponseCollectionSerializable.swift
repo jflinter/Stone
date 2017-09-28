@@ -21,6 +21,8 @@ public extension ResponseCollectionSerializable where Self: ResponseObjectSerial
             for itemRepresentation in representation {
                 if let item = Self(response: response, representation: itemRepresentation) {
                     collection.append(item)
+                } else {
+                    
                 }
             }
         }
