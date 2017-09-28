@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    dotenv (2.2.1)
+    faraday (0.13.1)
+      multipart-post (>= 1.2, < 3)
+    multipart-post (2.0.0)
+    stripe (3.3.2)
+      faraday (~> 0.9)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dotenv
+  stripe
+
+BUNDLED WITH
+   1.15.3
