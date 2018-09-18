@@ -106,7 +106,6 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         super.viewDidLayoutSubviews()
         self.closeButton.frame = CGRect(x: 35, y: 35, width: self.closeButton.bounds.size.width, height: self.closeButton.bounds.size.height)
         self.scrollView.frame = self.view.bounds
-        self.imageView.frame = CGRect(x: 0, y: 30, width: self.view.bounds.width, height: 300)
         if let url = self.viewModel.imageURLForSize(self.imageView.bounds.integral.size) {
             self.imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, imageTransition: .crossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
         }

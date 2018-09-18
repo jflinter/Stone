@@ -481,6 +481,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Analytics.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OneSignal.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Differ.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
@@ -669,7 +670,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -692,7 +692,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -710,7 +709,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = Stone;
 			};
@@ -729,7 +727,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = Stone;
 			};
@@ -748,7 +745,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = Stone;
 			};
@@ -830,7 +826,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Stone/Stone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Beta;
