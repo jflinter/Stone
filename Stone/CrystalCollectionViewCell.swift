@@ -47,7 +47,7 @@ class CrystalCollectionViewCell: UICollectionViewCell {
             self.loadingView.tintColor = color
             if let url = viewModel?.imageURLForSize(size) {
                 self.imageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.2), runImageTransitionIfCached: false, completion: { (response) in
-                    if let error = response.error {
+                    if let _ = response.error {
                         
                     }
                 })

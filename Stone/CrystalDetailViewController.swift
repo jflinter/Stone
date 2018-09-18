@@ -14,13 +14,13 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
     let viewModel: CrystalDetailViewModel
     let closeButton: UIButton = {
         let button = UIButton()
-        button.setImage(Resource.Image.Icon__close.image?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        button.setImage(Resource.Image.Icon__close.image?.withRenderingMode(.alwaysTemplate), for: UIControl.State())
         button.tintColor = UIColor.stoneLightBlue
         button.imageEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         button.layer.borderColor = UIColor.stoneDarkBlue.cgColor
         button.layer.borderWidth = 0
         button.sizeToFit()
-        button.frame = UIEdgeInsetsInsetRect(button.frame, UIEdgeInsetsMake(-8, -8, -8, -8))
+        button.frame = button.frame.inset(by: UIEdgeInsets.init(top: -8, left: -8, bottom: -8, right: -8))
         button.layer.cornerRadius = button.frame.size.width / 2
         button.clipsToBounds = true
         button.backgroundColor = UIColor.white
@@ -71,7 +71,7 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         self.view.backgroundColor = UIColor.white
         self.scrollView.alwaysBounceVertical = true
         self.scrollView.delegate = self
-        self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(20, 0, 0, 0)
+        self.scrollView.scrollIndicatorInsets = UIEdgeInsets.init(top: 20, left: 0, bottom: 0, right: 0)
         self.scrollView.showsVerticalScrollIndicator = false
         self.view.addSubview(self.scrollView)
         
@@ -99,7 +99,7 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         self.textView.attributedText = self.viewModel.descriptionText
         self.contentContainer.addSubview(textView)
         
-        self.view.bringSubview(toFront: self.closeButton)
+        self.view.bringSubviewToFront(self.closeButton)
     }
     
     override func viewDidLayoutSubviews() {
@@ -134,7 +134,7 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         self.scrollView.setScrollIndicatorColor(UIColor.stoneDarkOrange)
     }
     
-    func dismissMe() {
+    @objc func dismissMe() {
         self.dismiss(animated: true, completion: nil)
     }
     

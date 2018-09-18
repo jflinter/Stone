@@ -20,7 +20,7 @@ extension UIScrollView {
                     imageView.layer.cornerRadius = 3
                     imageView.layer.masksToBounds = true
                 }
-                imageView.superview?.sendSubview(toBack: imageView)
+                imageView.superview?.sendSubviewToBack(imageView)
             }
         }
     }

@@ -18,7 +18,7 @@ class SplashScreenViewController: UIViewController {
         pulseAnimation.duration = 2
         pulseAnimation.fromValue = 1
         pulseAnimation.toValue = NSNumber(value: 1.2 as Double)
-        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         pulseAnimation.autoreverses = true
         pulseAnimation.repeatCount = .greatestFiniteMagnitude
         self.iconView.layer.add(pulseAnimation, forKey: nil)

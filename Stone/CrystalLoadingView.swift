@@ -21,7 +21,7 @@ class CrystalLoadingView: UIView {
         pulseAnimation.duration = 1
         pulseAnimation.fromValue = 1
         pulseAnimation.toValue = NSNumber(value: 1.4 as Double)
-        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         pulseAnimation.autoreverses = true
         pulseAnimation.repeatCount = .greatestFiniteMagnitude
         circleView.layer.add(pulseAnimation, forKey: nil)

@@ -12,6 +12,6 @@ typealias Crystal = Product
 
 extension Product {
     var vibes: Set<Vibe> {
-        return Set(self.caption.characters.split{$0 == ","}.map(String.init).flatMap({ Vibe(rawValue: $0.lowercased()) }))
+        return Set(self.caption.split{$0 == ","}.compactMap({ Vibe(rawValue: $0.lowercased()) }))
     }
 }

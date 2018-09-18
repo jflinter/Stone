@@ -33,7 +33,7 @@ extension SKU: ResponseObjectSerializable {
 extension Product: ResponseCollectionSerializable, ResponseObjectSerializable {
     static func collection(response: HTTPURLResponse, representation: AnyObject) -> [Crystal]? {
         guard let json = representation as? [[String: Any]] else { return nil }
-        return json.flatMap { object in
+        return json.compactMap { object in
             return Product(response: response, representation: object)
         }
     }
@@ -48,8 +48,8 @@ extension Product: ResponseCollectionSerializable, ResponseObjectSerializable {
             let rawSkus = object["skus"] as? [String: Any],
             let skuData = rawSkus["data"] as? [Any]
             else { return nil }
-        let imageURLs = imageURLStrings.flatMap(URL.init)
-        let skus = skuData.flatMap { data in
+        let imageURLs = imageURLStrings.compactMap(URL.init)
+        let skus = skuData.compactMap { data in
             return SKU(response: response, representation: data)
         }
         self.name = name

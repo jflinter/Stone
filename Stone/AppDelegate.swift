@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let crystalStore: CrystalStore = CrystalStore()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         var t = 0
         srand48(time(&t))
         BITHockeyManager.shared().configure(withIdentifier: "6e9f05f2cfa44a098bfbba010a692853")
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         OneSignal.setDefaultClient(OneSignal(launchOptions: launchOptions, appId: "24cf8981-2d7c-4983-bcb2-6ebe14c590bf", handleNotification: nil, autoRegister: false))
         
-        let bytesPerMegabyte = 1000000
+//        let bytesPerMegabyte = 1000000
 //        URLCache.shared = URLCache(memoryCapacity: 100 * bytesPerMegabyte, diskCapacity: 200 * bytesPerMegabyte, diskPath: "com.stonecrystals.urlcache")
         
         let configuration = ImageDownloader.defaultURLSessionConfiguration()

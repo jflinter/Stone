@@ -20,7 +20,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        layout.sectionInset = UIEdgeInsetsMake(20, 0, 0, 0)
+        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 0, bottom: 0, right: 0)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.accessibilityIdentifier = "crystal collection view"
         return collectionView
@@ -35,8 +35,8 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     let searchSegmentedControl: HMSegmentedControl = {
         let segmentedControl = HMSegmentedControl(sectionTitles: ["VIBE ", "NAME "])!
         segmentedControl.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Brown-Light", size: 14) ?? UIFont.systemFont(ofSize: 14),
-            NSForegroundColorAttributeName: UIColor.stoneLightBlue,
+            convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "Brown-Light", size: 14) ?? UIFont.systemFont(ofSize: 14),
+            convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.stoneLightBlue,
         ]
         segmentedControl.selectionIndicatorLocation = .down
         segmentedControl.segmentWidthStyle = .fixed
@@ -60,11 +60,11 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     
     lazy var cancelSearchButton: UIBarButtonItem = {
         let button = UIButton()
-        button.setImage(Resource.Image.Icon__close.image?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        button.setImage(Resource.Image.Icon__close.image?.withRenderingMode(.alwaysTemplate), for: UIControl.State())
         button.tintColor = UIColor.stoneLightBlue
         button.imageEdgeInsets = UIEdgeInsets(top: 16, left: 32, bottom: 16, right: 0)
         button.sizeToFit()
-        button.frame = UIEdgeInsetsInsetRect(button.frame, UIEdgeInsetsMake(-8, -8, -8, -8))
+        button.frame = button.frame.inset(by: UIEdgeInsets.init(top: -8, left: -8, bottom: -8, right: -8))
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(CrystalCollectionViewController.toggleSearch), for: .touchUpInside)
         let searchButton = UIBarButtonItem(customView: button)
@@ -77,10 +77,10 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.accessibilityIdentifier = "crystal search bar"
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.stoneLightBlue,
-            NSFontAttributeName: UIFont(name: "Brown-Light", size: 16) ?? UIFont.systemFont(ofSize: 16),
-        ]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = convertToNSAttributedStringKeyDictionary([
+            NSAttributedString.Key.foregroundColor.rawValue: UIColor.stoneLightBlue,
+            NSAttributedString.Key.font.rawValue: UIFont(name: "Brown-Light", size: 16) ?? UIFont.systemFont(ofSize: 16),
+        ])
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.layer.borderColor = UIColor.stoneDarkOrange.cgColor
         textFieldInsideSearchBar?.layer.borderWidth = 1
@@ -132,16 +132,16 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         self.edgesForExtendedLayout = UIRectEdge()
         self.automaticallyAdjustsScrollViewInsets = false
         self.extendedLayoutIncludesOpaqueBars = false
-        NotificationCenter.default.addObserver(self, selector: #selector(CrystalCollectionViewController.keyboardWillChangeFrame(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CrystalCollectionViewController.keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("not implemented")
     }
     
-    func keyboardWillChangeFrame(_ notification: Notification) {
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
         
-        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue ?? CGRect.zero
+        let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue ?? CGRect.zero
         let intersection = keyboardFrame.intersection(self.view.frame)
         
         var inset = self.collectionView.contentInset
@@ -219,7 +219,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
             alertController.addAction(UIAlertAction(title: "No thanks.", style: .default, handler: { _ in
                 UserDefaults.standard.set(Date(), forKey: key)
             }))
-            alertController.addAction(UIAlertAction(title: "Please do.", style: UIAlertActionStyle.default, handler: { _ in
+            alertController.addAction(UIAlertAction(title: "Please do.", style: UIAlertAction.Style.default, handler: { _ in
                 UserDefaults.standard.set(Date(), forKey: key)
                 OneSignal.defaultClient().registerForPushNotifications()
             }))
@@ -255,7 +255,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
             })
         }
     }
-    func segmentedControlChanged(_ segmentedControl: UISegmentedControl) {
+    @objc func segmentedControlChanged(_ segmentedControl: UISegmentedControl) {
         self.vibesSelected = segmentedControl.selectedSegmentIndex == 0
     }
     
@@ -319,7 +319,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         return self.diffCalculator?.items[indexPath.item]
     }
         
-    func toggleSearch() {
+    @objc func toggleSearch() {
         self.searchVisible = !self.searchVisible
     }
     
@@ -364,4 +364,14 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         return self.animator
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

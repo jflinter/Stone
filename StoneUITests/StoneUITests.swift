@@ -61,12 +61,12 @@ class StoneUITests: XCTestCase {
         app.buttons["icon close"].tap()
         
         searchField.tap()
-        searchField.typeText(XCUIKeyboardKeyDelete)
-        searchField.typeText(XCUIKeyboardKeyDelete)
-        searchField.typeText(XCUIKeyboardKeyDelete)
-        searchField.typeText(XCUIKeyboardKeyDelete)
-        searchField.typeText(XCUIKeyboardKeyDelete)
-        searchField.typeText(XCUIKeyboardKeyDelete)
+        searchField.typeText(convertFromXCUIKeyboardKey(XCUIKeyboardKey.delete))
+        searchField.typeText(convertFromXCUIKeyboardKey(XCUIKeyboardKey.delete))
+        searchField.typeText(convertFromXCUIKeyboardKey(XCUIKeyboardKey.delete))
+        searchField.typeText(convertFromXCUIKeyboardKey(XCUIKeyboardKey.delete))
+        searchField.typeText(convertFromXCUIKeyboardKey(XCUIKeyboardKey.delete))
+        searchField.typeText(convertFromXCUIKeyboardKey(XCUIKeyboardKey.delete))
         searchField.typeText("apoph")
         
         collectionView.children(matching: .cell).element(boundBy: 0).children(matching: .image).element.forceTapElement()
@@ -105,4 +105,9 @@ class StoneUITests: XCTestCase {
         
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromXCUIKeyboardKey(_ input: XCUIKeyboardKey) -> String {
+	return input.rawValue
 }

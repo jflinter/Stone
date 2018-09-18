@@ -23,11 +23,11 @@ class MainContainerViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        self.addChildViewController(nav)
-        nav.didMove(toParentViewController: self)
+        self.addChild(nav)
+        nav.didMove(toParent: self)
         
-        self.addChildViewController(splash)
-        splash.didMove(toParentViewController: self)
+        self.addChild(splash)
+        splash.didMove(toParent: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,8 +52,8 @@ class MainContainerViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: {
                 self.splash.view.alpha = 0
             }, completion: { _ in
-                self.splash.removeFromParentViewController()
-                self.splash.didMove(toParentViewController: nil)
+                self.splash.removeFromParent()
+                self.splash.didMove(toParent: nil)
                 self.splash.view.removeFromSuperview()
             })
         }
