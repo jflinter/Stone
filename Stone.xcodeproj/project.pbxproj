@@ -36,9 +36,6 @@
 		A07F4F7C1EA563740030369A /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7B1EA563740030369A /* ReactiveKit.framework */; };
 		A07F4F7D1EA563960030369A /* ReactiveKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7B1EA563740030369A /* ReactiveKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A07F4F7E1EA563A20030369A /* OneSignal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A09C02D21D6A8AED000B1F7B /* OneSignal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A07F4F801EA5A7CA0030369A /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7F1EA5A7CA0030369A /* Diff.framework */; };
-		A07F4F811EA5A7DC0030369A /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7F1EA5A7CA0030369A /* Diff.framework */; };
-		A07F4F821EA5A7DC0030369A /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A07F4F7F1EA5A7CA0030369A /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A09C02D31D6A8AED000B1F7B /* OneSignal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09C02D21D6A8AED000B1F7B /* OneSignal.framework */; };
 		A0A704FF1C968A9400FEECCB /* PaintBucket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; };
 		A0A705001C968A9400FEECCB /* PaintBucket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -90,7 +87,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A07F4F7E1EA563A20030369A /* OneSignal.framework in Embed Frameworks */,
-				A07F4F821EA5A7DC0030369A /* Diff.framework in Embed Frameworks */,
 				A07F4F7D1EA563960030369A /* ReactiveKit.framework in Embed Frameworks */,
 				A0D408661C02B1CC00CEEBDB /* BrightFutures.framework in Embed Frameworks */,
 				A0F1AB7B1C129FF0005AAAEC /* Iris.framework in Embed Frameworks */,
@@ -137,7 +133,6 @@
 		A05DB1981CE0162B005C444C /* Brown-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Brown-Bold.otf"; sourceTree = "<group>"; };
 		A05DB19A1CE06D8E005C444C /* Vibes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vibes.swift; sourceTree = "<group>"; };
 		A07F4F7B1EA563740030369A /* ReactiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveKit.framework; path = Carthage/Build/iOS/ReactiveKit.framework; sourceTree = "<group>"; };
-		A07F4F7F1EA5A7CA0030369A /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
 		A09C02D21D6A8AED000B1F7B /* OneSignal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneSignal.framework; path = Carthage/Build/iOS/OneSignal.framework; sourceTree = "<group>"; };
 		A0A704FD1C968A8B00FEECCB /* PaintBucket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaintBucket.framework; path = Carthage/Build/iOS/PaintBucket.framework; sourceTree = "<group>"; };
 		A0AB65921D66C834001FD56B /* Stone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Stone-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -180,13 +175,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A07F4F801EA5A7CA0030369A /* Diff.framework in Frameworks */,
 				A0D408651C02B1CC00CEEBDB /* BrightFutures.framework in Frameworks */,
 				A0F1AB7A1C129FF0005AAAEC /* Iris.framework in Frameworks */,
 				A07F4F7C1EA563740030369A /* ReactiveKit.framework in Frameworks */,
 				A0D4086C1C02B32C00CEEBDB /* Alamofire.framework in Frameworks */,
 				A03757C01C14A946002E3620 /* Dwifft.framework in Frameworks */,
-				A07F4F811EA5A7DC0030369A /* Diff.framework in Frameworks */,
 				A0D408671C02B1CC00CEEBDB /* Result.framework in Frameworks */,
 				A03757C31C14B60C002E3620 /* Bond.framework in Frameworks */,
 				A0D4087A1C042FE800CEEBDB /* HockeySDK.framework in Frameworks */,
@@ -213,6 +206,7 @@
 				A01D2E981BDDDB39004286A9 /* Stone */,
 				A0E0592B1D6AAF92003B17C1 /* StoneUITests */,
 				A01D2E971BDDDB39004286A9 /* Products */,
+				A068A8F32150D56E003DDD04 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -280,6 +274,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		A068A8F32150D56E003DDD04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A0D408601C02B1A700CEEBDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +290,6 @@
 				A0AB65A21D681B8B001FD56B /* Analytics.framework */,
 				A03757C21C14B60C002E3620 /* Bond.framework */,
 				A0D408611C02B1C100CEEBDB /* BrightFutures.framework */,
-				A07F4F7F1EA5A7CA0030369A /* Diff.framework */,
 				A03757BF1C14A946002E3620 /* Dwifft.framework */,
 				A0D408781C042E5D00CEEBDB /* HockeySDK.framework */,
 				A0F1AB671C12955B005AAAEC /* Iris.framework */,
@@ -461,7 +461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = resourceful;
+			shellScript = "resourceful\n";
 		};
 		A0AB65911D56F123001FD56B /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -481,14 +481,13 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Analytics.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OneSignal.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Diff.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
