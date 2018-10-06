@@ -12,6 +12,19 @@ import ReactiveKit
 import Analytics
 import OneSignal
 
+extension UIImage {
+    static func from(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
+}
+
 private let reuseIdentifier = "Cell"
 
 class CrystalCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
@@ -62,7 +75,7 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
         let button = UIButton()
         button.setImage(Resource.Image.Icon__close.image?.withRenderingMode(.alwaysTemplate), for: UIControl.State())
         button.tintColor = UIColor.stoneLightBlue
-        button.imageEdgeInsets = UIEdgeInsets(top: 16, left: 32, bottom: 16, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 16, left: 32, bottom: 8, right: 0)
         button.sizeToFit()
         button.frame = button.frame.inset(by: UIEdgeInsets.init(top: -8, left: -8, bottom: -8, right: -8))
         button.clipsToBounds = true
@@ -81,13 +94,19 @@ class CrystalCollectionViewController: UIViewController, UICollectionViewDataSou
             NSAttributedString.Key.foregroundColor.rawValue: UIColor.stoneLightBlue,
             NSAttributedString.Key.font.rawValue: UIFont(name: "Brown-Light", size: 16) ?? UIFont.systemFont(ofSize: 16),
         ])
+        let clear = UIImage.from(color: UIColor.clear)
+//        searchBar.setSearchFieldBackgroundImage(clear, for: .normal)
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.layer.borderColor = UIColor.stoneDarkOrange.cgColor
-        textFieldInsideSearchBar?.layer.borderWidth = 1
-        textFieldInsideSearchBar?.layer.cornerRadius = 10
+//        textFieldInsideSearchBar?.layer.borderColor = UIColor.stoneDarkOrange.cgColor
+//        textFieldInsideSearchBar?.layer.borderWidth = 1
+//        textFieldInsideSearchBar?.layer.cornerRadius = 10
         textFieldInsideSearchBar?.clearButtonMode = .never
         searchBar.backgroundImage = UIImage()
         searchBar.tintColor = UIColor.stoneLightBlue
+        searchBar.layer.cornerRadius = 10
+        searchBar.layer.borderWidth = 1
+        searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 0, vertical: 1)
+        searchBar.layer.borderColor = UIColor.stoneDarkOrange.cgColor
         return searchBar
     }()
     var searchVisible: Bool = false {
