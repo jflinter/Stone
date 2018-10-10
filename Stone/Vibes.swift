@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Vibe: String {
+enum Vibe: String, Codable {
     
     case Balance = "balance"
     case Calm = "calm"

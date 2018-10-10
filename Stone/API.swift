@@ -7,7 +7,8 @@
 //
 
 import UIKit
+import Result
 
 struct API {
-    static let baseURL = "https://api.stoneproject.co/"
+    static let baseURL = URL(string: "https://stoneproject.app/index.json")!
 }

@@ -1,17 +1,33 @@
 //
-//  Crystal.swift
+//  Product.swift
 //  Stone
 //
-//  Created by Jack Flintermann on 10/25/15.
-//  Copyright © 2015 Stone. All rights reserved.
+//  Created by Jack Flintermann on 2/18/16.
+//  Copyright © 2016 Stone. All rights reserved.
 //
 
 import Foundation
 
-typealias Crystal = Product
-
-extension Product {
-    var vibes: Set<Vibe> {
-        return Set(self.caption.split{$0 == ","}.compactMap({ Vibe(rawValue: $0.lowercased()) }))
+struct Crystal: Equatable, Codable {
+    let name: String
+    let tagline: String
+    let description: String
+    let id: String
+    let imageURL: URL
+    let url: URL
+    let vibes: Set<Vibe>
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case tagline
+        case description
+        case id
+        case url
+        case imageURL = "image_url"
+        case vibes
     }
+}
+
+func ==(lhs: Crystal, rhs: Crystal) -> Bool {
+    return lhs.id == rhs.id
 }

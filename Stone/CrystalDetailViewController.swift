@@ -26,6 +26,19 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         button.backgroundColor = UIColor.white
         return button
     }()
+    let shareButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Resource.Image.Share.image?.withRenderingMode(.alwaysTemplate), for: UIControl.State())
+        button.tintColor = UIColor.stoneLightBlue
+        button.imageEdgeInsets = UIEdgeInsets(top: 11, left: 16, bottom: 7, right: 16)
+        button.layer.borderColor = UIColor.stoneDarkBlue.cgColor
+        button.layer.borderWidth = 0
+        button.frame = CGRect(x: 0, y: 0, width: 51, height: 51)
+        button.layer.cornerRadius = button.frame.size.width / 2
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.white
+        return button
+    }()
     let scrollView = UIScrollView()
     let imageView = UIImageView()
     let contentContainer = UIView()
@@ -68,6 +81,9 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         self.view.addSubview(self.closeButton)
         self.closeButton.addTarget(self, action: #selector(CrystalDetailViewController.dismissMe), for: .touchUpInside)
         
+        self.view.addSubview(self.shareButton)
+        self.shareButton.addTarget(self, action: #selector(CrystalDetailViewController.share), for: .touchUpInside)
+        
         self.view.backgroundColor = UIColor.white
         self.scrollView.alwaysBounceVertical = true
         self.scrollView.delegate = self
@@ -100,11 +116,13 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
         self.contentContainer.addSubview(textView)
         
         self.view.bringSubviewToFront(self.closeButton)
+        self.view.bringSubviewToFront(self.shareButton)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.closeButton.frame = CGRect(x: 35, y: 35, width: self.closeButton.bounds.size.width, height: self.closeButton.bounds.size.height)
+        self.shareButton.frame = CGRect(x: self.view.bounds.width - 35 - self.shareButton.bounds.size.width, y: 35, width: self.shareButton.bounds.size.width, height: self.shareButton.bounds.size.height)
         self.scrollView.frame = self.view.bounds
         if let url = self.viewModel.imageURLForSize(self.imageView.bounds.integral.size) {
             self.imageView.af_setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, imageTransition: .crossDissolve(0.4), runImageTransitionIfCached: false, completion: nil)
@@ -135,6 +153,11 @@ class CrystalDetailViewController: UIViewController, UIScrollViewDelegate, Cryst
     
     @objc func dismissMe() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func share() {
+        let activityViewController = UIActivityViewController(activityItems: [self.viewModel.url], applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     override var prefersStatusBarHidden : Bool {

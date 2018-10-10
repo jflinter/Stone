@@ -32,7 +32,9 @@ public enum Image: String, ResourceImageConvertible {
     case LaunchTitle = "LaunchTitle"
     case Stone_Logo_Icon = "Stone-Logo-Icon"
     case Icon__close = "icon_close"
+    case Icon__share = "icon_share"
     case ScrollIndicator = "scrollIndicator"
+    case Share = "share"
     
     
 public enum Icons: String, ResourceImageConvertible {

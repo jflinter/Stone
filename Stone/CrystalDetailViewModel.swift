@@ -14,19 +14,18 @@ struct CrystalDetailViewModel {
     fileprivate let crystal: Crystal
     let name: String
     let subtitle: String
-    let imageURLs: [URL]
+    let imageURL: URL
     let descriptionText: NSAttributedString
     let bootstrapImage: UIImage
-    let skus: [SKU]
     let vibes: [Vibe]
+    let url: URL
     
     init(crystal: Crystal, bootstrapImage: UIImage) {
         self.crystal = crystal
         self.name = crystal.name
-        let lines = crystal.description?.components(separatedBy: "\n") ?? [""]
-        self.subtitle = lines[0]
+        self.subtitle = crystal.tagline
         self.vibes = Array(crystal.vibes)
-        let description = lines.dropFirst().joined(separator: "\n").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let description = crystal.description
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 20.0
         paragraphStyle.minimumLineHeight = 20.0
@@ -36,14 +35,14 @@ struct CrystalDetailViewModel {
             convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "Brown-Light", size: 14) ?? UIFont.systemFont(ofSize: 14)
         ]))
         self.descriptionText = attributedString
-        self.imageURLs = crystal.imageURLs
+        self.imageURL = crystal.imageURL
         self.bootstrapImage = bootstrapImage
-        self.skus = crystal.skus
+        self.url = crystal.url
     }
     
     func imageURLForSize(_ size: CGSize) -> URL? {
         let options = ImageOptions(format: .jpeg, width: size.width, height: size.height, scale: UIScreen.main.scale, fit: .clip, crop: nil)
-        return self.imageURLs.first?.imgixURL(imageOptions: options)
+        return self.imageURL.imgixURL(imageOptions: options)
     }
 }
 

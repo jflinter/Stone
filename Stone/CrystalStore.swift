@@ -56,13 +56,14 @@ class CrystalStore {
         return self.crystalPromise.future
     }
     
+    struct CrystalResponse: Codable {
+        let data: [Crystal]
+    }
+    
     func makeRequest(_ afterDelay: Foundation.TimeInterval, completion: @escaping ([Crystal]) -> Void) {
-        Alamofire.request("https://s3-us-west-1.amazonaws.com/stone-products/products-test.json", method: .get).responseCollection { (response: DataResponse<[Crystal]>) in
-            if let value = response.result.value {
-                self.allCrystals.value = value.filter { !$0.imageURLs.isEmpty }
-                completion(value)
-                
-            } else if let _ = response.result.error {
+        URLSession.shared.dataTask(with: API.baseURL) { (data, response
+            , error) in
+            guard let data = data else {
                 let delay: Foundation.TimeInterval
                 if (afterDelay <= 0) {
                     delay = 1
@@ -73,8 +74,19 @@ class CrystalStore {
                 DispatchQueue.main.asyncAfter(deadline: delayTime) {
                     self.makeRequest(delay, completion: completion)
                 }
+                return
             }
-        }
+            do {
+                let decoder = JSONDecoder()
+                let crystals = try decoder.decode(CrystalResponse.self, from: data).data
+                DispatchQueue.main.async {
+                    self.allCrystals.value = crystals
+                    completion(crystals)
+                }
+            } catch let err {
+                print("Err", err)
+            }
+            }.resume()
     }
     
 }

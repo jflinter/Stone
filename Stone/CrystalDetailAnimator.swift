@@ -60,9 +60,13 @@ import UIKit
             
             detailViewController.closeButton.transform =  CGAffineTransform(scaleX: 0.7, y: 0.7).rotated(by: 120)
             detailViewController.closeButton.alpha = 0
+            detailViewController.shareButton.transform =  CGAffineTransform(scaleX: 0.7, y: 0.7).rotated(by: -120)
+            detailViewController.shareButton.alpha = 0
             UIView.animate(withDuration: 0.63, delay: 0.05, usingSpringWithDamping: 25.51, initialSpringVelocity: 0, options: [], animations: {
                 detailViewController.closeButton.alpha = 1
                 detailViewController.closeButton.transform = CGAffineTransform.identity
+                detailViewController.shareButton.alpha = 1
+                detailViewController.shareButton.transform = CGAffineTransform.identity
                 }, completion: nil)
             
             

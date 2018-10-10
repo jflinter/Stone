@@ -15,7 +15,7 @@ struct CrystalCellViewModel: Equatable {
     
     init(crystal: Crystal) {
         self.crystal = crystal
-        self.imageURL = crystal.imageURLs.first
+        self.imageURL = crystal.imageURL
     }
     
     func imageURLForSize(_ size: CGSize) -> URL? {
